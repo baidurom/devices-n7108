@@ -1,0 +1,12 @@
+<?xml  version="1.0" encoding="UTF-8" ?>
+<SW-Configuration>
+	<MobileData>
+	<PublicName>GT-N7108</PublicName>
+	</MobileData>
+	<CustomerDataSet>
+	<CSCName>N7108CHM</CSCName>
+	<CSCVersion>DMJ1</CSCVersion>
+	<NbCustomer>1</NbCustomer>
+	<CustomerData src="/Customer/CHM/customer.xml" />
+	</CustomerDataSet>
+</SW-Configuration>

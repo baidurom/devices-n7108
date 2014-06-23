@@ -1,0 +1,12 @@
+/system/preload/CMWeibo_writing_Phone_V3.0.apk
+/system/preload/MobileMusic_Phone_V4.0.apk
+/system/preload/CMRead_Phone_V1.0.apk
+/system/preload/GameHall_Phone_V3.0.apk
+/system/preload/Fetion_Phone_V3.0.apk
+/system/preload/MM_Phone_V3.0.apk
+/system/preload/NCR.apk
+/system/preload/G3eWalk_Phone_V6.0.apk
+/system/preload/CMVideo_Phone_V3.0.apk
+/system/preload/PushEmail_Phone_V2.0.apk
+/system/preload/PIM_Phone_V1.0.apk
+/system/preload/cmccportal_Midas.apk

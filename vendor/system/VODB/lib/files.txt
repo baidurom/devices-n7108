@@ -1,0 +1,9 @@
+equation-ak.lite.res	2fe1b78d53ace2159a30f418f7f40411	1586537
+equation-grm-standard.res	365869c5250461c69949614d4fe621fb	4007
+libMyScriptEngine.so	2e82a376a6398c0082e40abfae05ef3e	636732
+libMyScriptEquation.so	15804d9e7b76b67d92d5126c8b82934a	638880
+libMyScriptHWR.so	f9ea2f8bbd290b9ef0fa3c64a53d2e45	2071636
+libMyScriptShape.so	56559c6b65188637ce67910ea12e5d24	304512
+libStylusCore.so	36824f02ec253e92156a958e8ee47a0d	1745340
+libvoim.so	314a9f7b8e5bc8c33e61d754317afa68	567148
+shk-standard.res	bf2cfc9603052e3b2f62108cd0aa3582	1574
