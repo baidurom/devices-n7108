@@ -1,0 +1,50 @@
+.method protected onAttachedToWindow()V
+    .locals 2
+
+    .prologue
+    .line 1604
+    invoke-super {p0}, Landroid/widget/FrameLayout;->onAttachedToWindow()V
+
+    .line 1605
+    const-string v0, "InCallTouchUi"
+
+    const-string v1, "onAttachedToWindow"
+
+    invoke-static {v0, v1}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 1606
+    iget-object v0, p0, Lcom/android/phone/InCallTouchUi;->mVisualizer:Landroid/media/audiofx/Visualizer;
+
+    if-nez v0, :cond_0
+
+    goto :goto_baidu_0
+
+    .line 1607
+    new-instance v0, Landroid/media/audiofx/Visualizer;
+
+    const/4 v1, 0x0
+
+    invoke-direct {v0, v1}, Landroid/media/audiofx/Visualizer;-><init>(I)V
+
+    iput-object v0, p0, Lcom/android/phone/InCallTouchUi;->mVisualizer:Landroid/media/audiofx/Visualizer;
+
+    .line 1608
+    iget-object v0, p0, Lcom/android/phone/InCallTouchUi;->mVisualizer:Landroid/media/audiofx/Visualizer;
+
+    const/16 v1, 0x40
+
+    invoke-virtual {v0, v1}, Landroid/media/audiofx/Visualizer;->setCaptureSize(I)I
+
+    .line 1609
+    iget-object v0, p0, Lcom/android/phone/InCallTouchUi;->mSpectrumView:Lcom/baidu/multiwaveview/SpectrumView;
+
+    iget-object v1, p0, Lcom/android/phone/InCallTouchUi;->mVisualizer:Landroid/media/audiofx/Visualizer;
+
+    invoke-virtual {v0, v1}, Lcom/baidu/multiwaveview/SpectrumView;->setVisualizer(Landroid/media/audiofx/Visualizer;)V
+
+    .line 1611
+    :cond_0
+    :goto_baidu_0
+    return-void
+.end method
+

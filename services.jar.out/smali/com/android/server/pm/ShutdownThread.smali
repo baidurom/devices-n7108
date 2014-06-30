@@ -321,6 +321,28 @@
     return-object v0
 .end method
 
+.method static synthetic access$baidu_102(Z)Z
+    .locals 0
+    .parameter "x0"
+
+    .prologue
+    .line 79
+    sput-boolean p0, Lcom/android/server/pm/ShutdownThread;->mReboot:Z
+
+    return p0
+.end method
+
+.method static synthetic access$baidu_202(Ljava/lang/String;)Ljava/lang/String;
+    .locals 0
+    .parameter "x0"
+
+    .prologue
+    .line 79
+    sput-object p0, Lcom/android/server/pm/ShutdownThread;->mRebootReason:Ljava/lang/String;
+
+    return-object p0
+.end method
+
 .method private static beginShutdownSequence(Landroid/content/Context;Z)V
     .locals 10
     .parameter "context"
@@ -1676,7 +1698,7 @@
 .end method
 
 .method static shutdownInner(Landroid/content/Context;Z)V
-    .locals 13
+    .locals 14
     .parameter "aContext"
     .parameter "confirm"
 
@@ -1896,6 +1918,10 @@
 
     .line 230
     .local v0, closer:Lcom/android/server/pm/ShutdownThread$CloseDialogReceiver;
+    sget-boolean v8, Lcom/android/server/pm/ShutdownThread;->mReboot:Z
+
+    if-nez v8, :cond_baidu_0
+    
     new-instance v8, Landroid/app/AlertDialog$Builder;
 
     invoke-direct {v8, v1}, Landroid/app/AlertDialog$Builder;-><init>(Landroid/content/Context;)V
@@ -1928,9 +1954,9 @@
 
     .line 239
     .local v2, dialog:Landroid/app/AlertDialog;
-    sget-boolean v8, Lcom/android/server/pm/ShutdownThread;->mRebootSafeMode:Z
+    #sget-boolean v8, Lcom/android/server/pm/ShutdownThread;->mRebootSafeMode:Z
 
-    if-eqz v8, :cond_8
+    #if-eqz v8, :cond_8
 
     .line 240
     const v8, 0x104018c
@@ -1943,6 +1969,7 @@
 
     .line 246
     :goto_3
+    :goto_baidu_0
     iput-object v2, v0, Lcom/android/server/pm/ShutdownThread$CloseDialogReceiver;->dialog:Landroid/app/Dialog;
 
     .line 247
@@ -2102,6 +2129,62 @@
     invoke-static {v1, p1}, Lcom/android/server/pm/ShutdownThread;->beginShutdownSequence(Landroid/content/Context;Z)V
 
     goto/16 :goto_0
+    
+    :cond_baidu_0
+    new-instance v8, Landroid/app/AlertDialog$Builder;
+
+    invoke-direct {v8, v1}, Landroid/app/AlertDialog$Builder;-><init>(Landroid/content/Context;)V
+
+    const v9, #drawable@ic_dialog_alert#t
+
+    invoke-virtual {v8, v9}, Landroid/app/AlertDialog$Builder;->setIcon(I)Landroid/app/AlertDialog$Builder;
+
+    move-result-object v8
+
+    const v9, #string@reboot#t
+
+    invoke-virtual {v8, v9}, Landroid/app/AlertDialog$Builder;->setTitle(I)Landroid/app/AlertDialog$Builder;
+
+    move-result-object v8
+
+    const v9, #array@shutdown_reboot_options#t
+
+    const/4 v10, 0x0
+
+    new-instance v13, Lcom/android/server/pm/ShutdownThread$baidu_0;
+
+    invoke-direct {v13, p0}, Lcom/android/server/pm/ShutdownThread$baidu_0;-><init>(Landroid/content/Context;)V
+
+    invoke-virtual {v8, v9, v10, v13}, Landroid/app/AlertDialog$Builder;->setSingleChoiceItems(IILandroid/content/DialogInterface$OnClickListener;)Landroid/app/AlertDialog$Builder;
+
+    move-result-object v8
+    
+    const v9, #string@yes#t
+
+    new-instance v10, Lcom/android/server/pm/ShutdownThread$baidu_1;
+
+    invoke-direct {v10, p0}, Lcom/android/server/pm/ShutdownThread$baidu_1;-><init>(Landroid/content/Context;)V
+
+    invoke-virtual {v8, v9, v10}, Landroid/app/AlertDialog$Builder;->setPositiveButton(ILandroid/content/DialogInterface$OnClickListener;)Landroid/app/AlertDialog$Builder;
+
+    move-result-object v8
+    
+    const v9, #string@no#t
+
+    new-instance v10, Lcom/android/server/pm/ShutdownThread$baidu_2;
+
+    invoke-direct {v10}, Lcom/android/server/pm/ShutdownThread$baidu_2;-><init>()V
+
+    invoke-virtual {v8, v9, v10}, Landroid/app/AlertDialog$Builder;->setNegativeButton(ILandroid/content/DialogInterface$OnClickListener;)Landroid/app/AlertDialog$Builder;
+
+    move-result-object v8
+
+    invoke-virtual {v8}, Landroid/app/AlertDialog$Builder;->create()Landroid/app/AlertDialog;
+
+    move-result-object v2
+
+    .restart local v2       #dialog:Landroid/app/AlertDialog;
+    goto :goto_baidu_0
 .end method
 
 .method public static silentShutdown(Landroid/content/Context;)V

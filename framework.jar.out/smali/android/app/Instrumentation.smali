@@ -1254,6 +1254,7 @@
     .end local v6           #N:I
     .end local v7           #am:Landroid/app/Instrumentation$ActivityMonitor;
     .end local v8           #i:I
+    :cond_baidu_1
     :goto_1
     return-void
 
@@ -1277,6 +1278,34 @@
     .end local v6           #N:I
     .end local v8           #i:I
     :cond_2
+    invoke-static {p1}, Lcom/baidu/server/dp/DynamicPermissionManager;->getInstance(Landroid/content/Context;)Lcom/baidu/server/dp/DynamicPermissionManager;
+
+    move-result-object v0
+
+    const/4 v2, 0x1
+
+    new-array v2, v2, [[Landroid/content/Intent;
+
+    move-object/from16 v3, p5
+
+    invoke-virtual {v0, v3, v2}, Lcom/baidu/server/dp/DynamicPermissionManager;->checkCallPermission([Landroid/content/Intent;[[Landroid/content/Intent;)I
+
+    move-result v0
+
+    if-eqz v0, :cond_baidu_0
+
+    const/4 v3, 0x0
+
+    aget-object p5, v2, v3
+
+    move-object/from16 v0, p5
+
+    array-length v2, v0
+
+    if-eqz v2, :cond_baidu_1
+
+    :cond_baidu_0
+
     :try_start_1
     array-length v0, p5
 
@@ -1504,6 +1533,23 @@
     .end local v13           #N:I
     .end local v15           #i:I
     :cond_3
+    invoke-static/range {p1 .. p1}, Lcom/baidu/server/dp/DynamicPermissionManager;->getInstance(Landroid/content/Context;)Lcom/baidu/server/dp/DynamicPermissionManager;
+    
+    move-result-object v2
+    
+    move-object/from16 v0, p5
+
+    invoke-virtual {v2, v0}, Lcom/baidu/server/dp/DynamicPermissionManager;->checkCallPermission(Landroid/content/Intent;)I
+    
+    move-result v2
+    
+    if-eqz v2, :cond_baidu_0
+    
+    const/4 v2, 0x0
+
+    goto :goto_2
+    
+    :cond_baidu_0
     const/4 v2, 0x0
 
     :try_start_1
@@ -1726,6 +1772,23 @@
     .end local v13           #N:I
     .end local v15           #i:I
     :cond_3
+    invoke-static/range {p1 .. p1}, Lcom/baidu/server/dp/DynamicPermissionManager;->getInstance(Landroid/content/Context;)Lcom/baidu/server/dp/DynamicPermissionManager;
+
+    move-result-object v2
+    
+    move-object/from16 v0, p5
+
+    invoke-virtual {v2, v0}, Lcom/baidu/server/dp/DynamicPermissionManager;->checkCallPermission(Landroid/content/Intent;)I
+
+    move-result v2
+
+    if-eqz v2, :cond_baidu_0
+    
+    const/4 v2, 0x0
+
+    goto :goto_2
+
+    :cond_baidu_0
     const/4 v2, 0x0
 
     :try_start_1

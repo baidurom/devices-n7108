@@ -1,0 +1,122 @@
+.method public isKeyguardReady()Z
+    .locals 1
+
+    .prologue
+    .line 8201
+    iget-object v0, p0, Lcom/android/internal/policy/impl/PhoneWindowManager;->mKeyguardMediator:Lcom/android/internal/policy/impl/KeyguardViewMediator;
+
+    if-eqz v0, :cond_0
+
+    .line 8202
+    iget-object v0, p0, Lcom/android/internal/policy/impl/PhoneWindowManager;->mKeyguardMediator:Lcom/android/internal/policy/impl/KeyguardViewMediator;
+
+    invoke-virtual {v0}, Lcom/android/internal/policy/impl/KeyguardViewMediator;->isKeyguardReady()Z
+
+    move-result v0
+
+    .line 8204
+    :goto_0
+    return v0
+
+    :cond_0
+    const/4 v0, 0x1
+
+    goto :goto_0
+.end method
+
+.method public updateTopActivity(Landroid/content/ComponentName;)V
+    .locals 0
+    .parameter "componentName"
+
+    .prologue
+    
+    .line 7752
+    return-void
+.end method
+
+.method public layoutWindowLw(Landroid/view/WindowManagerPolicy$WindowState;Landroid/view/WindowManager$LayoutParams;Landroid/view/WindowManagerPolicy$WindowState;Landroid/view/WindowManager$LayoutParams;I)V
+    .locals 0
+    .parameter "win"
+    .parameter "attrs"
+    .parameter "attached"
+    .parameter "baseAttrs"
+    .parameter "windowMode"
+
+    .prologue 
+    invoke-virtual {p0, p1, p2, p3}, Lcom/android/internal/policy/impl/PhoneWindowManager;->layoutWindowLw(Landroid/view/WindowManagerPolicy$WindowState;Landroid/view/WindowManager$LayoutParams;Landroid/view/WindowManagerPolicy$WindowState;)V
+    
+    .line 4454
+    return-void
+.end method
+
+.method public animatingWindowLw(Landroid/view/WindowManagerPolicy$WindowState;Landroid/view/WindowManager$LayoutParams;I)V
+    .locals 0
+    .parameter "win"
+    .parameter "attrs"
+    .parameter "windowMode"
+
+    .prologue
+    invoke-virtual {p0, p1, p2}, Lcom/android/internal/policy/impl/PhoneWindowManager;->animatingWindowLw(Landroid/view/WindowManagerPolicy$WindowState;Landroid/view/WindowManager$LayoutParams;)V
+    
+    .line 4985
+    return-void
+.end method
+
+.method public mustBeForceHidden(Landroid/view/WindowManagerPolicy$WindowState;Landroid/view/WindowManager$LayoutParams;Landroid/view/WindowManager$LayoutParams;II)Z
+    .locals 1
+    .parameter "win"
+    .parameter "attrs"
+    .parameter "attachAttrs"
+    .parameter "windowMode"
+    .parameter "attachedWindowMode"
+
+    .prologue
+    const/4 v0, 0x0
+
+    return v0
+.end method
+
+.method public isNavigationBarVisible()Z
+    .locals 1
+
+    .prologue
+    .line 7493
+    iget-object v0, p0, Lcom/android/internal/policy/impl/PhoneWindowManager;->mNavigationBar:Landroid/view/WindowManagerPolicy$WindowState;
+
+    if-eqz v0, :cond_0
+
+    iget-object v0, p0, Lcom/android/internal/policy/impl/PhoneWindowManager;->mNavigationBar:Landroid/view/WindowManagerPolicy$WindowState;
+
+    invoke-interface {v0}, Landroid/view/WindowManagerPolicy$WindowState;->isVisibleLw()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_0
+
+    .line 7494
+    const/4 v0, 0x1
+
+    .line 7496
+    :goto_0
+    return v0
+
+    :cond_0
+    const/4 v0, 0x0
+
+    goto :goto_0
+.end method
+
+.field private mCurrentInputMethodTarget:Landroid/view/WindowManagerPolicy$WindowState;
+
+.method public setCurrentInputMethodTargetLw(Landroid/view/WindowManagerPolicy$WindowState;)V
+    .locals 0
+    .parameter "inputTargetWindow"
+
+    .prologue
+    .line 8182
+    iput-object p1, p0, Lcom/android/internal/policy/impl/PhoneWindowManager;->mCurrentInputMethodTarget:Landroid/view/WindowManagerPolicy$WindowState;
+
+    .line 8183
+    return-void
+.end method
+

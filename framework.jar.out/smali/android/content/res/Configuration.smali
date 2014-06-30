@@ -214,6 +214,8 @@
 
 .field public smallestScreenWidthDp:I
 
+.field public themeChanged:I
+
 .field public touchscreen:I
 
 .field public uiMode:I
@@ -297,6 +299,67 @@
     return-void
 .end method
 
+.method private multiTheme_dealThemeChange(Landroid/content/res/Configuration;)I
+    .locals 3
+    .parameter "delta"
+
+    .prologue
+    .line 746
+    const/4 v0, 0x0
+
+    .line 747
+    .local v0, changed:I
+    iget v1, p1, Landroid/content/res/Configuration;->themeChanged:I
+
+    if-eqz v1, :cond_0
+
+    iget v1, p0, Landroid/content/res/Configuration;->themeChanged:I
+
+    iget v2, p1, Landroid/content/res/Configuration;->themeChanged:I
+
+    if-eq v1, v2, :cond_0
+
+    .line 750
+    iget v1, p1, Landroid/content/res/Configuration;->themeChanged:I
+
+    iput v1, p0, Landroid/content/res/Configuration;->themeChanged:I
+
+    .line 751
+    const/high16 v0, -0x8000
+
+    .line 753
+    :cond_0
+    return v0
+.end method
+
+.method private multiTheme_dealThemeChange2(Landroid/content/res/Configuration;)I
+    .locals 3
+    .parameter "delta"
+
+    .prologue
+    .line 757
+    const/4 v0, 0x0
+
+    .line 758
+    .local v0, changed:I
+    iget v1, p1, Landroid/content/res/Configuration;->themeChanged:I
+
+    if-eqz v1, :cond_0
+
+    iget v1, p0, Landroid/content/res/Configuration;->themeChanged:I
+
+    iget v2, p1, Landroid/content/res/Configuration;->themeChanged:I
+
+    if-eq v1, v2, :cond_0
+
+    .line 761
+    const/high16 v0, -0x8000
+
+    .line 763
+    :cond_0
+    return v0
+.end method
+
 .method public static needNewResources(II)Z
     .locals 2
     .parameter "configChanges"
@@ -308,7 +371,7 @@
 
     or-int/2addr v0, p1
 
-    const/high16 v1, 0x2000
+    const/high16 v1, -0x8000
 
     or-int/2addr v0, v1
 
@@ -637,9 +700,9 @@
 
     .line 1111
     :cond_7
-    iget v3, p0, Landroid/content/res/Configuration;->arrange:I
+    iget v3, p0, Landroid/content/res/Configuration;->themeChanged:I
 
-    iget v4, p1, Landroid/content/res/Configuration;->arrange:I
+    iget v4, p1, Landroid/content/res/Configuration;->themeChanged:I
 
     sub-int v2, v3, v4
 
@@ -972,6 +1035,12 @@
 
     .line 901
     :cond_12
+    invoke-direct {p0, p1}, Landroid/content/res/Configuration;->multiTheme_dealThemeChange2(Landroid/content/res/Configuration;)I
+
+    move-result v1
+
+    or-int/2addr v0, v1
+  
     return v0
 .end method
 
@@ -1182,6 +1251,12 @@
     mul-int/lit8 v1, v0, 0x1f
 
     iget v2, p0, Landroid/content/res/Configuration;->arrange:I
+
+    add-int v0, v1, v2
+    
+    mul-int/lit8 v1, v0, 0x1f
+
+    iget v2, p0, Landroid/content/res/Configuration;->themeChanged:I
 
     add-int v0, v1, v2
 
@@ -1491,6 +1566,12 @@
     move-result v0
 
     iput v0, p0, Landroid/content/res/Configuration;->arrange:I
+    
+    invoke-virtual {p1}, Landroid/os/Parcel;->readInt()I
+
+    move-result v0
+
+    iput v0, p0, Landroid/content/res/Configuration;->themeChanged:I
 
     .line 1035
     return-void
@@ -1638,6 +1719,10 @@
     iget v0, p1, Landroid/content/res/Configuration;->arrange:I
 
     iput v0, p0, Landroid/content/res/Configuration;->arrange:I
+    
+    iget v0, p1, Landroid/content/res/Configuration;->themeChanged:I
+
+    iput v0, p0, Landroid/content/res/Configuration;->themeChanged:I
 
     .line 496
     return-void
@@ -1722,6 +1807,8 @@
     sget v0, Landroid/content/res/Configuration;->sArrangeMode:I
 
     iput v0, p0, Landroid/content/res/Configuration;->arrange:I
+    
+    iput v1, p0, Landroid/content/res/Configuration;->themeChanged:I
 
     .line 657
     return-void
@@ -3066,6 +3153,12 @@
 
     .line 791
     :cond_19
+    invoke-direct {p0, p1}, Landroid/content/res/Configuration;->multiTheme_dealThemeChange(Landroid/content/res/Configuration;)I
+
+    move-result v1
+
+    or-int/2addr v0, v1
+    
     return v0
 
     .line 689
@@ -3073,6 +3166,21 @@
     const/4 v1, 0x0
 
     goto/16 :goto_0
+.end method
+
+.method public updateTheme()V
+    .locals 1
+
+    .prologue
+    .line 920
+    iget v0, p0, Landroid/content/res/Configuration;->themeChanged:I
+
+    add-int/lit8 v0, v0, 0x1
+
+    iput v0, p0, Landroid/content/res/Configuration;->themeChanged:I
+
+    .line 921
+    return-void
 .end method
 
 .method public writeToParcel(Landroid/os/Parcel;I)V
@@ -3210,6 +3318,10 @@
 
     .line 998
     iget v0, p0, Landroid/content/res/Configuration;->arrange:I
+
+    invoke-virtual {p1, v0}, Landroid/os/Parcel;->writeInt(I)V
+    
+    iget v0, p0, Landroid/content/res/Configuration;->themeChanged:I
 
     invoke-virtual {p1, v0}, Landroid/os/Parcel;->writeInt(I)V
 

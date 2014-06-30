@@ -54,6 +54,8 @@
 
 .field public static final ALWAYS_FINISH_ACTIVITIES:Ljava/lang/String; = "always_finish_activities"
 
+.field public static final ANC:Ljava/lang/String; = "anc"
+
 .field public static final ANDROID_ID:Ljava/lang/String; = "android_id"
     .annotation runtime Ljava/lang/Deprecated;
     .end annotation
@@ -75,9 +77,23 @@
 
 .field public static final AUTO_POWER_UP_ALARM:Ljava/lang/String; = "auto_power_up_alarm"
 
+.field public static final AUTO_ANSWER_TIMEOUT:Ljava/lang/String; = "auto_answer"
+
+.field public static final AUTO_BRIGHTNESS_COE:Ljava/lang/String; = "auto_brightness_coe"
+
 .field public static final AUTO_TIME:Ljava/lang/String; = "auto_time"
 
 .field public static final AUTO_TIME_ZONE:Ljava/lang/String; = "auto_time_zone"
+
+.field public static final BATTERY_LIGHT_ENABLED:Ljava/lang/String; = "battery_light_enabled"
+
+.field public static final BATTERY_LIGHT_FULL_COLOR:Ljava/lang/String; = "battery_light_full_color"
+
+.field public static final BATTERY_LIGHT_LOW_COLOR:Ljava/lang/String; = "battery_light_low_color"
+
+.field public static final BATTERY_LIGHT_MEDIUM_COLOR:Ljava/lang/String; = "battery_light_medium_color"
+
+.field public static final BATTERY_LIGHT_PULSE:Ljava/lang/String; = "battery_light_pulse"
 
 .field public static final BLUETOOTH_DISCOVERABILITY:Ljava/lang/String; = "bluetooth_discoverability"
 
@@ -87,6 +103,8 @@
     .annotation runtime Ljava/lang/Deprecated;
     .end annotation
 .end field
+
+.field public static final BUTTON_LIGHT_OFF:Ljava/lang/String; = "button_light_off"
 
 .field public static final BUTTON_KEY_LIGHT:Ljava/lang/String; = "button_key_light"
 
@@ -179,6 +197,8 @@
 
 .field public static final DEFAULT_ALARM_ALERT_URI:Landroid/net/Uri; = null
 
+.field public static final DEFAULT_FILE_MANAGER:Ljava/lang/String; = "default_file_manager"
+
 .field public static final DEFAULT_NOTIFICATION_URI:Landroid/net/Uri; = null
 
 .field public static final DEFAULT_NOTIFICATION_URI_2:Landroid/net/Uri; = null
@@ -188,6 +208,8 @@
 .field public static final DEFAULT_RINGTONE_URI_2:Landroid/net/Uri; = null
 
 .field public static final DEFAULT_VIBRATION_PATTERN:Ljava/lang/String; = "default_vibration_pattern"
+
+.field public static final DEFAULT_SUBSCRIPTION:Ljava/lang/String; = "default_subscription"
 
 .field public static final DESK_DOCK_SOUND:Ljava/lang/String; = "desk_dock_sound"
 
@@ -257,6 +279,12 @@
 .field public static final DUOS_NETWORK_TYPE:Ljava/lang/String; = "duos_network_type"
 
 .field public static final EMERGENCY_TONE:Ljava/lang/String; = "emergency_tone"
+
+.field public static final DUALMIC:Ljava/lang/String; = "dualmic"
+
+.field public static final DUMMY_STRING_FOR_PADDING:Ljava/lang/String; = ""
+
+.field public static final ENABLE_MWI_NOTIFICATION:Ljava/lang/String; = "enable_mwi_notification"
 
 .field public static final END_BUTTON_BEHAVIOR:Ljava/lang/String; = "end_button_behavior"
 
@@ -335,6 +363,8 @@
 .field public static final LED_INDICATOR_MISSED_EVENT:Ljava/lang/String; = "led_indicator_missed_event"
 
 .field public static final LED_INDICATOR_VOICE_RECORDING:Ljava/lang/String; = "led_indicator_voice_recording"
+
+.field public static final IPCALL_PREFIX:[Ljava/lang/String; = null
 
 .field public static final LOCATION_PROVIDERS_ALLOWED:Ljava/lang/String; = "location_providers_allowed"
     .annotation runtime Ljava/lang/Deprecated;
@@ -444,6 +474,14 @@
     .end annotation
 .end field
 
+.field public static final MULTI_SIM_DATA_CALL_SUBSCRIPTION:Ljava/lang/String; = "multi_sim_data_call"
+
+.field public static final MULTI_SIM_SMS_SUBSCRIPTION:Ljava/lang/String; = "multi_sim_sms"
+
+.field public static final MULTI_SIM_VOICE_CALL_SUBSCRIPTION:Ljava/lang/String; = "multi_sim_voice_call"
+
+.field public static final MULTI_SIM_VOICE_PROMPT:Ljava/lang/String; = "multi_sim_voice_prompt"
+
 .field public static final MUTE_STREAMS_AFFECTED:Ljava/lang/String; = "mute_streams_affected"
 
 .field public static final NETWORK_PREFERENCE:Ljava/lang/String; = "network_preference"
@@ -459,6 +497,16 @@
 .end field
 
 .field public static final NOTIFICATION_LIGHT_PULSE:Ljava/lang/String; = "notification_light_pulse"
+
+.field public static final NOTIFICATION_LIGHT_PULSE_CUSTOM_ENABLE:Ljava/lang/String; = "notification_light_pulse_custom_enable"
+
+.field public static final NOTIFICATION_LIGHT_PULSE_CUSTOM_VALUES:Ljava/lang/String; = "notification_light_pulse_custom_values"
+
+.field public static final NOTIFICATION_LIGHT_PULSE_DEFAULT_COLOR:Ljava/lang/String; = "notification_light_pulse_default_color"
+
+.field public static final NOTIFICATION_LIGHT_PULSE_DEFAULT_LED_OFF:Ljava/lang/String; = "notification_light_pulse_default_led_off"
+
+.field public static final NOTIFICATION_LIGHT_PULSE_DEFAULT_LED_ON:Ljava/lang/String; = "notification_light_pulse_default_led_on"
 
 .field public static final NOTIFICATION_PANEL_ACTIVE_APP_LIST:Ljava/lang/String; = "notification_panel_active_app_list"
 
@@ -542,6 +590,14 @@
 .field public static final POWER_SAVING_MODE:Ljava/lang/String; = "power_saving_mode"
 
 .field public static final POWER_SOUNDS_ENABLED:Ljava/lang/String; = "power_sounds_enabled"
+
+.field public static final PREVENT_WAKEUP:Ljava/lang/String; = "prevent_wakeup"
+
+.field public static final PRE_SET_ALARM_ALERT:Ljava/lang/String; = "pre_set_alarm_alert"
+
+.field public static final PRE_SET_NOTIFICATION_SOUND:Ljava/lang/String; = "pre_set_notification_sound"
+
+.field public static final PRE_SET_RINGTONE:Ljava/lang/String; = "pre_set_ringtone"
 
 .field public static final PSM_BACKGROUND:Ljava/lang/String; = "psm_background_colour"
 
@@ -635,6 +691,8 @@
 
 .field public static final SIP_RECEIVE_CALLS:Ljava/lang/String; = "sip_receive_calls"
 
+.field public static final SLOT1_USER_PRE_MODE:Ljava/lang/String; = "slot1_user_pre_mode"
+
 .field public static final SLIDING_SPEED:Ljava/lang/String; = "sliding_speed"
 
 .field public static final SMS_PREFMODE:Ljava/lang/String; = "sms_prefmode"
@@ -716,6 +774,8 @@
     .end annotation
 .end field
 
+.field public static final USER_PREFERRED_SUBS:[Ljava/lang/String; = null
+
 .field public static final USB_SETTING_MODE:Ljava/lang/String; = "usb_setting_mode"
     .annotation runtime Ljava/lang/Deprecated;
     .end annotation
@@ -760,6 +820,8 @@
 
 .field public static final VOLUME_ENFORCED:Ljava/lang/String; = "volume_enforced"
 
+.field public static final VOLUME_FM:Ljava/lang/String; = "volume_fm"
+
 .field public static final VOLUME_MASTER:Ljava/lang/String; = "volume_master"
 
 .field public static final VOLUME_MASTER_MUTE:Ljava/lang/String; = "volume_master_mute"
@@ -767,6 +829,8 @@
 .field public static final VOLUME_MUSIC:Ljava/lang/String; = "volume_music"
 
 .field public static final VOLUME_NOTIFICATION:Ljava/lang/String; = "volume_notification"
+
+.field public static final VOLUME_REVOKE:Ljava/lang/String; = "volume_revoke"
 
 .field public static final VOLUME_RING:Ljava/lang/String; = "volume_ring"
 
@@ -1332,7 +1396,7 @@
     sput-object v0, Landroid/provider/Settings$System;->DEFAULT_ALARM_ALERT_URI:Landroid/net/Uri;
 
     .line 3234
-    const/16 v0, 0x39
+    const/16 v0, 0x3c
 
     new-array v0, v0, [Ljava/lang/String;
 
@@ -1665,6 +1729,24 @@
     const/16 v1, 0x38
 
     const-string/jumbo v2, "vibrate_when_ringing"
+
+    aput-object v2, v0, v1
+    
+    const/16 v1, 0x39
+
+    const-string/jumbo v2, "volume_revoke"
+
+    aput-object v2, v0, v1
+    
+    const/16 v1, 0x3a
+
+    const-string/jumbo v2, "prevent_wakeup"
+
+    aput-object v2, v0, v1
+    
+    const/16 v1, 0x3b
+
+    const-string/jumbo v2, "auto_brightness_coe"
 
     aput-object v2, v0, v1
 

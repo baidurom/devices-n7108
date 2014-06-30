@@ -35,7 +35,7 @@ DENSITY := xhdpi
 # NULL, check boot.img/recovery.img in project root directory, if it exists,
 # use a prebuilt boot.img/recovery.img, if not, nothing to do
 #-----------------------------------------------------------------------------
-vendor_modify_images := boot recovery
+vendor_modify_images := boot
 
 ##############################################################################
 # Directorys which you want to remove in vendor directory
@@ -102,7 +102,7 @@ vendor_modify_jars := framework services framework2 twframework
 # baidu_modify_apps: which base the baidu's apk
 # just override the res, append *.smali.part
 #-----------------------------------------------------------------------------
-#baidu_modify_apps := Calendar
+baidu_modify_apps := Phone Settings
 
 ##############################################################################
 # baidu_modify_jars: which base the baidu's jar
@@ -115,7 +115,8 @@ baidu_modify_jars := android.policy
 #-----------------------------------------------------------------------------
 
 # property to show/hide feature of defaultWrite Settings
-override_property += 
+override_property += \
+	ro.product.device.alias=n7108
 
 
 

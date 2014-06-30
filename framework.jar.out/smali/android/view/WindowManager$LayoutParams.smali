@@ -170,6 +170,8 @@
 
 .field public static final PRIVATE_FLAG_IGNORE_OTHER_APP_TOUCHED:I = 0x20
 
+.field public static final PRIVATE_FLAG_NOT_RESPONSE_HOME_KEY:I = 0x10
+
 .field public static final PRIVATE_FLAG_SET_NEEDS_MENU_KEY:I = 0x8
 
 .field public static final PRIVATE_FLAG_WANTS_OFFSET_NOTIFICATIONS:I = 0x4
@@ -295,6 +297,8 @@
 .field public static final TYPE_SYSTEM_OVERLAY:I = 0x7d6
 
 .field public static final TYPE_TOAST:I = 0x7d5
+
+.field public static final TYPE_TOP_MOST:I = 0x7ed
 
 .field public static final TYPE_VOLUME_OVERLAY:I = 0x7e4
 

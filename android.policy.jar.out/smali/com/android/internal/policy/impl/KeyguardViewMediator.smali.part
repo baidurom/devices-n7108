@@ -1,0 +1,26 @@
+
+.method public isKeyguardReady()Z
+    .locals 1
+
+    .prologue
+    .line 1635
+    iget-object v0, p0, Lcom/android/internal/policy/impl/KeyguardViewMediator;->mKeyguardViewManager:Lcom/android/internal/policy/impl/KeyguardViewManager;
+
+    if-eqz v0, :cond_0
+
+    .line 1636
+    iget-object v0, p0, Lcom/android/internal/policy/impl/KeyguardViewMediator;->mKeyguardViewManager:Lcom/android/internal/policy/impl/KeyguardViewManager;
+
+    invoke-virtual {v0}, Lcom/android/internal/policy/impl/KeyguardViewManager;->isKeyguardReady()Z
+
+    move-result v0
+
+    .line 1638
+    :goto_0
+    return v0
+
+    :cond_0
+    const/4 v0, 0x1
+
+    goto :goto_0
+.end method

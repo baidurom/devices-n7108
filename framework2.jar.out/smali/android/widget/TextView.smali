@@ -2332,6 +2332,8 @@
     invoke-virtual {v5, v9, v0}, Landroid/content/res/TypedArray;->getResourceId(II)I
 
     move-result v62
+    
+    const v62, #drawable@yi_text_select_handle_left#t
 
     move/from16 v0, v62
 
@@ -2350,6 +2352,8 @@
     invoke-virtual {v5, v9, v0}, Landroid/content/res/TypedArray;->getResourceId(II)I
 
     move-result v62
+    
+    const v62, #drawable@yi_text_select_handle_right#t
 
     move/from16 v0, v62
 
@@ -11302,12 +11306,58 @@
     .line 8475
     .end local v0           #clipEx:Landroid/sec/clipboard/ClipboardExManager;
     :goto_0
-    return v1
+    if-eqz v1, :cond_0
+    
+    :try_start_0
+    invoke-virtual {p0}, Landroid/widget/TextView;->getContext()Landroid/content/Context;
+    
+    move-result-object v0
+    
+    invoke-virtual {v0}, Landroid/content/Context;->getPackageManager()Landroid/content/pm/PackageManager;
+    
+    move-result-object v0
+    
+    invoke-virtual {p0}, Landroid/widget/TextView;->getContext()Landroid/content/Context;
 
+    move-result-object v1
+
+    invoke-virtual {v1}, Landroid/content/Context;->getPackageName()Ljava/lang/String;
+    
+    move-result-object v1
+    
+    const/4 v2, 0x0
+    
+    invoke-virtual {v0, v1, v2}, Landroid/content/pm/PackageManager;->getPackageInfo(Ljava/lang/String;I)Landroid/content/pm/PackageInfo;
+    
+    move-result-object v1
+    
+    iget-object v1, v1, Landroid/content/pm/PackageInfo;->applicationInfo:Landroid/content/pm/ApplicationInfo;
+
+    iget v1, v1, Landroid/content/pm/ApplicationInfo;->uid:I
+
+    invoke-static {}, Landroid/os/Binder;->getCallingUid()I
+    :try_end_0
+    .catch Landroid/content/pm/PackageManager$NameNotFoundException; {:try_start_0 .. :try_end_0} :catch_0
+
+    move-result v0
+
+    if-eq v1, v0, :cond_baidu_0
+     
     :cond_0
     const/4 v1, 0x0
 
-    goto :goto_0
+    :goto_baidu_0
+    return v1
+
+    :cond_baidu_0
+    const/4 v1, 0x1
+
+    goto :goto_baidu_0
+
+    :catch_0
+    const/4 v1, 0x0
+
+    goto :goto_baidu_0
 .end method
 
 .method public cancelLongPress()V

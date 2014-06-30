@@ -55,7 +55,7 @@
 
     move-result v1
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_baidu_0
 
     .line 440
     iget-object v1, p0, Landroid/view/VolumePanel$4;->this$0:Landroid/view/VolumePanel;
@@ -75,5 +75,33 @@
 
     .line 443
     :cond_0
+    :goto_baidu_0
     return-void
+    
+    :cond_baidu_0
+    const-string v1, "android.intent.action.THEME_CHANGED"
+
+    invoke-virtual {v1, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v1
+
+    if-eqz v1, :cond_0
+    
+    iget-object v1, p0, Landroid/view/VolumePanel$4;->this$0:Landroid/view/VolumePanel;
+
+    const/16 v0, 0x3e8
+
+    invoke-virtual {v1, v0}, Landroid/view/VolumePanel;->removeMessages(I)V
+
+    iget-object v1, p0, Landroid/view/VolumePanel$4;->this$0:Landroid/view/VolumePanel;
+
+    iget-object v2, p0, Landroid/view/VolumePanel$4;->this$0:Landroid/view/VolumePanel;
+
+    invoke-virtual {v2, v0}, Landroid/view/VolumePanel;->obtainMessage(I)Landroid/os/Message;
+
+    move-result-object v2
+
+    invoke-virtual {v1, v2}, Landroid/view/VolumePanel;->sendMessage(Landroid/os/Message;)Z
+
+    goto :goto_baidu_0
 .end method

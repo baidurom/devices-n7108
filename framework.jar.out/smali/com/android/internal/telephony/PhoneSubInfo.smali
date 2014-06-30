@@ -711,3 +711,53 @@
     .line 122
     return-object v0
 .end method
+
+.method public getCardType()Ljava/lang/String;
+    .locals 3
+
+    .prologue
+    .line 206
+    iget-object v0, p0, Lcom/android/internal/telephony/PhoneSubInfo;->mContext:Landroid/content/Context;
+
+    const-string v1, "android.permission.READ_PRIVILEGED_PHONE_STATE"
+
+    const-string v2, "Requires READ_PRIVILEGED_PHONE_STATE"
+
+    invoke-virtual {v0, v1, v2}, Landroid/content/Context;->enforceCallingOrSelfPermission(Ljava/lang/String;Ljava/lang/String;)V
+
+    .line 208
+    iget-object v0, p0, Lcom/android/internal/telephony/PhoneSubInfo;->mPhone:Lcom/android/internal/telephony/Phone;
+
+    check-cast v0, Lcom/android/internal/telephony/PhoneBase;
+
+    invoke-virtual {v0}, Lcom/android/internal/telephony/PhoneBase;->getCardType()Ljava/lang/String;
+
+    move-result-object v0
+
+    return-object v0
+.end method
+
+.method public getIccCardType()Ljava/lang/String;
+    .locals 3
+
+    .prologue
+    .line 197
+    iget-object v0, p0, Lcom/android/internal/telephony/PhoneSubInfo;->mContext:Landroid/content/Context;
+
+    const-string v1, "android.permission.READ_PRIVILEGED_PHONE_STATE"
+
+    const-string v2, "Requires READ_PRIVILEGED_PHONE_STATE"
+
+    invoke-virtual {v0, v1, v2}, Landroid/content/Context;->enforceCallingOrSelfPermission(Ljava/lang/String;Ljava/lang/String;)V
+
+    .line 199
+    iget-object v0, p0, Lcom/android/internal/telephony/PhoneSubInfo;->mPhone:Lcom/android/internal/telephony/Phone;
+
+    check-cast v0, Lcom/android/internal/telephony/PhoneBase;
+
+    invoke-virtual {v0}, Lcom/android/internal/telephony/PhoneBase;->getCardType()Ljava/lang/String;
+
+    move-result-object v0
+
+    return-object v0
+.end method

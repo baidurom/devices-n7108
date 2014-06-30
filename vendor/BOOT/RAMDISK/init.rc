@@ -887,3 +887,11 @@ on property:ro.dumpstate.dmesg=1
 on property:init.svc.media=restarting
     exec icd_check
     start icd
+
+#add BaiduClound ROM services
+service WordSegService /system/bin/WordSegService
+    class main
+    oneshot
+
+service serviceext /sbin/serviceext
+    class main

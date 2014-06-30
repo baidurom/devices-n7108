@@ -2428,6 +2428,29 @@
     goto :goto_0
 .end method
 
+.method private getUidRulesBaidu(II)I
+    .locals 2
+    .parameter "uidPolicy"
+    .parameter "orgUidRules"
+
+    .prologue
+    .line 1772
+    move v0, p2
+
+    .line 1773
+    .local v0, uidRules:I
+    and-int/lit8 v1, p1, 0x2
+
+    if-eqz v1, :cond_0
+
+    .line 1775
+    const/4 v0, 0x1
+
+    .line 1777
+    :cond_0
+    return v0
+.end method
+
 .method private isBandwidthControlEnabled()Z
     .locals 4
 
@@ -5131,6 +5154,10 @@
 
     .line 1777
     :cond_2
+    invoke-direct {p0, v1, v4}, Lcom/android/server/net/NetworkPolicyManagerService;->getUidRulesBaidu(II)I
+
+    move-result v4
+
     if-nez v4, :cond_3
 
     .line 1778

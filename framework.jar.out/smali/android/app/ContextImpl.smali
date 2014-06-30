@@ -4641,6 +4641,20 @@
     return-void
 .end method
 
+.method refreshFontCache()V
+    .locals 0
+
+    .prologue
+    .line 530
+    invoke-static {}, Landroid/graphics/Canvas;->freeCaches()V
+
+    .line 531
+    invoke-static {}, Landroid/graphics/Canvas;->freeTextLayoutCaches()V
+
+    .line 532
+    return-void
+.end method
+
 .method public registerReceiver(Landroid/content/BroadcastReceiver;Landroid/content/IntentFilter;)Landroid/content/Intent;
     .locals 1
     .parameter "receiver"

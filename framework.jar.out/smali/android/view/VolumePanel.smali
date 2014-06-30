@@ -46,6 +46,8 @@
 
 .field private static final MSG_STOP_SOUNDS:I = 0x3
 
+.field private static final MSG_THEME_CHANGED:I = 0x3e8
+
 .field private static final MSG_TIMEOUT:I = 0x5
 
 .field private static final MSG_VIBRATE:I = 0x4
@@ -101,6 +103,8 @@
 .field private final mDialog:Landroid/app/Dialog;
 
 .field private final mDivider:Landroid/view/View;
+
+.field private mIsThemeChanged:Z
 
 .field private final mMoreButton:Landroid/view/View;
 
@@ -254,6 +258,10 @@
     .prologue
     .line 329
     invoke-direct {p0}, Landroid/os/Handler;-><init>()V
+    
+    const/4 v7, 0x0
+
+    iput-boolean v7, p0, Landroid/view/VolumePanel;->mIsThemeChanged:Z
 
     .line 137
     const/4 v9, -0x1
@@ -2265,6 +2273,10 @@
     invoke-virtual {v0, v1}, Landroid/content/IntentFilter;->addAction(Ljava/lang/String;)V
 
     .line 434
+    const-string v1, "android.intent.action.THEME_CHANGED"
+
+    invoke-virtual {v0, v1}, Landroid/content/IntentFilter;->addAction(Ljava/lang/String;)V
+
     iget-object v1, p0, Landroid/view/VolumePanel;->mContext:Landroid/content/Context;
 
     new-instance v2, Landroid/view/VolumePanel$4;
@@ -2991,16 +3003,16 @@
     .line 1234
     iget v0, p1, Landroid/os/Message;->what:I
 
-    packed-switch v0, :pswitch_data_0
+    sparse-switch v0, :sswitch_data_0
 
     .line 1299
     :cond_0
     :goto_0
-    :pswitch_0
+    :sswitch_0
     return-void
 
     .line 1237
-    :pswitch_1
+    :sswitch_1
     const-string v0, "VolumePanel"
 
     const-string v1, "change volume by MSG_VOLUME_CHANGED"
@@ -3017,7 +3029,7 @@
     goto :goto_0
 
     .line 1243
-    :pswitch_2
+    :sswitch_2
     iget v0, p1, Landroid/os/Message;->arg1:I
 
     iget v1, p1, Landroid/os/Message;->arg2:I
@@ -3027,13 +3039,13 @@
     goto :goto_0
 
     .line 1248
-    :pswitch_3
+    :sswitch_3
     invoke-virtual {p0}, Landroid/view/VolumePanel;->onFreeResources()V
 
     goto :goto_0
 
     .line 1253
-    :pswitch_4
+    :sswitch_4
     const-string v0, "VolumePanel"
 
     const-string/jumbo v1, "stop play sound by MSG_STOP_SOUNDS"
@@ -3046,7 +3058,7 @@
     goto :goto_0
 
     .line 1259
-    :pswitch_5
+    :sswitch_5
     const-string v0, "VolumePanel"
 
     const-string/jumbo v1, "play sound by MSG_PLAY_SOUND"
@@ -3063,7 +3075,7 @@
     goto :goto_0
 
     .line 1271
-    :pswitch_6
+    :sswitch_6
     iget-object v0, p0, Landroid/view/VolumePanel;->mDialog:Landroid/app/Dialog;
 
     invoke-virtual {v0}, Landroid/app/Dialog;->isShowing()Z
@@ -3092,7 +3104,7 @@
     goto :goto_0
 
     .line 1279
-    :pswitch_7
+    :sswitch_7
     const-string v0, "VolumePanel"
 
     const-string v1, "change mode by MSG_RINGER_MODE_CHANGED"
@@ -3114,7 +3126,7 @@
     goto :goto_0
 
     .line 1287
-    :pswitch_8
+    :sswitch_8
     iget v0, p1, Landroid/os/Message;->arg1:I
 
     iget v1, p1, Landroid/os/Message;->arg2:I
@@ -3124,13 +3136,13 @@
     goto :goto_0
 
     .line 1292
-    :pswitch_9
+    :sswitch_9
     invoke-virtual {p0}, Landroid/view/VolumePanel;->onRemoteVolumeUpdateIfShown()V
 
     goto :goto_0
 
     .line 1296
-    :pswitch_a
+    :sswitch_a
     iget v0, p1, Landroid/os/Message;->arg1:I
 
     iget v1, p1, Landroid/os/Message;->arg2:I
@@ -3138,22 +3150,30 @@
     invoke-virtual {p0, v0, v1}, Landroid/view/VolumePanel;->onSliderVisibilityChanged(II)V
 
     goto :goto_0
+    
+    :sswitch_baidu_0
+    const/4 v0, 0x1
+
+    iput-boolean v0, p0, Landroid/view/VolumePanel;->mIsThemeChanged:Z
+
+    goto :goto_0
 
     .line 1234
-    :pswitch_data_0
-    .packed-switch 0x0
-        :pswitch_1
-        :pswitch_3
-        :pswitch_5
-        :pswitch_4
-        :pswitch_0
-        :pswitch_6
-        :pswitch_7
-        :pswitch_2
-        :pswitch_8
-        :pswitch_9
-        :pswitch_a
-    .end packed-switch
+    :sswitch_data_0
+    .sparse-switch
+    	0x0 -> :sswitch_1
+        0x1 -> :sswitch_3
+        0x2 -> :sswitch_5
+        0x3 -> :sswitch_4
+        0x4 -> :sswitch_0
+        0x5 -> :sswitch_6
+        0x6 -> :sswitch_7
+        0x7 -> :sswitch_2
+        0x8 -> :sswitch_8
+        0x9 -> :sswitch_9
+        0xa -> :sswitch_a
+        0x3e8 -> :sswitch_baidu_0
+    .end sparse-switch
 .end method
 
 .method public isExtraButtonOn()Z
@@ -4192,6 +4212,57 @@
     invoke-virtual {v5, v4}, Landroid/media/AudioManager;->forceVolumeControlStream(I)V
 
     .line 1022
+    iget-boolean v5, p0, Landroid/view/VolumePanel;->mIsThemeChanged:Z
+    
+    if-eqz v5, :cond_baidu_0
+    
+    monitor-enter p0
+    
+    :try_start_0
+    iget-object v5, p0, Landroid/view/VolumePanel;->mStreamControls:Ljava/util/HashMap;
+    
+    if-eqz v5, :cond_baidu_1
+    
+    iget-object v5, p0, Landroid/view/VolumePanel;->mStreamControls:Ljava/util/HashMap;
+    
+    invoke-virtual {v5}, Ljava/util/HashMap;->clear()V
+    
+    invoke-direct {p0}, Landroid/view/VolumePanel;->createSliders()V
+    
+    iget v5, p0, Landroid/view/VolumePanel;->mActiveStreamType:I
+    
+    invoke-direct {p0, v5}, Landroid/view/VolumePanel;->reorderSliders(I)V
+    
+    :cond_baidu_1
+    iget-object v5, p0, Landroid/view/VolumePanel;->mPanel:Landroid/view/ViewGroup;
+    
+    if-eqz v5, :cond_baidu_2
+    
+    iget-object v5, p0, Landroid/view/VolumePanel;->mPanel:Landroid/view/ViewGroup;
+    
+    iget-object v6, p0, Landroid/view/VolumePanel;->mContext:Landroid/content/Context;
+    
+    invoke-virtual {v6}, Landroid/content/Context;->getResources()Landroid/content/res/Resources;
+    
+    move-result-object v6
+    
+    const v7, #drawable@yi_dialog_full_baidu_light#t
+    
+    invoke-virtual {v6, v7}, Landroid/content/res/Resources;->getDrawable(I)Landroid/graphics/drawable/Drawable;
+    
+    move-result-object v6
+    
+    invoke-virtual {v5, v6}, Landroid/view/ViewGroup;->setBackgroundDrawable(Landroid/graphics/drawable/Drawable;)V
+    
+    :cond_baidu_2
+    monitor-exit p0
+    
+    :try_end_0
+    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    
+    iput-boolean v10, p0, Landroid/view/VolumePanel;->mIsThemeChanged:Z
+    
+    :cond_baidu_0  
     iget-object v5, p0, Landroid/view/VolumePanel;->mDialog:Landroid/app/Dialog;
 
     iget-object v6, p0, Landroid/view/VolumePanel;->mView:Landroid/view/View;
@@ -4412,6 +4483,26 @@
 
     .line 1019
     goto/16 :goto_2
+    
+    :sswitch_baidu_0
+    const v5, #drawable@ic_audio_vol#t
+
+    const v6, #drawable@ic_audio_vol_mute#t
+    
+    invoke-direct {p0, v5, v6}, Landroid/view/VolumePanel;->setMusicIcon(II)V
+
+    goto/16 :goto_0
+    
+    :catchall_0
+    move-exception v5
+
+    :try_start_1
+    monitor-exit p0
+    
+    :try_end_1
+    .catchall {:try_start_1 .. :try_end_1} :catchall_0
+
+    throw v5
 
     .line 936
     :sswitch_data_0
@@ -4423,6 +4514,7 @@
         0x4 -> :sswitch_0
         0x5 -> :sswitch_4
         0x6 -> :sswitch_5
+	0xa -> :sswitch_baidu_0
     .end sparse-switch
 .end method
 

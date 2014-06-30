@@ -4139,7 +4139,35 @@
     move-result v8
 
     if-nez v8, :cond_8
-
+    
+    iget v8, p0, Landroid/text/Layout;->mSpacingMult:F
+    
+    const/high16 v9, 0x3f80
+    
+    invoke-static {v8, v9}, Ljava/lang/Float;->compare(FF)I
+    
+    move-result v8
+    
+    if-nez v8, :cond_baidu_0
+    
+    iget v8, p0, Landroid/text/Layout;->mSpacingAdd:F
+    
+    const/4 v9, 0x0
+    
+    invoke-static {v8, v9}, Ljava/lang/Float;->compare(FF)I
+    
+    move-result v8
+    
+    if-eqz v8, :cond_baidu_1
+    
+    :cond_baidu_0
+    invoke-virtual {p0, v6}, Landroid/text/Layout;->getLineBaseline(I)I
+    
+    move-result v8
+    
+    add-int/lit8 v0, v8, 0x6
+    
+    :cond_baidu_1
     .line 1316
     int-to-float v8, v7
 
@@ -5978,7 +6006,41 @@
     .line 1416
     .local v7, bottom:I
     if-ne v3, v15, :cond_2
-
+    
+    move-object/from16 v0, p0
+    
+    iget v2, v0, Landroid/text/Layout;->mSpacingMult:F
+    
+    const/high16 v4, 0x3f80
+    
+    invoke-static {v2, v4}, Ljava/lang/Float;->compare(FF)I
+    
+    move-result v2
+    
+    if-nez v2, :cond_baidu_0
+    
+    move-object/from16 v0, p0
+    
+    iget v2, v0, Landroid/text/Layout;->mSpacingAdd:F
+    
+    const/4 v4, 0x0
+    
+    invoke-static {v2, v4}, Ljava/lang/Float;->compare(FF)I
+    
+    move-result v2
+    
+    if-eqz v2, :cond_baidu_1
+    
+    :cond_baidu_0
+    move-object/from16 v0, p0
+    
+    invoke-virtual {v0, v15}, Landroid/text/Layout;->getLineBaseline(I)I
+    
+    move-result v2
+    
+    add-int/lit8 v7, v2, 0x6
+    
+    :cond_baidu_1
     move-object/from16 v2, p0
 
     move/from16 v4, p1
@@ -6156,7 +6218,39 @@
     invoke-virtual {v0, v15}, Landroid/text/Layout;->getLineBottom(I)I
 
     move-result v7
-
+    
+    iget v2, v0, Landroid/text/Layout;->mSpacingMult:F
+    
+    const/high16 v4, 0x3f80
+    
+    invoke-static {v2, v4}, Ljava/lang/Float;->compare(FF)I
+    
+    move-result v2
+    
+    if-nez v2, :cond_baidu_2
+    
+    move-object/from16 v0, p0
+    
+    iget v2, v0, Landroid/text/Layout;->mSpacingAdd:F
+    
+    const/4 v4, 0x0
+    
+    invoke-static {v2, v4}, Ljava/lang/Float;->compare(FF)I
+    
+    move-result v2
+    
+    if-eqz v2, :cond_baidu_3
+    
+    :cond_baidu_2
+    move-object/from16 v0, p0
+    
+    invoke-virtual {v0, v15}, Landroid/text/Layout;->getLineBaseline(I)I
+    
+    move-result v2
+    
+    add-int/lit8 v7, v2, 0x6
+    
+    :cond_baidu_3
     .line 1440
     move-object/from16 v0, p0
 

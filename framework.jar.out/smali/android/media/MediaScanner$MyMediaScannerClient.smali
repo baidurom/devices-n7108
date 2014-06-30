@@ -917,6 +917,16 @@
     move-wide/from16 v2, v45
 
     invoke-direct {v0, v6, v1, v2, v3}, Landroid/media/MediaScanner$MyMediaScannerClient;->setSettingIfNotSet(Ljava/lang/String;Landroid/net/Uri;J)V
+    
+    const-string/jumbo v6, "pre_set_notification_sound"
+
+    move-object/from16 v0, p0
+
+    move-object/from16 v1, v47
+
+    move-wide/from16 v2, v45
+
+    invoke-direct {v0, v6, v1, v2, v3}, Landroid/media/MediaScanner$MyMediaScannerClient;->setSettingIfNotSet(Ljava/lang/String;Landroid/net/Uri;J)V
 
     .line 1278
     const-string v6, "CTC"
@@ -1864,7 +1874,7 @@
 
     move-object/from16 v2, v51
 
-    invoke-virtual {v0, v1, v2}, Landroid/media/MediaInserter;->insertwithPriority(Landroid/net/Uri;Landroid/content/ContentValues;)V
+    #invoke-virtual {v0, v1, v2}, Landroid/media/MediaInserter;->insertwithPriority(Landroid/net/Uri;Landroid/content/ContentValues;)V
 
     goto/16 :goto_5
 
@@ -1876,7 +1886,7 @@
 
     move-object/from16 v2, v51
 
-    invoke-virtual {v0, v1, v2}, Landroid/media/MediaInserter;->insert(Landroid/net/Uri;Landroid/content/ContentValues;)V
+    #invoke-virtual {v0, v1, v2}, Landroid/media/MediaInserter;->insert(Landroid/net/Uri;Landroid/content/ContentValues;)V
 
     goto/16 :goto_5
 
@@ -2116,6 +2126,16 @@
 
     .line 1304
     const-string/jumbo v6, "ringtone"
+
+    move-object/from16 v0, p0
+
+    move-object/from16 v1, v47
+
+    move-wide/from16 v2, v45
+
+    invoke-direct {v0, v6, v1, v2, v3}, Landroid/media/MediaScanner$MyMediaScannerClient;->setSettingIfNotSet(Ljava/lang/String;Landroid/net/Uri;J)V
+    
+    const-string/jumbo v6, "pre_set_ringtone"
 
     move-object/from16 v0, p0
 
@@ -2455,6 +2475,16 @@
 
     .line 1341
     const-string v6, "alarm_alert"
+
+    move-object/from16 v0, p0
+
+    move-object/from16 v1, v47
+
+    move-wide/from16 v2, v45
+
+    invoke-direct {v0, v6, v1, v2, v3}, Landroid/media/MediaScanner$MyMediaScannerClient;->setSettingIfNotSet(Ljava/lang/String;Landroid/net/Uri;J)V
+    
+    const-string v6, "pre_set_alarm_alert"
 
     move-object/from16 v0, p0
 

@@ -17710,7 +17710,7 @@
 
     iget-object v3, v0, Lcom/android/server/pm/PackageManagerService;->mResolveActivity:Landroid/content/pm/ActivityInfo;
 
-    const v10, 0x1030311
+    const v10, #style@Theme.DeviceDefault.Dialog.Alert#t
 
     iput v10, v3, Landroid/content/pm/ActivityInfo;->theme:I
 
@@ -19574,7 +19574,7 @@
     invoke-virtual/range {p0 .. p0}, Lcom/android/server/pm/PackageManagerService;->getEnforceCopyingLibPackageList()Ljava/util/ArrayList;
 
     move-result-object v43
-
+    
     .line 5079
     .local v43, pkgList:Ljava/util/ArrayList;,"Ljava/util/ArrayList<Ljava/lang/String;>;"
     if-eqz v43, :cond_2a
@@ -19712,7 +19712,7 @@
 
     if-eqz v3, :cond_2c
 
-    if-eqz v53, :cond_2c
+    #if-eqz v53, :cond_2c
 
     .line 5259
     :try_start_4
@@ -19736,6 +19736,8 @@
 
     .line 5262
     .local v19, dataPathString:Ljava/lang/String;
+    goto/16 :goto_baidu_0
+    
     invoke-static/range {p1 .. p1}, Lcom/android/server/pm/PackageManagerService;->isSystemApp(Landroid/content/pm/PackageParser$Package;)Z
 
     move-result v3
@@ -20693,6 +20695,7 @@
     .restart local v40       #path:Ljava/lang/String;
     :cond_3e
     :try_start_7
+    :goto_baidu_0
     invoke-virtual/range {v31 .. v31}, Ljava/io/File;->getParentFile()Ljava/io/File;
 
     move-result-object v3

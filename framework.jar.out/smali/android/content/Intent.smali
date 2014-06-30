@@ -81,7 +81,11 @@
 
 .field public static final ACTION_DEVICE_STORAGE_LOW:Ljava/lang/String; = "android.intent.action.DEVICE_STORAGE_LOW"
 
+.field public static final ACTION_DEVICE_STORAGE_NEARLY_FULL:Ljava/lang/String; = "android.intent.action.DEVICE_STORAGE_NEARLY_FULL"
+
 .field public static final ACTION_DEVICE_STORAGE_NOT_FULL:Ljava/lang/String; = "android.intent.action.DEVICE_STORAGE_NOT_FULL"
+
+.field public static final ACTION_DEVICE_STORAGE_NOT_NEARLY_FULL:Ljava/lang/String; = "android.intent.action.DEVICE_STORAGE_NOT_NEARLY_FULL"
 
 .field public static final ACTION_DEVICE_STORAGE_OK:Ljava/lang/String; = "android.intent.action.DEVICE_STORAGE_OK"
 
@@ -102,6 +106,10 @@
 .field public static final ACTION_GCF_DEVICE_STORAGE_LOW:Ljava/lang/String; = "android.intent.action.GCF_DEVICE_STORAGE_LOW"
 
 .field public static final ACTION_GCF_DEVICE_STORAGE_OK:Ljava/lang/String; = "android.intent.action.GCF_DEVICE_STORAGE_OK"
+
+.field public static final ACTION_FM:Ljava/lang/String; = "android.intent.action.FM"
+
+.field public static final ACTION_FM_TX:Ljava/lang/String; = "android.intent.action.FMTX"
 
 .field public static final ACTION_GET_CONTENT:Ljava/lang/String; = "android.intent.action.GET_CONTENT"
 
@@ -259,6 +267,8 @@
 .field public static final ACTION_SYNC_STATE_CHANGED:Ljava/lang/String; = "android.intent.action.SYNC_STATE_CHANGED"
 
 .field public static final ACTION_SYSTEM_TUTORIAL:Ljava/lang/String; = "android.intent.action.SYSTEM_TUTORIAL"
+
+.field public static final ACTION_THEME_CHANGED:Ljava/lang/String; = "android.intent.action.THEME_CHANGED"
 
 .field public static final ACTION_TIMEZONE_CHANGED:Ljava/lang/String; = "android.intent.action.TIMEZONE_CHANGED"
 
@@ -579,6 +589,8 @@
 .field public static final FILL_IN_SELECTOR:I = 0x40
 
 .field public static final FILL_IN_SOURCE_BOUNDS:I = 0x20
+
+.field public static final FLAG_ACCESS_CONTROLL_PASS:I = -0x80000000
 
 .field public static final FLAG_ACTIVITY_BROUGHT_TO_FRONT:I = 0x400000
 

@@ -827,7 +827,9 @@
 
     .line 162
     :cond_0
+    :cond_baidu_1
     :goto_0
+    :goto_baidu_0
     return-object v2
 
     .line 138
@@ -962,7 +964,7 @@
 
     .line 161
     .local v2, data:Ljava/lang/CharSequence;
-    if-eqz v2, :cond_0
+    if-eqz v2, :cond_baidu_0
 
     invoke-virtual {v2}, Ljava/lang/Object;->toString()Ljava/lang/String;
 
@@ -971,8 +973,17 @@
     invoke-virtual {v4}, Ljava/lang/String;->trim()Ljava/lang/String;
 
     move-result-object v2
+    
+    :cond_baidu_0 
+    if-eqz v2, :cond_baidu_1
 
-    goto :goto_0
+    iget-object v4, v1, Landroid/content/pm/ComponentInfo;->packageName:Ljava/lang/String;
+
+    invoke-static {p1, v4, v2}, Landroid/content/ThemeDefine;->interceptLabelRes(Landroid/content/pm/PackageManager;Ljava/lang/String;Ljava/lang/CharSequence;)Ljava/lang/CharSequence;
+
+    move-result-object v2
+
+    goto :goto_baidu_0
 .end method
 
 .method public toString()Ljava/lang/String;

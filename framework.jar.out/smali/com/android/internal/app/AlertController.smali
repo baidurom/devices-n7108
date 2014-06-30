@@ -520,6 +520,53 @@
     return-void
 .end method
 
+.method private correctCustomPanelBackground(Landroid/widget/LinearLayout;Landroid/view/View;ZZ)V
+    .locals 4
+    .parameter "contentPanel"
+    .parameter "customPanel"
+    .parameter "hasButtons"
+    .parameter "hasTitle"
+
+    .prologue
+    .line 740
+    const v1, #layout@yi_alert_dialog_baidu_light#t
+
+    .line 741
+    .local v1, layoutId:I
+    if-eqz p2, :cond_0
+
+    iget v2, p0, Lcom/android/internal/app/AlertController;->mAlertDialogLayout:I
+
+    if-ne v2, v1, :cond_0
+
+    invoke-virtual {p1}, Landroid/widget/LinearLayout;->getVisibility()I
+
+    move-result v2
+
+    const/16 v3, 0x8
+
+    if-eq v2, v3, :cond_0
+
+    if-eqz p3, :cond_0
+
+    if-eqz p4, :cond_0
+
+    .line 743
+    const v0, #drawable@yi_dialog_middle_custom_baidu_light#t
+
+    .line 744
+    .local v0, customBackgroundId:I
+    if-eqz v0, :cond_0
+
+    .line 745
+    invoke-virtual {p2, v0}, Landroid/view/View;->setBackgroundResource(I)V
+
+    .line 748
+    .end local v0           #customBackgroundId:I
+    :cond_0
+    return-void
+.end method
+
 .method private setBackground(Landroid/widget/LinearLayout;Landroid/widget/LinearLayout;Landroid/view/View;ZLandroid/content/res/TypedArray;ZLandroid/view/View;)V
     .locals 24
     .parameter "topPanel"
@@ -761,13 +808,13 @@
 
     move/from16 v1, v22
 
-    if-ne v0, v1, :cond_1
+    if-ne v0, v1, :cond_baidu_2
 
-    const/16 p2, 0x0
+    const/16 v21, 0x0
 
-    .end local p2
+    :goto_baidu_0
     :cond_1
-    aput-object p2, v20, v14
+    aput-object v21, v20, v14
 
     .line 643
     move-object/from16 v0, p0
@@ -967,7 +1014,7 @@
 
     move-object/from16 v21, v0
 
-    if-eqz v21, :cond_f
+    if-eqz v21, :cond_baidu_1
 
     move-object/from16 v0, p0
 
@@ -975,7 +1022,7 @@
 
     move-object/from16 v21, v0
 
-    if-eqz v21, :cond_f
+    if-eqz v21, :cond_baidu_1
 
     .line 718
     move-object/from16 v0, p0
@@ -1005,7 +1052,7 @@
 
     move/from16 v1, v22
 
-    if-le v0, v1, :cond_f
+    if-le v0, v1, :cond_baidu_0
 
     .line 720
     move-object/from16 v0, p0
@@ -1040,7 +1087,38 @@
     invoke-virtual/range {v21 .. v22}, Landroid/widget/ListView;->setSelection(I)V
 
     .line 724
-    :cond_f
+    :cond_baidu_0
+    move-object/from16 v0, p0
+
+    iget-object v0, v0, Lcom/android/internal/app/AlertController;->mListView:Landroid/widget/ListView;
+
+    move-object/from16 v21, v0
+
+    move-object/from16 v0, p0
+
+    move-object/from16 v1, v21
+
+    move-object/from16 v2, p3
+
+    move/from16 v3, p4
+
+    move/from16 v4, p6
+
+    invoke-direct {v0, v1, v2, v3, v4}, Lcom/android/internal/app/AlertController;->setFilletListViewCornerType(Landroid/widget/ListView;Landroid/view/View;ZZ)V
+
+    :cond_baidu_1
+    move-object/from16 v0, p0
+
+    move-object/from16 v1, p2
+
+    move-object/from16 v2, p3
+
+    move/from16 v3, p4
+
+    move/from16 v4, p6
+
+    invoke-direct {v0, v1, v2, v3, v4}, Lcom/android/internal/app/AlertController;->correctCustomPanelBackground(Landroid/widget/LinearLayout;Landroid/view/View;ZZ)V
+
     return-void
 
     .restart local v5       #bottomMedium:I
@@ -1071,6 +1149,89 @@
     move v8, v9
 
     goto :goto_9
+    
+    :cond_baidu_2
+    move-object/from16 v21, p2
+
+    goto :goto_baidu_0
+.end method
+
+.method private setFilletListViewCornerType(Landroid/widget/ListView;Landroid/view/View;ZZ)V
+    .locals 1
+    .parameter "listView"
+    .parameter "customPanel"
+    .parameter "hasButtons"
+    .parameter "hasTitle"
+
+    .prologue
+    .line 722
+    instance-of v0, p1, Lcom/android/internal/widget/RecycleFilletListView;
+
+    if-eqz v0, :cond_1
+
+    .line 723
+    if-eqz p4, :cond_3
+
+    .line 724
+    if-nez p3, :cond_0
+
+    if-eqz p2, :cond_2
+
+    .line 725
+    :cond_0
+    check-cast p1, Lcom/android/internal/widget/RecycleFilletListView;
+
+    .end local p1
+    const/4 v0, 0x0
+
+    invoke-virtual {p1, v0}, Lcom/android/internal/widget/RecycleFilletListView;->setCornerType(I)V
+
+    .line 737
+    :cond_1
+    :goto_0
+    return-void
+
+    .line 727
+    .restart local p1
+    :cond_2
+    check-cast p1, Lcom/android/internal/widget/RecycleFilletListView;
+
+    .end local p1
+    const/4 v0, 0x2
+
+    invoke-virtual {p1, v0}, Lcom/android/internal/widget/RecycleFilletListView;->setCornerType(I)V
+
+    goto :goto_0
+
+    .line 730
+    .restart local p1
+    :cond_3
+    if-nez p3, :cond_4
+
+    if-eqz p2, :cond_5
+
+    .line 731
+    :cond_4
+    check-cast p1, Lcom/android/internal/widget/RecycleFilletListView;
+
+    .end local p1
+    const/4 v0, 0x1
+
+    invoke-virtual {p1, v0}, Lcom/android/internal/widget/RecycleFilletListView;->setCornerType(I)V
+
+    goto :goto_0
+
+    .line 733
+    .restart local p1
+    :cond_5
+    check-cast p1, Lcom/android/internal/widget/RecycleFilletListView;
+
+    .end local p1
+    const/4 v0, 0x3
+
+    invoke-virtual {p1, v0}, Lcom/android/internal/widget/RecycleFilletListView;->setCornerType(I)V
+
+    goto :goto_0
 .end method
 
 .method private setupButtons()Z

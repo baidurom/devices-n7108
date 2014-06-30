@@ -1526,6 +1526,23 @@
     move-exception v5
 
     goto :goto_7
+    
+    .end local v21           #params:Lcom/android/server/BackupManagerService$FullParams;
+    :pswitch_baidu_0
+    const-string v5, "BackupManagerService"
+
+    const-string v6, "restart baidu backup agent"
+
+    invoke-static {v5, v6}, Landroid/util/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I
+
+    move-object/from16 v0, p0
+
+    iget-object v5, v0, Lcom/android/server/BackupManagerService$BackupHandler;->this$0:Lcom/android/server/BackupManagerService;
+
+    #calls: Lcom/android/server/BackupManagerService;->registerBaiduTransport()V
+    invoke-static {v5}, Lcom/android/server/BackupManagerService;->access$baidu_200(Lcom/android/server/BackupManagerService;)V
+
+    goto/16 :goto_0
 
     .line 492
     nop
@@ -1542,7 +1559,7 @@
         :pswitch_b
         :pswitch_c
         :pswitch_6
-        :pswitch_0
+        :pswitch_baidu_0
         :pswitch_0
         :pswitch_0
         :pswitch_0
