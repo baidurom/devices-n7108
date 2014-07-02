@@ -700,11 +700,11 @@
 
     .line 1111
     :cond_7
-    iget v3, p0, Landroid/content/res/Configuration;->themeChanged:I
+    iget v5, p0, Landroid/content/res/Configuration;->themeChanged:I
 
-    iget v4, p1, Landroid/content/res/Configuration;->themeChanged:I
+    iget v6, p1, Landroid/content/res/Configuration;->themeChanged:I
 
-    sub-int v2, v3, v4
+    sub-int v2, v5, v6
 
     .line 1112
     if-eqz v2, :cond_0

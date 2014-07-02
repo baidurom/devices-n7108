@@ -3,6 +3,12 @@
 .source "BaseErrorDialog.java"
 
 
+# static fields
+.field static final TYPE_ANR:Ljava/lang/String; = "anr"
+
+.field static final TYPE_CRASH:Ljava/lang/String; = "crash"
+
+
 # instance fields
 .field private mConsuming:Z
 
@@ -18,7 +24,7 @@
     const/high16 v2, 0x2
 
     .line 31
-    const v0, 0x103030a
+    const v0, #style@Theme.Dialog.AppError#t
 
     invoke-direct {p0, p1, v0}, Landroid/app/AlertDialog;-><init>(Landroid/content/Context;I)V
 
@@ -60,7 +66,7 @@
     invoke-virtual {v0, v1}, Landroid/view/Window;->setTitle(Ljava/lang/CharSequence;)V
 
     .line 37
-    const v0, 0x1010355
+    const v0, #attr@alertDialogIcon#t
 
     invoke-virtual {p0, v0}, Lcom/android/server/am/BaseErrorDialog;->setIconAttribute(I)V
 
@@ -98,7 +104,7 @@
 
     .prologue
     .line 56
-    const v1, 0x1020019
+    const v1, #id@button1#t
 
     invoke-virtual {p0, v1}, Lcom/android/server/am/BaseErrorDialog;->findViewById(I)Landroid/view/View;
 
@@ -115,7 +121,7 @@
 
     .line 60
     :cond_0
-    const v1, 0x102001a
+    const v1, #id@button2#t
 
     invoke-virtual {p0, v1}, Lcom/android/server/am/BaseErrorDialog;->findViewById(I)Landroid/view/View;
 
@@ -133,7 +139,7 @@
 
     .line 64
     :cond_1
-    const v1, 0x102001b
+    const v1, #id@button3#t
 
     invoke-virtual {p0, v1}, Lcom/android/server/am/BaseErrorDialog;->findViewById(I)Landroid/view/View;
 
@@ -206,6 +212,57 @@
 
     invoke-virtual {v0, v1, v2, v3}, Landroid/os/Handler;->sendMessageDelayed(Landroid/os/Message;J)Z
 
-    .line 44
+    .line 61
     return-void
+.end method
+
+.method public startBaiduReport(Ljava/lang/String;Ljava/lang/String;)V
+    .locals 2
+    .parameter "type"
+    .parameter "packageName"
+
+    .prologue
+    .line 47
+    :try_start_0
+    new-instance v0, Landroid/content/Intent;
+
+    const-string v1, "com.baidu.yi.userfeedback.action.START_USERFEEDBACK"
+
+    invoke-direct {v0, v1}, Landroid/content/Intent;-><init>(Ljava/lang/String;)V
+
+    .line 48
+    .local v0, intent:Landroid/content/Intent;
+    const/high16 v1, 0x1000
+
+    invoke-virtual {v0, v1}, Landroid/content/Intent;->addFlags(I)Landroid/content/Intent;
+
+    .line 49
+    const-string v1, "type"
+
+    invoke-virtual {v0, v1, p1}, Landroid/content/Intent;->putExtra(Ljava/lang/String;Ljava/lang/String;)Landroid/content/Intent;
+
+    .line 50
+    const-string v1, "package"
+
+    invoke-virtual {v0, v1, p2}, Landroid/content/Intent;->putExtra(Ljava/lang/String;Ljava/lang/String;)Landroid/content/Intent;
+
+    .line 51
+    invoke-virtual {p0}, Lcom/android/server/am/BaseErrorDialog;->getContext()Landroid/content/Context;
+
+    move-result-object v1
+
+    invoke-virtual {v1, v0}, Landroid/content/Context;->startActivity(Landroid/content/Intent;)V
+    :try_end_0
+    .catch Landroid/content/ActivityNotFoundException; {:try_start_0 .. :try_end_0} :catch_0
+
+    .line 54
+    .end local v0           #intent:Landroid/content/Intent;
+    :goto_0
+    return-void
+
+    .line 52
+    :catch_0
+    move-exception v1
+
+    goto :goto_0
 .end method
