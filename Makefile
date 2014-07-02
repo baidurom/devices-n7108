@@ -50,7 +50,7 @@ vendor_remove_dirs := app preload
 ##############################################################################
 # Vendor apks you want to use
 #-----------------------------------------------------------------------------
-#vendor_saved_apps := Bluetooth HwBluetoothImport DolbyMobileAudioEffectService HwPowerGenieEngine DeviceOriginalSettings
+vendor_saved_apps := BluetoothAvrcp BluetoothMap BluetoothTest SecBluetooth
 
 ##############################################################################
 # Apks build from current project root directory
@@ -68,7 +68,7 @@ vendor_remove_dirs := app preload
 # you need decode FMRadio.apk to the project directory (use apktool d FMRadio.apk) first
 # then you can make it by:   make FMRadio
 #-----------------------------------------------------------------------------
-#vendor_modify_apps := HwFMRadio HwGlobalDolbyEffect HwPowerManager
+vendor_modify_apps := SamsungCamera Stk
 
 ##############################################################################
 # Jars build from current project root directory
@@ -96,13 +96,13 @@ vendor_modify_jars := framework services framework2 twframework
 ##############################################################################
 # baidu_remove_apps: those baidu apk you want remove 
 #-----------------------------------------------------------------------------
-# baidu_remove_apps := BaiduUpdate
+baidu_remove_apps := BaiduCamera
 
 ##############################################################################
 # baidu_modify_apps: which base the baidu's apk
 # just override the res, append *.smali.part
 #-----------------------------------------------------------------------------
-baidu_modify_apps := Phone Settings
+baidu_modify_apps := Phone Settings HomePro
 
 ##############################################################################
 # baidu_modify_jars: which base the baidu's jar

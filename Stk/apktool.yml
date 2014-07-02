@@ -1,0 +1,13 @@
+version: 1.5.2
+apkFileName: Stk.apk
+isFrameworkApk: false
+usesFramework:
+  ids:
+  - 1
+sdkInfo:
+  minSdkVersion: '16'
+  targetSdkVersion: '16'
+packageInfo:
+  cur_package: com.android.stk
+  orig_package: com.android.stk
+compressionType: false
