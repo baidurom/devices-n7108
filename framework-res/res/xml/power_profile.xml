@@ -4,6 +4,7 @@
     <item name="screen.on">71</item>
     <item name="bluetooth.active">17</item>
     <item name="bluetooth.on">0.3</item>
+    <item name="bluetooth.at">35690</item>
     <item name="screen.full">380</item>
     <item name="wifi.on">0.3</item>
     <item name="wifi.active">96</item>
@@ -12,6 +13,7 @@
     <item name="dsp.video">280</item>
     <item name="radio.active">250</item>
     <item name="radio.scanning">82</item>
+    <item name="battery.capacity">2100</item>
     <item name="gps.on">1</item>
     <array name="radio.on">
         <value>3.4</value>
@@ -25,6 +27,7 @@
         <value>200000</value>
     </array>
     <item name="cpu.idle">4</item>
+    <item name="cpu.awake">44</item>
     <array name="cpu.active">
         <value>577</value>
         <value>408</value>
@@ -32,5 +35,16 @@
         <value>148</value>
         <value>55</value>
     </array>
-    <item name="battery.capacity">2100</item>
+    <item name="backlight.full">230</item>
+    <item name="backlight.on">86</item>
+    <item name="bluetooth.open">6</item>
+    <item name="gps.open">12</item>
+    <item name="phone">163</item>
+    <item name="net">223</item>
+    <item name="music">65</item>
+    <item name="video">214</item>
+    <item name="game">283</item>
+    <item name="read">132</item>
+    <item name="photo">311</item>
+    <item name="available">100</item>
 </device>
