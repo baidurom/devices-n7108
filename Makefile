@@ -50,7 +50,7 @@ vendor_remove_dirs := app preload tts voicebargeindata vsc sipdb
 ##############################################################################
 # Vendor apks you want to use
 #-----------------------------------------------------------------------------
-vendor_saved_apps := BluetoothAvrcp BluetoothMap BluetoothTest SecBluetooth
+vendor_saved_apps := BluetoothAvrcp BluetoothMap BluetoothTest SecBluetooth MtpApplication
 
 ##############################################################################
 # Apks build from current project root directory
