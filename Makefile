@@ -108,7 +108,7 @@ baidu_modify_apps := Phone Settings HomePro
 # baidu_modify_jars: which base the baidu's jar
 # just append *.smali.part
 #-----------------------------------------------------------------------------
-baidu_modify_jars := android.policy
+baidu_modify_jars := android.policy framework-yi
 
 ##############################################################################
 # override_property: this property will override the build.prop
