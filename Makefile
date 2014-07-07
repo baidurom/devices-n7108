@@ -40,7 +40,7 @@ vendor_modify_images := boot
 ##############################################################################
 # Directorys which you want to remove in vendor directory
 #-----------------------------------------------------------------------------
-vendor_remove_dirs := app preload
+vendor_remove_dirs := app preload tts voicebargeindata vsc sipdb
 
 ##############################################################################
 # Files which you want to remove in vendor directory
