@@ -482,7 +482,6 @@ system/cameradata 0 0 755
 system/cameradata/datapattern_420sp.yuv 0 0 644
 system/cameradata/datapattern_front_420sp.yuv 0 0 644
 system/csc 0 0 755
-system/csc_contents 0 0 777
 system/csc/contents.db 0 0 644
 system/csc/customer.xml 0 0 644
 system/csc/default_application_order.xml 0 0 644
