@@ -45,9 +45,11 @@
     .prologue
     .line 217
     iget-object v0, p0, Lcom/android/server/pm/ShutdownThread$baidu_1;->val$context:Landroid/content/Context;
+    
+    const/4 v1, 0x1
 
-    #calls: Lcom/android/server/pm/ShutdownThread;->beginShutdownSequence(Landroid/content/Context;)V
-    invoke-static {v0}, Lcom/android/server/pm/ShutdownThread;->access$000(Landroid/content/Context;)V
+    #calls: Lcom/android/server/pm/ShutdownThread;->beginShutdownSequence(Landroid/content/Context;Z)V
+    invoke-static {v0, v1}, Lcom/android/server/pm/ShutdownThread;->access$000(Landroid/content/Context;Z)V
 
     .line 218
     return-void
