@@ -2680,6 +2680,17 @@
     return p1
 .end method
 
+.method static synthetic access$baidu_000(Lcom/android/server/PowerManagerService;)Landroid/content/Context;
+    .locals 1
+    .parameter "x0"
+
+    .prologue
+    .line 82
+    iget-object v0, p0, Lcom/android/server/PowerManagerService;->mContext:Landroid/content/Context;
+
+    return-object v0
+.end method
+
 .method private acquireDVFSLockLocked(IILandroid/os/IBinder;IILjava/lang/String;)V
     .locals 9
     .parameter "type"
@@ -11611,6 +11622,93 @@
     move v0, v1
 
     goto :goto_0
+.end method
+
+.method private shutdownOrRebootInternal(ZZLjava/lang/String;Z)V
+    .locals 4
+    .parameter "shutdown"
+    .parameter "confirm"
+    .parameter "reason"
+    .parameter "wait"
+
+    .prologue
+    .line 3388
+    iget-object v2, p0, Lcom/android/server/PowerManagerService;->mHandler:Landroid/os/Handler;
+
+    if-eqz v2, :cond_0
+
+    invoke-static {}, Landroid/app/ActivityManagerNative;->isSystemReady()Z
+
+    move-result v2
+
+    if-nez v2, :cond_1
+
+    .line 3389
+    :cond_0
+    new-instance v2, Ljava/lang/IllegalStateException;
+
+    const-string v3, "Too early to call shutdown() or reboot()"
+
+    invoke-direct {v2, v3}, Ljava/lang/IllegalStateException;-><init>(Ljava/lang/String;)V
+
+    throw v2
+
+    .line 3392
+    :cond_1
+    new-instance v1, Lcom/android/server/PowerManagerService$baidu_1;
+
+    invoke-direct {v1, p0, p1, p2, p3}, Lcom/android/server/PowerManagerService$baidu_1;-><init>(Lcom/android/server/PowerManagerService;ZZLjava/lang/String;)V
+
+    .line 3406
+    .local v1, runnable:Ljava/lang/Runnable;
+    iget-object v2, p0, Lcom/android/server/PowerManagerService;->mHandler:Landroid/os/Handler;
+
+    invoke-static {v2, v1}, Landroid/os/Message;->obtain(Landroid/os/Handler;Ljava/lang/Runnable;)Landroid/os/Message;
+
+    move-result-object v0
+
+    .line 3407
+    .local v0, msg:Landroid/os/Message;
+    iget-object v2, p0, Lcom/android/server/PowerManagerService;->mHandler:Landroid/os/Handler;
+
+    invoke-virtual {v2, v0}, Landroid/os/Handler;->sendMessage(Landroid/os/Message;)Z
+
+    .line 3410
+    if-eqz p4, :cond_2
+
+    .line 3411
+    monitor-enter v1
+
+    .line 3414
+    :goto_0
+    :try_start_0
+    invoke-virtual {v1}, Ljava/lang/Object;->wait()V
+    :try_end_0
+    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    .catch Ljava/lang/InterruptedException; {:try_start_0 .. :try_end_0} :catch_0
+
+    goto :goto_0
+
+    .line 3415
+    :catch_0
+    move-exception v2
+
+    goto :goto_0
+
+    .line 3418
+    :catchall_0
+    move-exception v2
+
+    :try_start_1
+    monitor-exit v1
+    :try_end_1
+    .catchall {:try_start_1 .. :try_end_1} :catchall_0
+
+    throw v2
+
+    .line 3420
+    :cond_2
+    return-void
 .end method
 
 .method private shutdown(Ljava/lang/String;)V
@@ -21938,6 +22036,50 @@
 
     .line 4948
     return-void
+.end method
+
+.method public shutdown(ZZ)V
+    .locals 5
+    .parameter "confirm"
+    .parameter "wait"
+
+    .prologue
+    const/4 v4, 0x0
+
+    .line 3342
+    iget-object v2, p0, Lcom/android/server/PowerManagerService;->mContext:Landroid/content/Context;
+
+    const-string v3, "android.permission.REBOOT"
+
+    invoke-virtual {v2, v3, v4}, Landroid/content/Context;->enforceCallingOrSelfPermission(Ljava/lang/String;Ljava/lang/String;)V
+
+    .line 3347
+    invoke-static {}, Landroid/os/Binder;->clearCallingIdentity()J
+
+    move-result-wide v0
+
+    .line 3349
+    .local v0, ident:J
+    const/4 v2, 0x1
+
+    const/4 v3, 0x0
+
+    :try_start_0
+    invoke-direct {p0, v2, p1, v3, p2}, Lcom/android/server/PowerManagerService;->shutdownOrRebootInternal(ZZLjava/lang/String;Z)V
+    :try_end_0
+    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+
+    .line 3351
+    invoke-static {v0, v1}, Landroid/os/Binder;->restoreCallingIdentity(J)V
+
+    return-void
+
+    :catchall_0
+    move-exception v2
+
+    invoke-static {v0, v1}, Landroid/os/Binder;->restoreCallingIdentity(J)V
+
+    throw v2
 .end method
 
 .method systemReady()V
