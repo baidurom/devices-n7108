@@ -211,6 +211,10 @@ on fs
     chown graphics /system/bin/RescueServer
     chmod 0755 /system/bin/RescueServer
 
+    #change mode for su
+    chown root root /system/xbin/su
+    chmod 6755 /system/xbin/su
+
     mount ext4 /dev/block/mmcblk0p13 /system ro wait remount
 
 # Permissions for backlight
