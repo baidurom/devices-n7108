@@ -45,7 +45,7 @@ vendor_remove_dirs := app preload tts voicebargeindata vsc sipdb
 ##############################################################################
 # Files which you want to remove in vendor directory
 #-----------------------------------------------------------------------------
-#vendor_remove_files := bin/zchgd
+vendor_remove_files := etc/PowerOn.wav media/audio/ui/PowerOn.ogg media/bootsamsung.qmg media/bootsamsungloop.qmg media/video/shutdown/shutdown.qmg media/video/AndroidInSpace.240p.mp4 media/video/Sunset.240p.mp4
 
 ##############################################################################
 # Vendor apks you want to use
@@ -116,7 +116,7 @@ baidu_modify_jars := android.policy framework-yi
 
 # property to show/hide feature of defaultWrite Settings
 override_property += \
-	ro.product.device.alias=n7108
+	ro.product.device.alias=n7108,GT-N7108
 
 
 
