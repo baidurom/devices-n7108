@@ -884,6 +884,201 @@
     goto :goto_2
 .end method
 
+.method public setUri(Landroid/net/Uri;)V
+    .locals 6
+    .parameter "uri"
+
+    .prologue
+    .line 191
+    const/4 v1, 0x1
+
+    .line 192
+    .local v1, ret:Z
+    invoke-direct {p0}, Landroid/media/Ringtone;->destroyLocalPlayer()V
+
+    .line 194
+    iput-object p1, p0, Landroid/media/Ringtone;->mUri:Landroid/net/Uri;
+
+    .line 195
+    iget-object v3, p0, Landroid/media/Ringtone;->mUri:Landroid/net/Uri;
+
+    if-nez v3, :cond_0
+
+    move v2, v1
+
+    .line 228
+    .end local v1           #ret:Z
+    .local v2, ret:I
+    :goto_0
+    return-void
+
+    .line 202
+    .end local v2           #ret:I
+    .restart local v1       #ret:Z
+    :cond_0
+    new-instance v3, Landroid/media/MediaPlayer;
+
+    invoke-direct {v3}, Landroid/media/MediaPlayer;-><init>()V
+
+    iput-object v3, p0, Landroid/media/Ringtone;->mLocalPlayer:Landroid/media/MediaPlayer;
+
+    .line 204
+    :try_start_0
+    iget-object v3, p0, Landroid/media/Ringtone;->mLocalPlayer:Landroid/media/MediaPlayer;
+
+    iget-object v4, p0, Landroid/media/Ringtone;->mContext:Landroid/content/Context;
+
+    iget-object v5, p0, Landroid/media/Ringtone;->mUri:Landroid/net/Uri;
+
+    invoke-virtual {v3, v4, v5}, Landroid/media/MediaPlayer;->setDataSource(Landroid/content/Context;Landroid/net/Uri;)V
+
+    .line 205
+    iget-object v3, p0, Landroid/media/Ringtone;->mLocalPlayer:Landroid/media/MediaPlayer;
+
+    iget v4, p0, Landroid/media/Ringtone;->mStreamType:I
+
+    invoke-virtual {v3, v4}, Landroid/media/MediaPlayer;->setAudioStreamType(I)V
+
+    .line 206
+    iget-object v3, p0, Landroid/media/Ringtone;->mLocalPlayer:Landroid/media/MediaPlayer;
+
+    invoke-virtual {v3}, Landroid/media/MediaPlayer;->prepare()V
+    :try_end_0
+    .catch Ljava/lang/SecurityException; {:try_start_0 .. :try_end_0} :catch_0
+    .catch Ljava/io/IOException; {:try_start_0 .. :try_end_0} :catch_1
+
+    .line 221
+    :cond_1
+    :goto_1
+    iget-object v3, p0, Landroid/media/Ringtone;->mLocalPlayer:Landroid/media/MediaPlayer;
+
+    if-eqz v3, :cond_2
+
+    .line 222
+    const-string v3, "Ringtone"
+
+    const-string v4, "Successfully created local player"
+
+    invoke-static {v3, v4}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    :goto_2
+    move v2, v1
+
+    .line 228
+    .restart local v2       #ret:I
+    goto :goto_0
+
+    .line 208
+    .end local v2           #ret:I
+    :catch_0
+    move-exception v0
+
+    .line 209
+    .local v0, e:Ljava/lang/SecurityException;
+    invoke-direct {p0}, Landroid/media/Ringtone;->destroyLocalPlayer()V
+
+    .line 210
+    iget-boolean v3, p0, Landroid/media/Ringtone;->mAllowRemote:Z
+
+    if-nez v3, :cond_1
+
+    .line 211
+    const-string v3, "Ringtone"
+
+    new-instance v4, Ljava/lang/StringBuilder;
+
+    invoke-direct {v4}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v5, "Remote playback not allowed: "
+
+    invoke-virtual {v4, v5}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v4
+
+    invoke-virtual {v4, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+
+    move-result-object v4
+
+    invoke-virtual {v4}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v4
+
+    invoke-static {v3, v4}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
+
+    goto :goto_1
+
+    .line 213
+    .end local v0           #e:Ljava/lang/SecurityException;
+    :catch_1
+    move-exception v0
+
+    .line 214
+    .local v0, e:Ljava/io/IOException;
+    invoke-direct {p0}, Landroid/media/Ringtone;->destroyLocalPlayer()V
+
+    .line 215
+    iget-boolean v3, p0, Landroid/media/Ringtone;->mAllowRemote:Z
+
+    if-nez v3, :cond_1
+
+    .line 216
+    const-string v3, "Ringtone"
+
+    new-instance v4, Ljava/lang/StringBuilder;
+
+    invoke-direct {v4}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v5, "Remote playback not allowed: "
+
+    invoke-virtual {v4, v5}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v4
+
+    invoke-virtual {v4, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+
+    move-result-object v4
+
+    invoke-virtual {v4}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v4
+
+    invoke-static {v3, v4}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
+
+    goto :goto_1
+
+    .line 224
+    .end local v0           #e:Ljava/io/IOException;
+    :cond_2
+    const-string v3, "Ringtone"
+
+    new-instance v4, Ljava/lang/StringBuilder;
+
+    invoke-direct {v4}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v5, "Problem opening; delegating to remote player, return false : "
+
+    invoke-virtual {v4, v5}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v4
+
+    iget-object v5, p0, Landroid/media/Ringtone;->mUri:Landroid/net/Uri;
+
+    invoke-virtual {v4, v5}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+
+    move-result-object v4
+
+    invoke-virtual {v4}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v4
+
+    invoke-static {v3, v4}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 225
+    const/4 v1, 0x0
+
+    goto :goto_2
+.end method
+
 .method public setVolume(FF)V
     .locals 1
     .parameter "rightVol"
