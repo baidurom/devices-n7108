@@ -152,7 +152,7 @@
 .end method
 
 .method public constructor <init>(Landroid/content/Context;Landroid/util/AttributeSet;I)V
-    .locals 3
+    .locals 5
     .parameter "context"
     .parameter "attrs"
     .parameter "defStyle"
