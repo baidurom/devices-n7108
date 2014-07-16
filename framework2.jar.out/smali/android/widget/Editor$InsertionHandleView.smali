@@ -44,6 +44,10 @@
     const/4 v0, 0x0
 
     invoke-direct {p0, p1, p2, p2, v0}, Landroid/widget/Editor$HandleView;-><init>(Landroid/widget/Editor;Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;Z)V
+    
+    const/4 v0, 0x1
+
+    iput v0, p0, Landroid/widget/Editor$InsertionHandleView;->mCursorType:I
 
     .line 3635
     return-void
@@ -376,7 +380,18 @@
     cmp-long v2, v0, v2
 
     if-gez v2, :cond_0
-
+    
+    iget-object v2, p0, Landroid/widget/Editor$InsertionHandleView;->mActionPopupWindow:Landroid/widget/Editor$ActionPopupWindow;
+    
+    if-eqz v2, :cond_baidu_0
+    
+    iget-object v2, p0, Landroid/widget/Editor$InsertionHandleView;->mActionPopupWindow:Landroid/widget/Editor$ActionPopupWindow;
+    
+    iget v3, p0, Landroid/widget/Editor$InsertionHandleView;->mCursorType:I
+    
+    invoke-virtual {v2, v3}, Landroid/widget/Editor$ActionPopupWindow;->updatePositionFlag(I)V
+    
+    :cond_baidu_0
     .line 3644
     const/4 v2, 0x0
 
@@ -391,13 +406,24 @@
 .end method
 
 .method public showWithActionPopup()V
-    .locals 1
+    .locals 2
 
     .prologue
     .line 3651
     invoke-virtual {p0}, Landroid/widget/Editor$InsertionHandleView;->show()V
 
     .line 3652
+    iget-object v0, p0, Landroid/widget/Editor$InsertionHandleView;->mActionPopupWindow:Landroid/widget/Editor$ActionPopupWindow;
+
+    if-eqz v0, :cond_baidu_0
+
+    iget-object v0, p0, Landroid/widget/Editor$InsertionHandleView;->mActionPopupWindow:Landroid/widget/Editor$ActionPopupWindow;
+
+    iget v1, p0, Landroid/widget/Editor$InsertionHandleView;->mCursorType:I
+
+    invoke-virtual {v0, v1}, Landroid/widget/Editor$ActionPopupWindow;->updatePositionFlag(I)V
+
+    :cond_baidu_0
     const/4 v0, 0x0
 
     invoke-virtual {p0, v0}, Landroid/widget/Editor$InsertionHandleView;->showActionPopupWindow(I)V

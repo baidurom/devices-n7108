@@ -33,6 +33,10 @@
     const/4 v0, 0x0
 
     invoke-direct {p0, p1, p2, p3, v0}, Landroid/widget/Editor$HandleView;-><init>(Landroid/widget/Editor;Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;Z)V
+    
+    const/4 v0, 0x2
+
+    iput v0, p0, Landroid/widget/Editor$SelectionEndHandleView;->mCursorType:I
 
     .line 3871
     return-void
@@ -303,6 +307,64 @@
     goto :goto_0
 .end method
 
+.method public onTouchEvent(Landroid/view/MotionEvent;)Z
+    .locals 3
+    .parameter "ev"
+
+    .prologue
+    .line 3769
+    invoke-super {p0, p1}, Landroid/widget/Editor$HandleView;->onTouchEvent(Landroid/view/MotionEvent;)Z
+
+    move-result v0
+
+    .line 3771
+    .local v0, result:Z
+    invoke-virtual {p1}, Landroid/view/MotionEvent;->getActionMasked()I
+
+    move-result v1
+
+    packed-switch v1, :pswitch_data_0
+
+    .line 3784
+    :goto_0
+    return v0
+
+    .line 3773
+    :pswitch_0
+    invoke-virtual {p0}, Landroid/widget/Editor$SelectionEndHandleView;->dismissActionPopupWindow()V
+
+    goto :goto_0
+
+    .line 3776
+    :pswitch_1
+    iget-object v1, p0, Landroid/widget/Editor$SelectionEndHandleView;->mActionPopupWindow:Landroid/widget/Editor$ActionPopupWindow;
+
+    if-eqz v1, :cond_0
+
+    iget-object v1, p0, Landroid/widget/Editor$SelectionEndHandleView;->mActionPopupWindow:Landroid/widget/Editor$ActionPopupWindow;
+
+    iget v2, p0, Landroid/widget/Editor$SelectionEndHandleView;->mCursorType:I
+
+    invoke-virtual {v1, v2}, Landroid/widget/Editor$ActionPopupWindow;->updatePositionFlag(I)V
+
+    .line 3777
+    :cond_0
+    const/16 v1, 0xc8
+
+    invoke-virtual {p0, v1}, Landroid/widget/Editor$SelectionEndHandleView;->showActionPopupWindow(I)V
+
+    goto :goto_0
+
+    .line 3771
+    nop
+
+    :pswitch_data_0
+    .packed-switch 0x0
+        :pswitch_0
+        :pswitch_1
+    .end packed-switch
+.end method
+
 .method protected positionAtCursorOffset(IZ)V
     .locals 1
     .parameter "offset"
@@ -539,7 +601,7 @@
 .end method
 
 .method public updatePosition(FF)V
-    .locals 3
+    .locals 4
     .parameter "x"
     .parameter "y"
 
@@ -571,19 +633,38 @@
 
     .line 3904
     .local v1, selectionStart:I
-    if-ne v0, v1, :cond_0
+    if-gt v0, v1, :cond_0
 
-    .line 3908
-    :goto_0
-    return-void
+    .line 3807
+    add-int/lit8 v2, v1, 0x1
 
-    .line 3907
+    iget-object v3, p0, Landroid/widget/Editor$SelectionEndHandleView;->this$0:Landroid/widget/Editor;
+
+    #getter for: Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
+    invoke-static {v3}, Landroid/widget/Editor;->access$000(Landroid/widget/Editor;)Landroid/widget/TextView;
+
+    move-result-object v3
+
+    invoke-virtual {v3}, Landroid/widget/TextView;->getText()Ljava/lang/CharSequence;
+
+    move-result-object v3
+
+    invoke-interface {v3}, Ljava/lang/CharSequence;->length()I
+
+    move-result v3
+
+    invoke-static {v2, v3}, Ljava/lang/Math;->min(II)I
+
+    move-result v0
+
+    .line 3810
     :cond_0
     const/4 v2, 0x0
 
-    invoke-virtual {p0, v0, v2}, Landroid/widget/Editor$SelectionEndHandleView;->positionAtCursorOffset(IZ)V
+    invoke-virtual {p0, v0, v2}, Landroid/widget/Editor$SelectionEndHandleView;->positionAtCursorOffset(IZ)Z
 
-    goto :goto_0
+    .line 3811
+    return-void
 .end method
 
 .method public updateSelection(I)V
