@@ -1658,32 +1658,3 @@
 
     goto :goto_0
 .end method
-
-.method public updateOperatorPolicy(Ljava/lang/String;)Z
-    .locals 1
-    .parameter "filePath"
-
-    .prologue
-    .line 903
-    :try_start_0
-    iget-object v0, p0, Landroid/net/ConnectivityManager;->mService:Landroid/net/IConnectivityManager;
-
-    invoke-interface {v0, p1}, Landroid/net/IConnectivityManager;->updateOperatorPolicy(Ljava/lang/String;)Z
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
-
-    move-result v0
-
-    .line 905
-    :goto_0
-    return v0
-
-    .line 904
-    :catch_0
-    move-exception v0
-
-    .line 905
-    const/4 v0, 0x0
-
-    goto :goto_0
-.end method

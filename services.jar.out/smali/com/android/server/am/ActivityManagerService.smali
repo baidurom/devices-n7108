@@ -21952,6 +21952,71 @@
     goto :goto_0
 .end method
 
+.method private killOrphanedProcess([ILjava/lang/String;)V
+    .locals 4
+    .parameter "pids"
+    .parameter "reason"
+
+    .prologue
+    .line 7367
+    const-string v1, "orphaned"
+
+    invoke-virtual {v1, p2}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v1
+
+    if-eqz v1, :cond_0
+
+    .line 7368
+    const/4 v0, 0x0
+
+    .local v0, i:I
+    :goto_0
+    array-length v1, p1
+
+    if-ge v0, v1, :cond_0
+
+    .line 7369
+    const-string v1, "ActivityManager"
+
+    new-instance v2, Ljava/lang/StringBuilder;
+
+    invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v3, "Killing orphaned "
+
+    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v2
+
+    aget v3, p1, v0
+
+    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    move-result-object v2
+
+    invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v2
+
+    invoke-static {v1, v2}, Landroid/util/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 7370
+    aget v1, p1, v0
+
+    invoke-static {v1}, Landroid/os/Process;->killProcessQuiet(I)V
+
+    .line 7368
+    add-int/lit8 v0, v0, 0x1
+
+    goto :goto_0
+
+    .line 7373
+    .end local v0           #i:I
+    :cond_0
+    return-void
+.end method
+
 .method private final killPackageProcessesLocked(Ljava/lang/String;IIZZZZLjava/lang/String;)Z
     .locals 14
     .parameter "packageName"
@@ -59740,6 +59805,8 @@
     .restart local v7       #worstType:I
     :cond_8
     :try_start_1
+    invoke-direct {p0, p1, v4}, Lcom/android/server/am/ActivityManagerService;->killOrphanedProcess([ILjava/lang/String;)V
+
     monitor-exit v9
     :try_end_1
     .catchall {:try_start_1 .. :try_end_1} :catchall_0

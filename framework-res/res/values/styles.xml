@@ -2280,9 +2280,6 @@
         <item name="quickContactBadgeStyleSmallWindowLarge">@style/Widget.DeviceDefault.QuickContactBadgeSmall.WindowLarge</item>
         <item name="expandableListViewWhiteStyle">@style/Widget.DeviceDefault.ExpandableListView.White</item>
         <item name="webTextViewStyle">@style/Widget.DeviceDefault.WebTextView</item>
-        <item name="textSelectHandleLeft">@drawable/tw_text_select_handle_left</item>
-        <item name="textSelectHandleRight">@drawable/tw_text_select_handle_right</item>
-        <item name="textSelectHandle">@drawable/tw_text_select_handle_middle</item>
         <item name="textSelectHandleWindowStyle">@style/Widget.DeviceDefault.TextSelectHandle</item>
         <item name="actionBarStyle">@style/Widget.DeviceDefault.ActionBar</item>
         <item name="dropDownSpinnerStyle">@style/Widget.DeviceDefault.Spinner.DropDown</item>
@@ -2333,8 +2330,6 @@
         <item name="dialogTitleIconsDecorLayout">@layout/tw_dialog_title_icons_holo</item>
         <item name="dialogTitleDecorLayout">@layout/tw_dialog_title_holo</item>
         <item name="toastFrameBackground">@drawable/tw_toast_frame_holo_dark</item>
-        <item name="textSelectHandleLeftTop">@drawable/tw_text_select_handle_left_top</item>
-        <item name="textSelectHandleRightTop">@drawable/tw_text_select_handle_right_top</item>
         <item name="searchViewCloseIcon">@drawable/tw_ic_clear</item>
         <item name="searchViewSearchIcon">@drawable/tw_ic_search</item>
         <item name="searchViewTextField">@drawable/tw_textfield_searchview_holo_dark</item>
@@ -2435,9 +2430,6 @@
         <item name="quickContactBadgeStyleSmallWindowLarge">@style/Widget.DeviceDefault.QuickContactBadgeSmall.WindowLarge</item>
         <item name="expandableListViewWhiteStyle">@style/Widget.DeviceDefault.Light.ExpandableListView.White</item>
         <item name="webTextViewStyle">@style/Widget.DeviceDefault.Light.WebTextView</item>
-        <item name="textSelectHandleLeft">@drawable/tw_text_select_handle_left</item>
-        <item name="textSelectHandleRight">@drawable/tw_text_select_handle_right</item>
-        <item name="textSelectHandle">@drawable/tw_text_select_handle_middle</item>
         <item name="textSelectHandleWindowStyle">@style/Widget.DeviceDefault.TextSelectHandle</item>
         <item name="actionBarStyle">@style/Widget.DeviceDefault.Light.ActionBar</item>
         <item name="dropDownSpinnerStyle">@style/Widget.DeviceDefault.Light.Spinner.DropDown</item>
@@ -2488,8 +2480,6 @@
         <item name="dialogTitleIconsDecorLayout">@layout/tw_dialog_title_icons_holo_light</item>
         <item name="dialogTitleDecorLayout">@layout/tw_dialog_title_holo_light</item>
         <item name="toastFrameBackground">@drawable/tw_toast_frame_holo_light</item>
-        <item name="textSelectHandleLeftTop">@drawable/tw_text_select_handle_left_top</item>
-        <item name="textSelectHandleRightTop">@drawable/tw_text_select_handle_right_top</item>
         <item name="searchViewCloseIcon">@drawable/tw_ic_clear_holo_light</item>
         <item name="searchViewSearchIcon">@drawable/tw_ic_search_api_holo_light</item>
         <item name="searchViewTextField">@drawable/tw_textfield_searchview_holo_light</item>
@@ -2995,7 +2985,10 @@
         <item name="textSize">@dimen/notification_subtext_size</item>
         <item name="textColor">#ff999999</item>
     </style>
-    <style name="TextAppearance.StatusBar.EventContent.Time" parent="@style/TextAppearance.StatusBar.EventContent.Time" />
+    <style name="TextAppearance.StatusBar.EventContent.Time" parent="@style/TextAppearance.StatusBar.EventContent">
+        <item name="textSize">@dimen/notification_subtext_size</item>
+        <item name="textColor">#ff999999</item>
+    </style>
     <style name="TextAppearance.StatusBar.EventContent.Emphasis" parent="@style/TextAppearance.StatusBar.EventContent">
         <item name="textColor">#ffcccccc</item>
     </style>
@@ -3656,16 +3649,11 @@
     <style name="Widget.DeviceDefault.Light.DatePicker" parent="@style/Widget.Holo.Light.DatePicker">
         <item name="internalLayout">@layout/tw_date_picker_holo</item>
     </style>
-    <style name="Widget.DeviceDefault.Light.ExpandableListView.White" parent="@style/Widget.Holo.Light.ExpandableListView.White">
-        <item name="listSelector">@drawable/tw_list_selector_holo_light</item>
-        <item name="groupIndicator">@drawable/tw_expander_group_holo_light</item>
-    </style>
+    <style name="Widget.DeviceDefault.Light.ExpandableListView.White" parent="@style/Widget.Holo.Light.ExpandableListView.White" />
     <style name="Widget.DeviceDefault.Light.Gallery" parent="@style/Widget.Holo.Light.Gallery" />
     <style name="Widget.DeviceDefault.Light.GestureOverlayView" parent="@style/Widget.Holo.Light.GestureOverlayView" />
     <style name="Widget.DeviceDefault.Light.ImageWell" parent="@style/Widget.Holo.Light.ImageWell" />
-    <style name="Widget.DeviceDefault.Light.ListView.White" parent="@style/Widget.Holo.Light.ListView.White">
-        <item name="listSelector">@drawable/tw_list_selector_holo_light</item>
-    </style>
+    <style name="Widget.DeviceDefault.Light.ListView.White" parent="@style/Widget.Holo.Light.ListView.White" />
     <style name="Widget.DeviceDefault.Light.NumberPicker" parent="@style/Widget.NumberPicker" />
     <style name="Widget.DeviceDefault.Light.Spinner.DropDown" parent="@style/Widget.DeviceDefault.Light.Spinner" />
     <style name="Widget.DeviceDefault.Light.TextView.ListSeparator" parent="@style/Widget.Holo.Light.TextView.ListSeparator">
