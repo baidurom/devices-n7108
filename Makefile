@@ -116,7 +116,8 @@ baidu_modify_jars := android.policy framework-yi
 
 # property to show/hide feature of defaultWrite Settings
 override_property += \
-	ro.product.device.alias=n7108,GT-N7108
+	ro.product.device.alias=n7108,GT-N7108 \
+        ro.baidu.home.wakeup=true
 
 
 
