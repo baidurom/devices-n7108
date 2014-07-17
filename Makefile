@@ -11,7 +11,7 @@ BAIDU_BASE_DEVICE := N909
 # This value define to trigger server to build timely and daily
 # if you want to enable server build, set BAIDU_SERVER_BUILD := true
 # ----------------------------------------------------------------------------
-#BAIDU_SERVER_BUILD_ENABLE := true
+BAIDU_SERVER_BUILD_ENABLE := true
 
 ##############################################################################
 # Default DALVIK_VM_BUILD setting is 27
@@ -117,7 +117,9 @@ baidu_modify_jars := android.policy framework-yi
 # property to show/hide feature of defaultWrite Settings
 override_property += \
 	ro.product.device.alias=n7108,GT-N7108 \
-        ro.baidu.home.wakeup=true
+        ro.baidu.home.wakeup=true \
+        persist.sys.baidu.default_write=first_storage \
+        ro.baidu.2nd_storage.format=enable
 
 
 
