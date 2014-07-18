@@ -32,6 +32,8 @@
     .end annotation
 .end field
 
+.field public static final OVL_PATH:Ljava/lang/String; = "/system/etc/baidu/theme"
+
 .field public static final TAG_BAIDU_THEME:Ljava/lang/String; = "Baidu-Theme"
 
 .field public static final TAG_COLOR:Ljava/lang/String; = "color"
@@ -459,7 +461,7 @@
     .line 141
     sget-object v0, Landroid/content/ThemeDefine;->iconReplaceMap:Ljava/util/HashMap;
 
-    const-string v1, "com.duoku.coolreader"
+    const-string v1, "com.chaozh.iReaderFree"
 
     const v2, #drawable@ic_launcher_baidureader#t
 
@@ -522,19 +524,6 @@
     invoke-virtual {v0, v1, v2}, Ljava/util/HashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
     .line 146
-    sget-object v0, Landroid/content/ThemeDefine;->iconReplaceMap:Ljava/util/HashMap;
-
-    const-string v1, "com.chaozh.iReaderFree"
-
-    const v2, #drawable@ic_launcher_ireader#t
-
-    invoke-static {v2}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
-
-    move-result-object v2
-
-    invoke-virtual {v0, v1, v2}, Ljava/util/HashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
-
-    .line 147
     sget-object v0, Landroid/content/ThemeDefine;->iconReplaceMap:Ljava/util/HashMap;
 
     const-string v1, "com.kugou.android"
