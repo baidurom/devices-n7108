@@ -91,7 +91,7 @@
 
     const/4 v2, 0x1
 
-    const/4 v3, 0x7
+    const/4 v3, 0x2
 
     const/4 v4, 0x0
 
