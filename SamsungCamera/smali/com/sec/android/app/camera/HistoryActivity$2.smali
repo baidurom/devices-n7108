@@ -66,7 +66,7 @@
 
     const-string v1, "com.sec.android.gallery3d.app.Gallery"
 
-    invoke-virtual {v8, v0, v1}, Landroid/content/Intent;->setClassName(Ljava/lang/String;Ljava/lang/String;)Landroid/content/Intent;
+    #invoke-virtual {v8, v0, v1}, Landroid/content/Intent;->setClassName(Ljava/lang/String;Ljava/lang/String;)Landroid/content/Intent;
 
     .line 88
     const-string v0, "android.intent.action.VIEW"

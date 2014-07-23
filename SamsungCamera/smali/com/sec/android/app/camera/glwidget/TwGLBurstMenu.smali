@@ -4738,7 +4738,7 @@
 
     const-string v8, "com.arcsoft.picturesbest.app.ArcPicturesBestActivity"
 
-    invoke-virtual {v4, v7, v8}, Landroid/content/Intent;->setClassName(Ljava/lang/String;Ljava/lang/String;)Landroid/content/Intent;
+    #invoke-virtual {v4, v7, v8}, Landroid/content/Intent;->setClassName(Ljava/lang/String;Ljava/lang/String;)Landroid/content/Intent;
 
     .line 729
     const-string v7, "android.intent.action.VIEW"
@@ -5058,7 +5058,7 @@
 
     const-string v2, "com.sec.android.gallery3d.app.Gallery"
 
-    invoke-virtual {v0, v1, v2}, Landroid/content/Intent;->setClassName(Ljava/lang/String;Ljava/lang/String;)Landroid/content/Intent;
+    #invoke-virtual {v0, v1, v2}, Landroid/content/Intent;->setClassName(Ljava/lang/String;Ljava/lang/String;)Landroid/content/Intent;
 
     .line 701
     const-string v1, "android.intent.action.VIEW"
@@ -5724,7 +5724,7 @@
 
     move-object/from16 v0, v29
 
-    invoke-virtual {v0, v4, v3}, Landroid/content/ContentValues;->put(Ljava/lang/String;Ljava/lang/Integer;)V
+    #invoke-virtual {v0, v4, v3}, Landroid/content/ContentValues;->put(Ljava/lang/String;Ljava/lang/Integer;)V
 
     .line 830
     const-string v3, "date_modified"

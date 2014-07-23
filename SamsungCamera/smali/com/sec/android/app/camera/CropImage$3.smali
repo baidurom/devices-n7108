@@ -60,7 +60,7 @@
 
     const-string v2, "com.sec.android.app.videoplayer.activity.MoviePlayer"
 
-    invoke-virtual {v0, v1, v2}, Landroid/content/Intent;->setClassName(Ljava/lang/String;Ljava/lang/String;)Landroid/content/Intent;
+    #invoke-virtual {v0, v1, v2}, Landroid/content/Intent;->setClassName(Ljava/lang/String;Ljava/lang/String;)Landroid/content/Intent;
 
     .line 239
     iget-object v1, p0, Lcom/sec/android/app/camera/CropImage$3;->val$intent:Landroid/content/Intent;
