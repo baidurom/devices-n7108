@@ -968,6 +968,8 @@
 
 .field protected mPreferences:Lcom/sec/android/app/camera/ComboPreferences;
 
+.field private mBaiduPreferences:Landroid/content/SharedPreferences;
+
 .field private mPreviewFileReceived:I
 
 .field protected mProp:Ljava/util/Properties;
@@ -7480,6 +7482,18 @@
 
     if-nez v0, :cond_0
 
+    const-string v0, "com.baidu.camera_preferences"
+    
+    const/4 v1, 0x1
+
+    iget-object v2, p0, Lcom/sec/android/app/camera/CameraSettings;->mActivityContext:Lcom/sec/android/app/camera/AbstractCameraActivity;
+
+    invoke-virtual {v2, v0, v1}, Landroid/content/Context;->getSharedPreferences(Ljava/lang/String;I)Landroid/content/SharedPreferences;
+    
+    move-result-object v0
+    
+    iput-object v0, p0, Lcom/sec/android/app/camera/CameraSettings;->mBaiduPreferences:Landroid/content/SharedPreferences;
+
     .line 1668
     new-instance v0, Lcom/sec/android/app/camera/ComboPreferences;
 
@@ -10357,6 +10371,10 @@
     invoke-virtual {v0, v1, v2}, Lcom/sec/android/app/camera/ComboPreferences;->getInt(Ljava/lang/String;I)I
 
     move-result v0
+
+    iget-object v1, p0, Lcom/sec/android/app/camera/CameraSettings;->mBaiduPreferences:Landroid/content/SharedPreferences;
+
+    invoke-direct {p0, v1, v0}, Lcom/sec/android/app/camera/CameraSettings;->writBaiduPreferredSaveLocation(Landroid/content/SharedPreferences;I)V
 
     return v0
 .end method
@@ -17289,7 +17307,7 @@
 
     const-string v2, "com.samsung.bargeinsetting.VoiceInputControlSettings"
 
-    invoke-virtual {v0, v1, v2}, Landroid/content/Intent;->setClassName(Ljava/lang/String;Ljava/lang/String;)Landroid/content/Intent;
+    #invoke-virtual {v0, v1, v2}, Landroid/content/Intent;->setClassName(Ljava/lang/String;Ljava/lang/String;)Landroid/content/Intent;
 
     .line 2353
     iget-object v1, p0, Lcom/sec/android/app/camera/CameraSettings;->mActivityContext:Lcom/sec/android/app/camera/AbstractCameraActivity;
@@ -21640,6 +21658,10 @@
     .line 2989
     invoke-interface {v0}, Landroid/content/SharedPreferences$Editor;->commit()Z
 
+    iget-object v1, p0, Lcom/sec/android/app/camera/CameraSettings;->mBaiduPreferences:Landroid/content/SharedPreferences;
+
+    invoke-direct {p0, v1, v2}, Lcom/sec/android/app/camera/CameraSettings;->writBaiduPreferredSaveLocation(Landroid/content/SharedPreferences;I)V
+
     .line 2991
     iget v1, p0, Lcom/sec/android/app/camera/CameraSettings;->mMode:I
 
@@ -22257,6 +22279,40 @@
     iget v0, p0, Lcom/sec/android/app/camera/CameraSettings;->mFrontShootingMode:I
 
     iput v0, p0, Lcom/sec/android/app/camera/CameraSettings;->mShootingMode:I
+
+    goto :goto_0
+.end method
+
+.method private writBaiduPreferredSaveLocation(Landroid/content/SharedPreferences;I)V
+    .locals 3
+    .parameter "pref"
+    .parameter "storageId"
+
+    .prologue
+    .line 786
+    invoke-interface {p1}, Landroid/content/SharedPreferences;->edit()Landroid/content/SharedPreferences$Editor;
+
+    move-result-object v0
+
+    .line 787
+    .local v0, editor:Landroid/content/SharedPreferences$Editor;
+    const-string v1, "pref_camera_storage_path_key"
+
+    if-eqz p2, :cond_0
+
+    const-string v2, "sdcard"
+
+    :goto_0
+    invoke-interface {v0, v1, v2}, Landroid/content/SharedPreferences$Editor;->putString(Ljava/lang/String;Ljava/lang/String;)Landroid/content/SharedPreferences$Editor;
+
+    .line 788
+    invoke-interface {v0}, Landroid/content/SharedPreferences$Editor;->apply()V
+
+    .line 789
+    return-void
+
+    :cond_0
+    const-string v2, "phone"
 
     goto :goto_0
 .end method

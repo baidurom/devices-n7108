@@ -102,7 +102,7 @@ baidu_remove_apps := BaiduCamera
 # baidu_modify_apps: which base the baidu's apk
 # just override the res, append *.smali.part
 #-----------------------------------------------------------------------------
-baidu_modify_apps := Phone Settings HomePro
+baidu_modify_apps := Phone Settings HomePro BaiduGallery3D
 
 ##############################################################################
 # baidu_modify_jars: which base the baidu's jar
@@ -119,7 +119,8 @@ override_property += \
 	ro.product.device.alias=n7108,GT-N7108 \
         ro.baidu.home.wakeup=true \
         persist.sys.baidu.default_write=first_storage \
-        ro.baidu.2nd_storage.format=enable
+        ro.baidu.2nd_storage.format=enable \
+        ro.camera.sound.forced=0
 
 
 
