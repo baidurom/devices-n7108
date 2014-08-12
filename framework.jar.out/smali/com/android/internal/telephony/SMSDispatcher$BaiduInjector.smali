@@ -68,7 +68,7 @@
 
     #move-result v1
     
-    const/4 v1, -0x1
+    const/4 v1, 0x0
 
     invoke-virtual {p1}, Lcom/android/internal/telephony/SmsMessageBase;->getDisplayOriginatingAddress()Ljava/lang/String;
 
@@ -95,7 +95,7 @@
 
     #move-result v1
 
-    const/4 v1, -0x1
+    const/4 v1, 0x0
 
     aput-object p1, v0, v1
 
@@ -158,7 +158,7 @@
 
     #move-result v5
 
-    const/4 v5, -0x1
+    const/4 v5, 0x0
 
     invoke-static {v2, v3, v4, v5}, Lcom/android/internal/telephony/SMSPlugin;->isTrafficMonitorSms(Landroid/content/Context;Ljava/lang/String;Ljava/lang/String;I)Z
 

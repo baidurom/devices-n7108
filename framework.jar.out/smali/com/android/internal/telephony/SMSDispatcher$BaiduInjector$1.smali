@@ -51,7 +51,7 @@
 
     #move-result v1
 
-    const/4 v1, -0x1
+    const/4 v1, 0x0
 
     const-string v2, "NUMBER"
 
@@ -72,7 +72,7 @@
 
     #move-result v1
 
-    const/4 v1, -0x1
+    const/4 v1, 0x0
 
     invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
 
@@ -91,7 +91,7 @@
 
     #move-result v1
 
-    const/4 v1, -0x1
+    const/4 v1, 0x0
 
     const-string v2, "TIME"
 
@@ -114,7 +114,7 @@
 
     #move-result v1
 
-    const/4 v1, -0x1
+    const/4 v1, 0x0
 
     const-string v2, "DISCARD"
 
