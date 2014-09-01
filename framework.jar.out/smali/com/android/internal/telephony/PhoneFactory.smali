@@ -447,6 +447,24 @@
 
     move-result v5
 
+    invoke-static {}, Lcom/android/internal/telephony/BaseCommands;->getLteOnCdmaModeStatic()I
+
+    move-result v10
+
+    const/4 v12, 0x0
+
+    if-ne v10, v12, :cond_baidu_0
+
+    const/4 v12, 0x7
+
+    if-ne v5, v12, :cond_baidu_0
+
+    const/4 v12, 0x0
+
+    move v5, v12
+
+    :cond_baidu_0
+
     .line 124
     .local v5, networkMode:I
     const-string v10, "PHONE"
