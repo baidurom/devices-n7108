@@ -28,6 +28,12 @@ DALVIK_VM_BUILD := 27
 DENSITY := xhdpi
 
 ##############################################################################
+# Default RESOLUTION setting is nothing
+# this used to config the bootanimation
+#-----------------------------------------------------------------------------
+RESOLUTION := 720x1280
+
+##############################################################################
 # customize weather use prebuilt image or pack from BOOT/RECOVERY directory
 # Support Values:
 # vendor_modify_images := boot recovery
