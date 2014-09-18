@@ -1,4 +1,4 @@
-.class Lcom/android/server/AlarmManagerService$Injector;
+.class Lcom/android/server/AlarmManagerService$BaiduInjector;
 .super Ljava/lang/Object;
 .source "AlarmManagerService.java"
 
@@ -10,7 +10,7 @@
 
 .annotation system Ldalvik/annotation/InnerClass;
     accessFlags = 0x8
-    name = "Injector"
+    name = "BaiduInjector"
 .end annotation
 
 
@@ -32,12 +32,12 @@
     .line 124
     const-wide/16 v0, 0x5
 
-    sput-wide v0, Lcom/android/server/AlarmManagerService$Injector;->INTERVAL:J
+    sput-wide v0, Lcom/android/server/AlarmManagerService$BaiduInjector;->INTERVAL:J
 
     .line 125
     const-string v0, "0:0:0:0"
 
-    sput-object v0, Lcom/android/server/AlarmManagerService$Injector;->RANGE:Ljava/lang/String;
+    sput-object v0, Lcom/android/server/AlarmManagerService$BaiduInjector;->RANGE:Ljava/lang/String;
 
     .line 126
     const-string v0, "content://com.baidu.alarmalign.whitelist"
@@ -46,7 +46,7 @@
 
     move-result-object v0
 
-    sput-object v0, Lcom/android/server/AlarmManagerService$Injector;->mURI:Landroid/net/Uri;
+    sput-object v0, Lcom/android/server/AlarmManagerService$BaiduInjector;->mURI:Landroid/net/Uri;
 
     return-void
 .end method
@@ -73,7 +73,7 @@
 
     const-string v1, "alarm_align_interval"
 
-    sget-wide v2, Lcom/android/server/AlarmManagerService$Injector;->INTERVAL:J
+    sget-wide v2, Lcom/android/server/AlarmManagerService$BaiduInjector;->INTERVAL:J
 
     invoke-static {v0, v1, v2, v3}, Landroid/provider/Settings$System;->getLong(Landroid/content/ContentResolver;Ljava/lang/String;J)J
 
@@ -120,7 +120,7 @@
 
     .line 215
     :goto_0
-    invoke-static {p0}, Lcom/android/server/AlarmManagerService$Injector;->getAddInterval(Landroid/content/Context;)J
+    invoke-static {p0}, Lcom/android/server/AlarmManagerService$BaiduInjector;->getAddInterval(Landroid/content/Context;)J
 
     move-result-wide v1
 
@@ -130,7 +130,7 @@
 
     mul-long/2addr v9, v1
 
-    invoke-static {v6, v7, v9, v10}, Lcom/android/server/AlarmManagerService$Injector;->next(JJ)J
+    invoke-static {v6, v7, v9, v10}, Lcom/android/server/AlarmManagerService$BaiduInjector;->next(JJ)J
 
     move-result-wide v4
 
@@ -222,7 +222,7 @@
     .restart local v4       #next:J
     .restart local v8       #pre:Lcom/android/server/AlarmManagerService$Alarm;
     :cond_3
-    invoke-static {p0, v0}, Lcom/android/server/AlarmManagerService$Injector;->isWhiteApp(Landroid/content/Context;Lcom/android/server/AlarmManagerService$Alarm;)Z
+    invoke-static {p0, v0}, Lcom/android/server/AlarmManagerService$BaiduInjector;->isWhiteApp(Landroid/content/Context;Lcom/android/server/AlarmManagerService$Alarm;)Z
 
     move-result v9
 
@@ -426,7 +426,28 @@
     const/4 v2, 0x0
 
     .line 130
-    invoke-static {p0}, Lcom/android/server/AlarmManagerService$Injector;->getAddInterval(Landroid/content/Context;)J
+    invoke-virtual {p0}, Landroid/content/Context;->getContentResolver()Landroid/content/ContentResolver;
+
+    move-result-object v4
+
+    const-string v5, "alarm_align_enable"
+
+    invoke-static {v4, v5, v2}, Landroid/provider/Settings$System;->getInt(Landroid/content/ContentResolver;Ljava/lang/String;I)I
+
+    move-result v4
+
+    if-nez v4, :cond_0
+
+    .line 131
+    sput-boolean v2, Lcom/android/server/AlarmManagerService$BaiduInjector;->isEnabled:Z
+
+    .line 170
+    :goto_0
+    return v2
+
+    .line 135
+    :cond_0
+    invoke-static {p0}, Lcom/android/server/AlarmManagerService$BaiduInjector;->getAddInterval(Landroid/content/Context;)J
 
     move-result-wide v4
 
@@ -434,20 +455,18 @@
 
     cmp-long v4, v4, v6
 
-    if-gtz v4, :cond_0
-
-    .line 131
-    sput-boolean v2, Lcom/android/server/AlarmManagerService$Injector;->isEnabled:Z
-
-    .line 165
-    :goto_0
-    return v2
-
-    .line 135
-    :cond_0
-    sput-boolean v3, Lcom/android/server/AlarmManagerService$Injector;->isEnabled:Z
+    if-gtz v4, :cond_1
 
     .line 136
+    sput-boolean v2, Lcom/android/server/AlarmManagerService$BaiduInjector;->isEnabled:Z
+
+    goto :goto_0
+
+    .line 140
+    :cond_1
+    sput-boolean v3, Lcom/android/server/AlarmManagerService$BaiduInjector;->isEnabled:Z
+
+    .line 141
     invoke-virtual {p0}, Landroid/content/Context;->getContentResolver()Landroid/content/ContentResolver;
 
     move-result-object v4
@@ -458,30 +477,30 @@
 
     move-result-object v1
 
-    .line 137
+    .line 142
     .local v1, range:Ljava/lang/String;
-    if-nez v1, :cond_1
+    if-nez v1, :cond_2
 
     move v2, v3
 
-    .line 141
+    .line 146
     goto :goto_0
 
-    .line 143
-    :cond_1
-    invoke-static {v1}, Lcom/android/server/AlarmManagerService$Injector;->hitRange(Ljava/lang/String;)Z
+    .line 148
+    :cond_2
+    invoke-static {v1}, Lcom/android/server/AlarmManagerService$BaiduInjector;->hitRange(Ljava/lang/String;)Z
 
     move-result v4
 
-    if-eqz v4, :cond_2
+    if-eqz v4, :cond_3
 
     move v2, v3
 
-    .line 147
+    .line 152
     goto :goto_0
 
-    .line 149
-    :cond_2
+    .line 154
+    :cond_3
     invoke-virtual {p0}, Landroid/content/Context;->getContentResolver()Landroid/content/ContentResolver;
 
     move-result-object v4
@@ -492,9 +511,9 @@
 
     move-result v4
 
-    if-ne v4, v3, :cond_3
+    if-ne v4, v3, :cond_4
 
-    .line 150
+    .line 155
     const-string v4, "power"
 
     invoke-virtual {p0, v4}, Landroid/content/Context;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
@@ -503,23 +522,23 @@
 
     check-cast v0, Landroid/os/PowerManager;
 
-    .line 151
+    .line 156
     .local v0, pm:Landroid/os/PowerManager;
     invoke-virtual {v0}, Landroid/os/PowerManager;->isScreenOn()Z
 
     move-result v4
 
-    if-nez v4, :cond_3
+    if-nez v4, :cond_4
 
     move v2, v3
 
-    .line 155
+    .line 160
     goto :goto_0
 
-    .line 164
+    .line 169
     .end local v0           #pm:Landroid/os/PowerManager;
-    :cond_3
-    sput-boolean v2, Lcom/android/server/AlarmManagerService$Injector;->isEnabled:Z
+    :cond_4
+    sput-boolean v2, Lcom/android/server/AlarmManagerService$BaiduInjector;->isEnabled:Z
 
     goto :goto_0
 .end method
@@ -566,7 +585,7 @@
 
     .line 178
     .local v0, resolver:Landroid/content/ContentResolver;
-    sget-object v1, Lcom/android/server/AlarmManagerService$Injector;->mURI:Landroid/net/Uri;
+    sget-object v1, Lcom/android/server/AlarmManagerService$BaiduInjector;->mURI:Landroid/net/Uri;
 
     const/4 v2, 0x0
 
@@ -687,7 +706,7 @@
     if-eqz v0, :cond_0
 
     .line 262
-    sget-boolean v4, Lcom/android/server/AlarmManagerService$Injector;->isEnabled:Z
+    sget-boolean v4, Lcom/android/server/AlarmManagerService$BaiduInjector;->isEnabled:Z
 
     .line 263
     .local v4, preStatus:Z
@@ -696,7 +715,7 @@
 
     move-result-object v5
 
-    invoke-static {v5}, Lcom/android/server/AlarmManagerService$Injector;->isEnabled(Landroid/content/Context;)Z
+    invoke-static {v5}, Lcom/android/server/AlarmManagerService$BaiduInjector;->isEnabled(Landroid/content/Context;)Z
 
     move-result v3
 
@@ -746,7 +765,7 @@
 
     move-result-object v5
 
-    invoke-static {v5, p1}, Lcom/android/server/AlarmManagerService$Injector;->isWhiteApp(Landroid/content/Context;Lcom/android/server/AlarmManagerService$Alarm;)Z
+    invoke-static {v5, p1}, Lcom/android/server/AlarmManagerService$BaiduInjector;->isWhiteApp(Landroid/content/Context;Lcom/android/server/AlarmManagerService$Alarm;)Z
 
     move-result v5
 
@@ -757,7 +776,7 @@
 
     move-result-object v5
 
-    invoke-static {v5}, Lcom/android/server/AlarmManagerService$Injector;->getAddInterval(Landroid/content/Context;)J
+    invoke-static {v5}, Lcom/android/server/AlarmManagerService$BaiduInjector;->getAddInterval(Landroid/content/Context;)J
 
     move-result-wide v5
 
@@ -765,7 +784,7 @@
 
     mul-long/2addr v5, v7
 
-    invoke-static {v1, v2, v5, v6}, Lcom/android/server/AlarmManagerService$Injector;->next(JJ)J
+    invoke-static {v1, v2, v5, v6}, Lcom/android/server/AlarmManagerService$BaiduInjector;->next(JJ)J
 
     move-result-wide v5
 
