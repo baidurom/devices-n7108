@@ -3600,7 +3600,7 @@
 
     .line 686
     :cond_a
-    const-string v2, "adn_index"
+    const-string v2, "index"
 
     invoke-virtual {v2, v10}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
@@ -4110,6 +4110,8 @@
     move-object/from16 v0, v19
 
     invoke-direct {v0, v2}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
+
+    const/16 v22, 0x1
 
     .line 522
     .local v19, buf:Ljava/lang/StringBuilder;

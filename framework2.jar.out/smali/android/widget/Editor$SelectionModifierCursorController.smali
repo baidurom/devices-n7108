@@ -73,18 +73,6 @@
     return-void
 .end method
 
-.method static synthetic access$baidu_100(Landroid/widget/Editor$SelectionModifierCursorController;Landroid/view/MotionEvent;)V
-    .locals 0
-    .parameter "x0"
-    .parameter "x1"
-
-    .prologue
-    .line 3948
-    invoke-direct {p0, p1}, Landroid/widget/Editor$SelectionModifierCursorController;->updateMagnifierSelectionOffsets(Landroid/view/MotionEvent;)V
-
-    return-void
-.end method
-
 .method static synthetic access$3600(Landroid/widget/Editor$SelectionModifierCursorController;)V
     .locals 0
     .parameter "x0"
@@ -191,6 +179,114 @@
 
     .line 4210
     :cond_1
+    iget-object v0, p0, Landroid/widget/Editor$SelectionModifierCursorController;->this$0:Landroid/widget/Editor;
+
+    #getter for: Landroid/widget/Editor;->mSelectHandleLeftTop:Landroid/graphics/drawable/Drawable;
+    invoke-static {v0}, Landroid/widget/Editor;->access$3300(Landroid/widget/Editor;)Landroid/graphics/drawable/Drawable;
+
+    move-result-object v0
+
+    if-nez v0, :cond_2
+
+    iget-object v0, p0, Landroid/widget/Editor$SelectionModifierCursorController;->this$0:Landroid/widget/Editor;
+
+    #getter for: Landroid/widget/Editor;->mThemeIsDeviceDefault:Z
+    invoke-static {v0}, Landroid/widget/Editor;->access$2400(Landroid/widget/Editor;)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_2
+
+    .line 4211
+    iget-object v0, p0, Landroid/widget/Editor$SelectionModifierCursorController;->this$0:Landroid/widget/Editor;
+
+    iget-object v1, p0, Landroid/widget/Editor$SelectionModifierCursorController;->this$0:Landroid/widget/Editor;
+
+    #getter for: Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
+    invoke-static {v1}, Landroid/widget/Editor;->access$000(Landroid/widget/Editor;)Landroid/widget/TextView;
+
+    move-result-object v1
+
+    invoke-virtual {v1}, Landroid/widget/TextView;->getContext()Landroid/content/Context;
+
+    move-result-object v1
+
+    invoke-virtual {v1}, Landroid/content/Context;->getResources()Landroid/content/res/Resources;
+
+    move-result-object v1
+
+    iget-object v2, p0, Landroid/widget/Editor$SelectionModifierCursorController;->this$0:Landroid/widget/Editor;
+
+    #getter for: Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
+    invoke-static {v2}, Landroid/widget/Editor;->access$000(Landroid/widget/Editor;)Landroid/widget/TextView;
+
+    move-result-object v2
+
+    iget v2, v2, Landroid/widget/TextView;->mTextSelectHandleLeftTopRes:I
+
+    invoke-virtual {v1, v2}, Landroid/content/res/Resources;->getDrawable(I)Landroid/graphics/drawable/Drawable;
+
+    move-result-object v1
+
+    #setter for: Landroid/widget/Editor;->mSelectHandleLeftTop:Landroid/graphics/drawable/Drawable;
+    invoke-static {v0, v1}, Landroid/widget/Editor;->access$3302(Landroid/widget/Editor;Landroid/graphics/drawable/Drawable;)Landroid/graphics/drawable/Drawable;
+
+    .line 4215
+    :cond_2
+    iget-object v0, p0, Landroid/widget/Editor$SelectionModifierCursorController;->this$0:Landroid/widget/Editor;
+
+    #getter for: Landroid/widget/Editor;->mSelectHandleRightTop:Landroid/graphics/drawable/Drawable;
+    invoke-static {v0}, Landroid/widget/Editor;->access$3400(Landroid/widget/Editor;)Landroid/graphics/drawable/Drawable;
+
+    move-result-object v0
+
+    if-nez v0, :cond_3
+
+    iget-object v0, p0, Landroid/widget/Editor$SelectionModifierCursorController;->this$0:Landroid/widget/Editor;
+
+    #getter for: Landroid/widget/Editor;->mThemeIsDeviceDefault:Z
+    invoke-static {v0}, Landroid/widget/Editor;->access$2400(Landroid/widget/Editor;)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_3
+
+    .line 4216
+    iget-object v0, p0, Landroid/widget/Editor$SelectionModifierCursorController;->this$0:Landroid/widget/Editor;
+
+    iget-object v1, p0, Landroid/widget/Editor$SelectionModifierCursorController;->this$0:Landroid/widget/Editor;
+
+    #getter for: Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
+    invoke-static {v1}, Landroid/widget/Editor;->access$000(Landroid/widget/Editor;)Landroid/widget/TextView;
+
+    move-result-object v1
+
+    invoke-virtual {v1}, Landroid/widget/TextView;->getContext()Landroid/content/Context;
+
+    move-result-object v1
+
+    invoke-virtual {v1}, Landroid/content/Context;->getResources()Landroid/content/res/Resources;
+
+    move-result-object v1
+
+    iget-object v2, p0, Landroid/widget/Editor$SelectionModifierCursorController;->this$0:Landroid/widget/Editor;
+
+    #getter for: Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
+    invoke-static {v2}, Landroid/widget/Editor;->access$000(Landroid/widget/Editor;)Landroid/widget/TextView;
+
+    move-result-object v2
+
+    iget v2, v2, Landroid/widget/TextView;->mTextSelectHandleRightTopRes:I
+
+    invoke-virtual {v1, v2}, Landroid/content/res/Resources;->getDrawable(I)Landroid/graphics/drawable/Drawable;
+
+    move-result-object v1
+
+    #setter for: Landroid/widget/Editor;->mSelectHandleRightTop:Landroid/graphics/drawable/Drawable;
+    invoke-static {v0, v1}, Landroid/widget/Editor;->access$3402(Landroid/widget/Editor;Landroid/graphics/drawable/Drawable;)Landroid/graphics/drawable/Drawable;
+
+    .line 4220
+    :cond_3
     return-void
 .end method
 
@@ -198,6 +294,10 @@
     .locals 6
 
     .prologue
+    const/16 v5, 0x8
+
+    const/4 v4, 0x0
+
     .line 4224
     iget-object v0, p0, Landroid/widget/Editor$SelectionModifierCursorController;->mStartHandle:Landroid/widget/Editor$SelectionStartHandleView;
 
@@ -257,6 +357,44 @@
 
     .line 4231
     :cond_1
+    iget-object v0, p0, Landroid/widget/Editor$SelectionModifierCursorController;->mStartTopHandle:Landroid/widget/Editor$SelectionStartTopHandleView;
+
+    if-nez v0, :cond_2
+
+    iget-object v0, p0, Landroid/widget/Editor$SelectionModifierCursorController;->this$0:Landroid/widget/Editor;
+
+    #getter for: Landroid/widget/Editor;->mThemeIsDeviceDefault:Z
+    invoke-static {v0}, Landroid/widget/Editor;->access$2400(Landroid/widget/Editor;)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_2
+
+    .line 4232
+    new-instance v0, Landroid/widget/Editor$SelectionStartTopHandleView;
+
+    iget-object v1, p0, Landroid/widget/Editor$SelectionModifierCursorController;->this$0:Landroid/widget/Editor;
+
+    iget-object v2, p0, Landroid/widget/Editor$SelectionModifierCursorController;->this$0:Landroid/widget/Editor;
+
+    #getter for: Landroid/widget/Editor;->mSelectHandleLeftTop:Landroid/graphics/drawable/Drawable;
+    invoke-static {v2}, Landroid/widget/Editor;->access$3300(Landroid/widget/Editor;)Landroid/graphics/drawable/Drawable;
+
+    move-result-object v2
+
+    iget-object v3, p0, Landroid/widget/Editor$SelectionModifierCursorController;->this$0:Landroid/widget/Editor;
+
+    #getter for: Landroid/widget/Editor;->mSelectHandleRightTop:Landroid/graphics/drawable/Drawable;
+    invoke-static {v3}, Landroid/widget/Editor;->access$3400(Landroid/widget/Editor;)Landroid/graphics/drawable/Drawable;
+
+    move-result-object v3
+
+    invoke-direct {v0, v1, v2, v3}, Landroid/widget/Editor$SelectionStartTopHandleView;-><init>(Landroid/widget/Editor;Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;)V
+
+    iput-object v0, p0, Landroid/widget/Editor$SelectionModifierCursorController;->mStartTopHandle:Landroid/widget/Editor$SelectionStartTopHandleView;
+
+    .line 4236
+    :cond_2
     iget-object v0, p0, Landroid/widget/Editor$SelectionModifierCursorController;->mStartHandle:Landroid/widget/Editor$SelectionStartHandleView;
 
     invoke-virtual {v0}, Landroid/widget/Editor$SelectionStartHandleView;->show()V
@@ -267,13 +405,39 @@
     invoke-virtual {v0}, Landroid/widget/Editor$SelectionEndHandleView;->show()V
 
     .line 4239
+    iget-object v0, p0, Landroid/widget/Editor$SelectionModifierCursorController;->mStartTopHandle:Landroid/widget/Editor$SelectionStartTopHandleView;
+
+    if-eqz v0, :cond_3
+
+    .line 4240
+    iget-object v0, p0, Landroid/widget/Editor$SelectionModifierCursorController;->mStartTopHandle:Landroid/widget/Editor$SelectionStartTopHandleView;
+
+    invoke-virtual {v0}, Landroid/widget/Editor$SelectionStartTopHandleView;->show()V
+
+    .line 4245
+    :cond_3
+    iget-boolean v0, p0, Landroid/widget/Editor$SelectionModifierCursorController;->mStartHandleOnTop:Z
+
+    if-eqz v0, :cond_5
+
+    .line 4246
     iget-object v0, p0, Landroid/widget/Editor$SelectionModifierCursorController;->mStartHandle:Landroid/widget/Editor$SelectionStartHandleView;
 
-    const/16 v1, 0xc8
+    invoke-virtual {v0, v5}, Landroid/widget/Editor$SelectionStartHandleView;->setVisibility(I)V
 
-    invoke-virtual {v0, v1}, Landroid/widget/Editor$SelectionStartHandleView;->showActionPopupWindow(I)V
+    .line 4247
+    iget-object v0, p0, Landroid/widget/Editor$SelectionModifierCursorController;->mStartTopHandle:Landroid/widget/Editor$SelectionStartTopHandleView;
+
+    if-eqz v0, :cond_4
+
+    .line 4248
+    iget-object v0, p0, Landroid/widget/Editor$SelectionModifierCursorController;->mStartTopHandle:Landroid/widget/Editor$SelectionStartTopHandleView;
+
+    invoke-virtual {v0, v4}, Landroid/widget/Editor$SelectionStartTopHandleView;->setVisibility(I)V
 
     .line 4263
+    :cond_4
+    :goto_0
     iget-object v0, p0, Landroid/widget/Editor$SelectionModifierCursorController;->mEndHandle:Landroid/widget/Editor$SelectionEndHandleView;
 
     iget-object v1, p0, Landroid/widget/Editor$SelectionModifierCursorController;->mStartHandle:Landroid/widget/Editor$SelectionStartHandleView;
@@ -292,6 +456,24 @@
 
     .line 4266
     return-void
+
+    .line 4251
+    :cond_5
+    iget-object v0, p0, Landroid/widget/Editor$SelectionModifierCursorController;->mStartHandle:Landroid/widget/Editor$SelectionStartHandleView;
+
+    invoke-virtual {v0, v4}, Landroid/widget/Editor$SelectionStartHandleView;->setVisibility(I)V
+
+    .line 4252
+    iget-object v0, p0, Landroid/widget/Editor$SelectionModifierCursorController;->mStartTopHandle:Landroid/widget/Editor$SelectionStartTopHandleView;
+
+    if-eqz v0, :cond_4
+
+    .line 4253
+    iget-object v0, p0, Landroid/widget/Editor$SelectionModifierCursorController;->mStartTopHandle:Landroid/widget/Editor$SelectionStartTopHandleView;
+
+    invoke-virtual {v0, v5}, Landroid/widget/Editor$SelectionStartTopHandleView;->setVisibility(I)V
+
+    goto :goto_0
 .end method
 
 .method private switchStartHandle()V
@@ -370,43 +552,6 @@
     invoke-virtual {v0, v1}, Landroid/widget/Editor$SelectionStartHandleView;->setVisibility(I)V
 
     goto :goto_0
-.end method
-
-.method private updateMagnifierSelectionOffsets(Landroid/view/MotionEvent;)V
-    .locals 3
-    .parameter "event"
-
-    .prologue
-    .line 4096
-    invoke-virtual {p1}, Landroid/view/MotionEvent;->getX()F
-
-    move-result v0
-
-    .line 4097
-    .local v0, x:F
-    invoke-virtual {p1}, Landroid/view/MotionEvent;->getY()F
-
-    move-result v1
-
-    .line 4101
-    .local v1, y:F
-    iget-object v2, p0, Landroid/widget/Editor$SelectionModifierCursorController;->this$0:Landroid/widget/Editor;
-
-    #getter for: Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
-    invoke-static {v2}, Landroid/widget/Editor;->access$baidu_500(Landroid/widget/Editor;)Landroid/widget/TextView;
-
-    move-result-object v2
-
-    invoke-virtual {v2, v0, v1}, Landroid/widget/TextView;->getOffsetForPosition(FF)I
-
-    move-result v2
-
-    iput v2, p0, Landroid/widget/Editor$SelectionModifierCursorController;->mMaxTouchOffset:I
-
-    iput v2, p0, Landroid/widget/Editor$SelectionModifierCursorController;->mMinTouchOffset:I
-
-    .line 4103
-    return-void
 .end method
 
 .method private updateMinAndMaxOffsets(Landroid/view/MotionEvent;)V
@@ -511,73 +656,94 @@
     .locals 1
 
     .prologue
-    iget-object v0, p0, Landroid/widget/Editor$SelectionModifierCursorController;->this$0:Landroid/widget/Editor;
-    
-    #getter for: Landroid/widget/Editor;->mMagnifierController:Landroid/widget/MagnifierController;
-    invoke-static {v0}, Landroid/widget/Editor;->access$baidu_200(Landroid/widget/Editor;)Landroid/widget/MagnifierController;
-    
-    move-result-object v0
-    
-    if-eqz v0, :cond_0
-    
-    iget-object v0, p0, Landroid/widget/Editor$SelectionModifierCursorController;->this$0:Landroid/widget/Editor;
-    
-    #getter for: Landroid/widget/Editor;->mMagnifierController:Landroid/widget/MagnifierController;
-    invoke-static {v0}, Landroid/widget/Editor;->access$baidu_200(Landroid/widget/Editor;)Landroid/widget/MagnifierController;
-    
-    move-result-object v0
-    
-    invoke-virtual {v0}, Landroid/widget/MagnifierController;->dismiss()V
-    
-    .line 4269
-    :cond_0
+    invoke-static {}, Landroid/widget/Editor$BaiduEditorInjector;->dismiss()V
+
     iget-object v0, p0, Landroid/widget/Editor$SelectionModifierCursorController;->mStartHandle:Landroid/widget/Editor$SelectionStartHandleView;
 
-    if-eqz v0, :cond_1
+    if-eqz v0, :cond_0
 
     iget-object v0, p0, Landroid/widget/Editor$SelectionModifierCursorController;->mStartHandle:Landroid/widget/Editor$SelectionStartHandleView;
 
     invoke-virtual {v0}, Landroid/widget/Editor$SelectionStartHandleView;->hide()V
 
     .line 4270
-    :cond_1
+    :cond_0
     iget-object v0, p0, Landroid/widget/Editor$SelectionModifierCursorController;->mEndHandle:Landroid/widget/Editor$SelectionEndHandleView;
 
-    if-eqz v0, :cond_2
+    if-eqz v0, :cond_1
 
     iget-object v0, p0, Landroid/widget/Editor$SelectionModifierCursorController;->mEndHandle:Landroid/widget/Editor$SelectionEndHandleView;
 
     invoke-virtual {v0}, Landroid/widget/Editor$SelectionEndHandleView;->hide()V
 
     .line 4272
+    :cond_1
+    iget-object v0, p0, Landroid/widget/Editor$SelectionModifierCursorController;->mStartTopHandle:Landroid/widget/Editor$SelectionStartTopHandleView;
+
+    if-eqz v0, :cond_2
+
+    iget-object v0, p0, Landroid/widget/Editor$SelectionModifierCursorController;->mStartTopHandle:Landroid/widget/Editor$SelectionStartTopHandleView;
+
+    invoke-virtual {v0}, Landroid/widget/Editor$SelectionStartTopHandleView;->hide()V
+
+    .line 4274
     :cond_2
     return-void
 .end method
 
 .method public isSelectionStartDragged()Z
-    .locals 1
+    .locals 3
 
     .prologue
-    .line 4063
-    iget-object v0, p0, Landroid/widget/Editor$SelectionModifierCursorController;->mStartHandle:Landroid/widget/Editor$SelectionStartHandleView;
-
-    if-eqz v0, :cond_0
-
-    iget-object v0, p0, Landroid/widget/Editor$SelectionModifierCursorController;->mStartHandle:Landroid/widget/Editor$SelectionStartHandleView;
-
-    invoke-virtual {v0}, Landroid/widget/Editor$SelectionStartHandleView;->isDragging()Z
-
-    move-result v0
-
-    if-eqz v0, :cond_0
-
     const/4 v0, 0x1
 
+    const/4 v1, 0x0
+
+    .line 4373
+    iget-boolean v2, p0, Landroid/widget/Editor$SelectionModifierCursorController;->mStartHandleOnTop:Z
+
+    if-eqz v2, :cond_2
+
+    .line 4374
+    iget-object v2, p0, Landroid/widget/Editor$SelectionModifierCursorController;->mStartTopHandle:Landroid/widget/Editor$SelectionStartTopHandleView;
+
+    if-eqz v2, :cond_1
+
+    iget-object v2, p0, Landroid/widget/Editor$SelectionModifierCursorController;->mStartTopHandle:Landroid/widget/Editor$SelectionStartTopHandleView;
+
+    invoke-virtual {v2}, Landroid/widget/Editor$SelectionStartTopHandleView;->isDragging()Z
+
+    move-result v2
+
+    if-eqz v2, :cond_1
+
+    .line 4376
+    :cond_0
     :goto_0
     return v0
 
-    :cond_0
-    const/4 v0, 0x0
+    :cond_1
+    move v0, v1
+
+    .line 4374
+    goto :goto_0
+
+    .line 4376
+    :cond_2
+    iget-object v2, p0, Landroid/widget/Editor$SelectionModifierCursorController;->mStartHandle:Landroid/widget/Editor$SelectionStartHandleView;
+
+    if-eqz v2, :cond_3
+
+    iget-object v2, p0, Landroid/widget/Editor$SelectionModifierCursorController;->mStartHandle:Landroid/widget/Editor$SelectionStartHandleView;
+
+    invoke-virtual {v2}, Landroid/widget/Editor$SelectionStartHandleView;->isDragging()Z
+
+    move-result v2
+
+    if-nez v2, :cond_0
+
+    :cond_3
+    move v0, v1
 
     goto :goto_0
 .end method
@@ -623,6 +789,16 @@
 
     .line 4395
     :cond_1
+    iget-object v1, p0, Landroid/widget/Editor$SelectionModifierCursorController;->mStartTopHandle:Landroid/widget/Editor$SelectionStartTopHandleView;
+
+    if-eqz v1, :cond_2
+
+    iget-object v1, p0, Landroid/widget/Editor$SelectionModifierCursorController;->mStartTopHandle:Landroid/widget/Editor$SelectionStartTopHandleView;
+
+    invoke-virtual {v1}, Landroid/widget/Editor$SelectionStartTopHandleView;->onDetached()V
+
+    .line 4397
+    :cond_2
     return-void
 .end method
 

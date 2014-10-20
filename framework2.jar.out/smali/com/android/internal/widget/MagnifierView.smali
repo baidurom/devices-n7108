@@ -288,31 +288,25 @@
     .prologue
     const/4 v7, 0x0
 
-    .line 81
     iget-object v6, p0, Lcom/android/internal/widget/MagnifierView;->mTarget:Landroid/widget/TextView;
 
-    .line 82
     .local v6, tv:Landroid/widget/TextView;
     invoke-virtual {v6}, Landroid/widget/TextView;->getLayout()Landroid/text/Layout;
 
     move-result-object v0
 
-    .line 83
     .local v0, layout:Landroid/text/Layout;
     if-nez v0, :cond_1
 
-    .line 153
     :cond_0
     :goto_0
     return-object v7
 
-    .line 86
     :cond_1
     invoke-virtual {v0, p1}, Landroid/text/Layout;->getLineForOffset(I)I
 
     move-result v1
 
-    .line 88
     .local v1, line:I
     iget-object v8, p0, Lcom/android/internal/widget/MagnifierView;->mTarget:Landroid/widget/TextView;
 
@@ -320,12 +314,12 @@
 
     invoke-virtual {v8, v9}, Landroid/widget/TextView;->getLocationInWindow([I)V
 
-    .line 91
+    .line 89
     invoke-virtual {v0, v1}, Landroid/text/Layout;->getLineTop(I)I
 
     move-result v2
 
-    .line 94
+    .line 92
     .local v2, lineTop:I
     invoke-virtual {v0, v1}, Landroid/text/Layout;->getLineBaseline(I)I
 
@@ -337,20 +331,17 @@
 
     sub-int v4, v8, v2
 
-    .line 96
     .local v4, range:I
     iget-object v8, p0, Lcom/android/internal/widget/MagnifierView;->mRect:Landroid/graphics/Rect;
 
     if-nez v8, :cond_2
 
-    .line 97
     new-instance v8, Landroid/graphics/Rect;
 
     invoke-direct {v8}, Landroid/graphics/Rect;-><init>()V
 
     iput-object v8, p0, Lcom/android/internal/widget/MagnifierView;->mRect:Landroid/graphics/Rect;
 
-    .line 99
     :cond_2
     iget-object v8, p0, Lcom/android/internal/widget/MagnifierView;->mTarget:Landroid/widget/TextView;
 
@@ -358,14 +349,12 @@
 
     invoke-virtual {v8, v9}, Landroid/widget/TextView;->getDrawingRect(Landroid/graphics/Rect;)V
 
-    .line 100
     new-instance v3, Landroid/graphics/Rect;
 
     iget-object v8, p0, Lcom/android/internal/widget/MagnifierView;->mRect:Landroid/graphics/Rect;
 
     invoke-direct {v3, v8}, Landroid/graphics/Rect;-><init>(Landroid/graphics/Rect;)V
 
-    .line 102
     .local v3, oldRect:Landroid/graphics/Rect;
     const-string v8, "SYGTC"
 
@@ -373,7 +362,7 @@
 
     invoke-direct {v9}, Ljava/lang/StringBuilder;-><init>()V
 
-    const-string/jumbo v10, "mTarget mRect = "
+    const-string v10, "mTarget mRect = "
 
     invoke-virtual {v9, v10}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
@@ -395,7 +384,6 @@
 
     invoke-static {v8, v9}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 107
     const-string v8, "SYGTC"
 
     new-instance v9, Ljava/lang/StringBuilder;
@@ -418,7 +406,6 @@
 
     invoke-static {v8, v9}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 108
     div-int/lit8 v8, v4, 0x2
 
     sub-int v8, v2, v8
@@ -431,7 +418,7 @@
 
     add-int v5, v8, v9
 
-    .line 109
+    .line 107
     .local v5, tmp:I
     iget-object v8, p0, Lcom/android/internal/widget/MagnifierView;->mRect:Landroid/graphics/Rect;
 
@@ -439,12 +426,10 @@
 
     if-lt v5, v8, :cond_3
 
-    .line 110
     iget-object v8, p0, Lcom/android/internal/widget/MagnifierView;->mRect:Landroid/graphics/Rect;
 
     iput v5, v8, Landroid/graphics/Rect;->top:I
 
-    .line 114
     :cond_3
     iget-object v8, p0, Lcom/android/internal/widget/MagnifierView;->mRect:Landroid/graphics/Rect;
 
@@ -454,19 +439,16 @@
 
     add-int v5, v8, v9
 
-    .line 115
     iget-object v8, p0, Lcom/android/internal/widget/MagnifierView;->mRect:Landroid/graphics/Rect;
 
     iget v8, v8, Landroid/graphics/Rect;->bottom:I
 
     if-gt v5, v8, :cond_4
 
-    .line 116
     iget-object v8, p0, Lcom/android/internal/widget/MagnifierView;->mRect:Landroid/graphics/Rect;
 
     iput v5, v8, Landroid/graphics/Rect;->bottom:I
 
-    .line 120
     :cond_4
     invoke-virtual {v0, p1}, Landroid/text/Layout;->getPrimaryHorizontal(I)F
 
@@ -486,19 +468,16 @@
 
     add-int v5, v8, v9
 
-    .line 121
     iget-object v8, p0, Lcom/android/internal/widget/MagnifierView;->mRect:Landroid/graphics/Rect;
 
     iget v8, v8, Landroid/graphics/Rect;->left:I
 
     if-lt v5, v8, :cond_5
 
-    .line 122
     iget-object v8, p0, Lcom/android/internal/widget/MagnifierView;->mRect:Landroid/graphics/Rect;
 
     iput v5, v8, Landroid/graphics/Rect;->left:I
 
-    .line 126
     :cond_5
     iget-object v8, p0, Lcom/android/internal/widget/MagnifierView;->mRect:Landroid/graphics/Rect;
 
@@ -508,19 +487,16 @@
 
     add-int v5, v8, v9
 
-    .line 127
     iget-object v8, p0, Lcom/android/internal/widget/MagnifierView;->mRect:Landroid/graphics/Rect;
 
     iget v8, v8, Landroid/graphics/Rect;->right:I
 
     if-gt v5, v8, :cond_6
 
-    .line 128
     iget-object v8, p0, Lcom/android/internal/widget/MagnifierView;->mRect:Landroid/graphics/Rect;
 
     iput v5, v8, Landroid/graphics/Rect;->right:I
 
-    .line 131
     :cond_6
     const-string v8, "SYGTC"
 
@@ -550,7 +526,6 @@
 
     invoke-static {v8, v9}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 133
     iget-object v8, p0, Lcom/android/internal/widget/MagnifierView;->mRect:Landroid/graphics/Rect;
 
     invoke-virtual {v8}, Landroid/graphics/Rect;->isEmpty()Z
@@ -559,7 +534,7 @@
 
     if-nez v8, :cond_0
 
-    .line 137
+    .line 131
     iget-object v7, p0, Lcom/android/internal/widget/MagnifierView;->mRect:Landroid/graphics/Rect;
 
     invoke-virtual {v7}, Landroid/graphics/Rect;->width()I
@@ -588,7 +563,7 @@
 
     if-gez v7, :cond_a
 
-    .line 138
+    .line 136
     iget v7, v3, Landroid/graphics/Rect;->left:I
 
     iget-object v8, p0, Lcom/android/internal/widget/MagnifierView;->mRect:Landroid/graphics/Rect;
@@ -605,7 +580,7 @@
 
     if-le v7, v8, :cond_8
 
-    .line 139
+    .line 137
     iget-object v7, p0, Lcom/android/internal/widget/MagnifierView;->mRect:Landroid/graphics/Rect;
 
     iget v7, v7, Landroid/graphics/Rect;->left:I
@@ -626,23 +601,19 @@
 
     float-to-int v5, v7
 
-    .line 140
     iget v7, v3, Landroid/graphics/Rect;->right:I
 
     if-gt v5, v7, :cond_7
 
-    .line 141
     iget-object v7, p0, Lcom/android/internal/widget/MagnifierView;->mRect:Landroid/graphics/Rect;
 
     iput v5, v7, Landroid/graphics/Rect;->right:I
 
-    .line 143
     :cond_7
     iget-object v7, p0, Lcom/android/internal/widget/MagnifierView;->mRect:Landroid/graphics/Rect;
 
     goto/16 :goto_0
 
-    .line 144
     :cond_8
     iget v7, v3, Landroid/graphics/Rect;->left:I
 
@@ -660,7 +631,7 @@
 
     if-ne v7, v8, :cond_a
 
-    .line 145
+    .line 143
     iget-object v7, p0, Lcom/android/internal/widget/MagnifierView;->mRect:Landroid/graphics/Rect;
 
     iget v7, v7, Landroid/graphics/Rect;->right:I
@@ -681,23 +652,19 @@
 
     float-to-int v5, v7
 
-    .line 146
     iget v7, v3, Landroid/graphics/Rect;->left:I
 
     if-lt v5, v7, :cond_9
 
-    .line 147
     iget-object v7, p0, Lcom/android/internal/widget/MagnifierView;->mRect:Landroid/graphics/Rect;
 
     iput v5, v7, Landroid/graphics/Rect;->left:I
 
-    .line 149
     :cond_9
     iget-object v7, p0, Lcom/android/internal/widget/MagnifierView;->mRect:Landroid/graphics/Rect;
 
     goto/16 :goto_0
 
-    .line 153
     :cond_a
     iget-object v7, p0, Lcom/android/internal/widget/MagnifierView;->mRect:Landroid/graphics/Rect;
 
@@ -753,7 +720,7 @@
     :cond_0
     const-string v10, "SYGTC"
 
-    const-string/jumbo v11, "onDraw(): only Magnifier"
+    const-string v11, "onDraw(): only Magnifier"
 
     invoke-static {v10, v11}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
@@ -802,7 +769,7 @@
     :cond_2
     const-string v10, "SYGTC"
 
-    const-string/jumbo v11, "onDraw(): only Magnifier"
+    const-string v11, "onDraw(): only Magnifier"
 
     invoke-static {v10, v11}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
@@ -863,7 +830,7 @@
     :cond_4
     const-string v10, "SYGTC"
 
-    const-string/jumbo v11, "onDraw(): only Magnifier"
+    const-string v11, "onDraw(): only Magnifier"
 
     invoke-static {v10, v11}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 

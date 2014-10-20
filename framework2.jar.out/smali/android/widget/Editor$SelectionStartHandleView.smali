@@ -33,8 +33,6 @@
     const/4 v0, 0x0
 
     invoke-direct {p0, p1, p2, p3, v0}, Landroid/widget/Editor$HandleView;-><init>(Landroid/widget/Editor;Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;Z)V
-    
-    iput v0, p0, Landroid/widget/Editor$SelectionStartHandleView;->mCursorType:I
 
     .line 3755
     return-void
@@ -477,72 +475,12 @@
     goto :goto_2
 .end method
 
-.method public onTouchEvent(Landroid/view/MotionEvent;)Z
-    .locals 3
-    .parameter "ev"
-
-    .prologue
-    .line 3686
-    invoke-super {p0, p1}, Landroid/widget/Editor$HandleView;->onTouchEvent(Landroid/view/MotionEvent;)Z
-
-    move-result v0
-
-    .line 3688
-    .local v0, result:Z
-    invoke-virtual {p1}, Landroid/view/MotionEvent;->getActionMasked()I
-
-    move-result v1
-
-    packed-switch v1, :pswitch_data_0
-
-    .line 3701
-    :goto_0
-    return v0
-
-    .line 3690
-    :pswitch_0
-    invoke-virtual {p0}, Landroid/widget/Editor$SelectionStartHandleView;->dismissActionPopupWindow()V
-
-    goto :goto_0
-
-    .line 3693
-    :pswitch_1
-    iget-object v1, p0, Landroid/widget/Editor$SelectionStartHandleView;->mActionPopupWindow:Landroid/widget/Editor$ActionPopupWindow;
-
-    if-eqz v1, :cond_0
-
-    iget-object v1, p0, Landroid/widget/Editor$SelectionStartHandleView;->mActionPopupWindow:Landroid/widget/Editor$ActionPopupWindow;
-
-    iget v2, p0, Landroid/widget/Editor$SelectionStartHandleView;->mCursorType:I
-
-    invoke-virtual {v1, v2}, Landroid/widget/Editor$ActionPopupWindow;->updatePositionFlag(I)V
-
-    .line 3694
-    :cond_0
-    const/16 v1, 0xc8
-
-    invoke-virtual {p0, v1}, Landroid/widget/Editor$SelectionStartHandleView;->showActionPopupWindow(I)V
-
-    goto :goto_0
-
-    .line 3688
-    nop
-
-    :pswitch_data_0
-    .packed-switch 0x0
-        :pswitch_0
-        :pswitch_1
-    .end packed-switch
-.end method
-
 .method public updatePosition(FF)V
-    .locals 4
+    .locals 3
     .parameter "x"
     .parameter "y"
 
     .prologue
-    const/4 v3, 0x0
-    
     .line 3780
     iget-object v2, p0, Landroid/widget/Editor$SelectionStartHandleView;->this$0:Landroid/widget/Editor;
 
@@ -570,20 +508,19 @@
 
     .line 3786
     .local v1, selectionEnd:I
-    if-lt v0, v1, :cond_0
+    if-ne v0, v1, :cond_0
 
-    add-int/lit8 v2, v1, -0x1
-
-    invoke-static {v3, v2}, Ljava/lang/Math;->max(II)I
-
-    move-result v0
-
-    .line 3742
-    :cond_0
-    invoke-virtual {p0, v0, v3}, Landroid/widget/Editor$SelectionStartHandleView;->positionAtCursorOffset(IZ)Z
-
-    .line 3743
+    .line 3790
+    :goto_0
     return-void
+
+    .line 3789
+    :cond_0
+    const/4 v2, 0x0
+
+    invoke-virtual {p0, v0, v2}, Landroid/widget/Editor$SelectionStartHandleView;->positionAtCursorOffset(IZ)V
+
+    goto :goto_0
 .end method
 
 .method public updateSelection(I)V
@@ -623,4 +560,53 @@
 
     .line 3776
     return-void
+.end method
+
+.method public onTouchEvent(Landroid/view/MotionEvent;)Z
+    .locals 3
+    .parameter "ev"
+
+    .prologue
+    invoke-super {p0, p1}, Landroid/widget/Editor$HandleView;->onTouchEvent(Landroid/view/MotionEvent;)Z
+
+    move-result v0
+
+    .local v0, result:Z
+    invoke-virtual {p1}, Landroid/view/MotionEvent;->getActionMasked()I
+
+    move-result v1
+
+    packed-switch v1, :pswitch_data_0
+
+    :goto_0
+    return v0
+
+    :pswitch_0
+    invoke-virtual {p0}, Landroid/widget/Editor$SelectionStartHandleView;->hideActionPopupWindow()V
+
+    goto :goto_0
+
+    :pswitch_1
+    iget-object v1, p0, Landroid/widget/Editor$SelectionStartHandleView;->mActionPopupWindow:Landroid/widget/Editor$ActionPopupWindow;
+
+    if-eqz v1, :cond_0
+
+    iget-object v1, p0, Landroid/widget/Editor$SelectionStartHandleView;->mActionPopupWindow:Landroid/widget/Editor$ActionPopupWindow;
+
+    const/4 v2, 0x0
+
+    invoke-virtual {v1, v2}, Landroid/widget/Editor$ActionPopupWindow;->updatePositionFlag(I)V
+
+    :cond_0
+    const/16 v1, 0xc8
+
+    invoke-virtual {p0, v1}, Landroid/widget/Editor$SelectionStartHandleView;->showActionPopupWindow(I)V
+
+    goto :goto_0
+
+    :pswitch_data_0
+    .packed-switch 0x0
+        :pswitch_0
+        :pswitch_1
+    .end packed-switch
 .end method

@@ -7,6 +7,7 @@
 .annotation system Ldalvik/annotation/MemberClasses;
     value = {
         Lcom/android/server/BatteryService$Led;,
+	Lcom/android/server/BatteryService$BaiduInjector;,
         Lcom/android/server/BatteryService$DormantSettingsObserver;,
         Lcom/android/server/BatteryService$LedSettingsObserver;
     }
@@ -603,6 +604,8 @@
 
     .line 313
     :cond_0
+    invoke-static/range {p0 .. p0}, Lcom/android/server/BatteryService$BaiduInjector;->init(Lcom/android/server/BatteryService;)V
+
     invoke-direct {p0}, Lcom/android/server/BatteryService;->update()V
 
     .line 314
@@ -2039,7 +2042,7 @@
 
     .line 431
     :goto_2
-    invoke-direct {p0}, Lcom/android/server/BatteryService;->shutdownIfNoPower()V
+    invoke-direct {p0}, Lcom/android/server/BatteryService;->shutdownIfNoPowerBaidu()V
 
     .line 434
     iget v0, p0, Lcom/android/server/BatteryService;->mBatteryStatus:I
@@ -4046,5 +4049,14 @@
     invoke-direct {p0}, Lcom/android/server/BatteryService;->shutdownIfNoPower()V
 
     .line 371
+    return-void
+.end method
+
+.method private shutdownIfNoPowerBaidu()V
+    .locals 0
+
+    .prologue
+    invoke-static {p0}, Lcom/android/server/BatteryService$BaiduInjector;->shutdownIfNoPowerBaidu(Lcom/android/server/BatteryService;)V
+
     return-void
 .end method
