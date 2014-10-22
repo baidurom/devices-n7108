@@ -128,6 +128,9 @@ override_property += \
         ro.baidu.2nd_storage.format=enable \
         ro.camera.sound.forced=0
 
+override_property += \
+    phone_book_index_supported=false
+
 
 
 # properties from cust.img
