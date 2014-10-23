@@ -266,7 +266,7 @@
 
     move-result-object v2
 
-    const v3, #android:attr@parentIsDeviceDefault#t
+    const v3, 0x10103fa
 
     invoke-virtual {v2, v3, v1, v4}, Landroid/content/res/Resources$Theme;->resolveAttribute(ILandroid/util/TypedValue;Z)Z
 
@@ -721,7 +721,7 @@
 
     move-result-object v1
 
-    const v2, #android:dimen@textview_error_popup_default_width#t
+    const v2, 0x1050049
 
     invoke-virtual {v1, v2}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
 
@@ -2408,7 +2408,7 @@
 
     move-result-object v2
 
-    const v3, #android:layout@text_drag_thumbnail#t
+    const v3, 0x10900ed
 
     const/4 v4, 0x0
 
@@ -3550,13 +3550,13 @@
     invoke-virtual {v14, v15, v6, v5}, Landroid/text/method/WordIterator;->setCharSequence(Ljava/lang/CharSequence;II)V
 
     .line 773
-    invoke-virtual {v14, v6}, Landroid/text/method/WordIterator;->getBeginningSelection(I)I
+    invoke-virtual {v14, v6}, Landroid/text/method/WordIterator;->getBeginning(I)I
 
     move-result v10
 
     .line 776
     .restart local v10       #selectionStart:I
-    invoke-virtual {v14, v5}, Landroid/text/method/WordIterator;->getEndSelection(I)I
+    invoke-virtual {v14, v5}, Landroid/text/method/WordIterator;->getEnd(I)I
 
     move-result v9
 
@@ -3702,7 +3702,7 @@
 
     .line 398
     .local v1, inflater:Landroid/view/LayoutInflater;
-    const v4, #android:layout@textview_hint#t
+    const v4, 0x10900f5
 
     const/4 v5, 0x0
 
@@ -4091,7 +4091,7 @@
 
     sget-object v10, Lcom/android/internal/R$styleable;->ActionMenuItemView:[I
 
-    const v11, #android:attr@actionButtonStyle#t
+    const v11, 0x10102d8
 
     invoke-virtual {v8, v9, v10, v11, v12}, Landroid/content/Context;->obtainStyledAttributes(Landroid/util/AttributeSet;[III)Landroid/content/res/TypedArray;
 
@@ -4189,7 +4189,7 @@
 
     move-result-object v8
 
-    const v9, #android:dimen@action_button_min_width#t
+    const v9, 0x105004f
 
     invoke-virtual {v8, v9}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
 
@@ -4853,10 +4853,12 @@
     .locals 2
 
     .prologue
+    .line 816
     iget-object v0, p0, Landroid/widget/Editor;->mWordIterator:Landroid/text/method/WordIterator;
 
     if-nez v0, :cond_0
 
+    .line 817
     new-instance v0, Landroid/text/method/BaiduWordIterator;
 
     iget-object v1, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;

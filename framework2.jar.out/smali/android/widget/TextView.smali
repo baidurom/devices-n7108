@@ -2353,8 +2353,6 @@
 
     move-result v62
 
-    const v62, #drawable@yi_text_select_handle_right#t
-
     move/from16 v0, v62
 
     move-object/from16 v1, p0
@@ -2390,6 +2388,8 @@
     invoke-virtual {v5, v9, v0}, Landroid/content/res/TypedArray;->getResourceId(II)I
 
     move-result v62
+
+    const v62, #drawable@yi_text_select_handle_right#t
 
     move/from16 v0, v62
 
@@ -11278,6 +11278,24 @@
     move-result v1
 
     if-ltz v1, :cond_0
+
+    invoke-virtual {p0}, Landroid/widget/TextView;->getContext()Landroid/content/Context;
+
+    move-result-object v1
+
+    const-string v2, "clipboard"
+
+    invoke-virtual {v1, v2}, Landroid/content/Context;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
+
+    move-result-object v0
+
+    check-cast v0, Landroid/content/ClipboardManager;
+
+    invoke-virtual {v0}, Landroid/content/ClipboardManager;->hasPrimaryClip()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_0
 
     .line 8468
     invoke-virtual {p0}, Landroid/widget/TextView;->getContext()Landroid/content/Context;
@@ -23300,6 +23318,8 @@
 
     move-result v9
 
+    const/4 v9, 0x1
+
     if-nez v9, :cond_2
 
     move v7, v8
@@ -23309,23 +23329,33 @@
 
     .line 8277
     :cond_2
-    new-instance v2, Landroid/sec/clipboard/data/list/ClipboardDataText;
+    #new-instance v2, Landroid/sec/clipboard/data/list/ClipboardDataText;
 
-    .end local v2           #clipdata:Landroid/sec/clipboard/data/list/ClipboardDataText;
-    invoke-direct {v2}, Landroid/sec/clipboard/data/list/ClipboardDataText;-><init>()V
+    #.end local v2           #clipdata:Landroid/sec/clipboard/data/list/ClipboardDataText;
+    #invoke-direct {v2}, Landroid/sec/clipboard/data/list/ClipboardDataText;-><init>()V
 
     .line 8278
-    .restart local v2       #clipdata:Landroid/sec/clipboard/data/list/ClipboardDataText;
-    iget-object v8, p0, Landroid/widget/TextView;->mTransformed:Ljava/lang/CharSequence;
+    #.restart local v2       #clipdata:Landroid/sec/clipboard/data/list/ClipboardDataText;
+    #iget-object v8, p0, Landroid/widget/TextView;->mTransformed:Ljava/lang/CharSequence;
 
-    invoke-interface {v8, v4, v3}, Ljava/lang/CharSequence;->subSequence(II)Ljava/lang/CharSequence;
+    #invoke-interface {v8, v4, v3}, Ljava/lang/CharSequence;->subSequence(II)Ljava/lang/CharSequence;
 
-    move-result-object v8
+    #move-result-object v8
 
-    invoke-virtual {v2, v8}, Landroid/sec/clipboard/data/list/ClipboardDataText;->SetText(Ljava/lang/CharSequence;)Z
+    #invoke-virtual {v2, v8}, Landroid/sec/clipboard/data/list/ClipboardDataText;->SetText(Ljava/lang/CharSequence;)Z
 
     .line 8279
-    invoke-direct {p0, v2}, Landroid/widget/TextView;->setPrimaryClipEx(Landroid/sec/clipboard/data/list/ClipboardDataText;)V
+    #invoke-direct {p0, v2}, Landroid/widget/TextView;->setPrimaryClipEx(Landroid/sec/clipboard/data/list/ClipboardDataText;)V
+
+    invoke-virtual {p0, v4, v3}, Landroid/widget/TextView;->getTransformedText(II)Ljava/lang/CharSequence;
+
+    move-result-object v2
+
+    invoke-static {v8, v2}, Landroid/content/ClipData;->newPlainText(Ljava/lang/CharSequence;Ljava/lang/CharSequence;)Landroid/content/ClipData;
+
+    move-result-object v2
+
+    invoke-direct {p0, v2}, Landroid/widget/TextView;->setPrimaryClip(Landroid/content/ClipData;)V
 
     .line 8281
     invoke-virtual {p0, v4, v3}, Landroid/widget/TextView;->deleteText_internal(II)V
@@ -23343,6 +23373,8 @@
 
     move-result v9
 
+    const/4 v9, 0x1
+
     if-nez v9, :cond_3
 
     move v7, v8
@@ -23352,23 +23384,33 @@
 
     .line 8292
     :cond_3
-    new-instance v2, Landroid/sec/clipboard/data/list/ClipboardDataText;
+    #new-instance v2, Landroid/sec/clipboard/data/list/ClipboardDataText;
 
-    .end local v2           #clipdata:Landroid/sec/clipboard/data/list/ClipboardDataText;
-    invoke-direct {v2}, Landroid/sec/clipboard/data/list/ClipboardDataText;-><init>()V
+    #.end local v2           #clipdata:Landroid/sec/clipboard/data/list/ClipboardDataText;
+    #invoke-direct {v2}, Landroid/sec/clipboard/data/list/ClipboardDataText;-><init>()V
 
     .line 8293
-    .restart local v2       #clipdata:Landroid/sec/clipboard/data/list/ClipboardDataText;
-    iget-object v8, p0, Landroid/widget/TextView;->mTransformed:Ljava/lang/CharSequence;
+    #.restart local v2       #clipdata:Landroid/sec/clipboard/data/list/ClipboardDataText;
+    #iget-object v8, p0, Landroid/widget/TextView;->mTransformed:Ljava/lang/CharSequence;
 
-    invoke-interface {v8, v4, v3}, Ljava/lang/CharSequence;->subSequence(II)Ljava/lang/CharSequence;
+    #invoke-interface {v8, v4, v3}, Ljava/lang/CharSequence;->subSequence(II)Ljava/lang/CharSequence;
 
-    move-result-object v8
+    #move-result-object v8
 
-    invoke-virtual {v2, v8}, Landroid/sec/clipboard/data/list/ClipboardDataText;->SetText(Ljava/lang/CharSequence;)Z
+    #invoke-virtual {v2, v8}, Landroid/sec/clipboard/data/list/ClipboardDataText;->SetText(Ljava/lang/CharSequence;)Z
 
     .line 8294
-    invoke-direct {p0, v2}, Landroid/widget/TextView;->setPrimaryClipEx(Landroid/sec/clipboard/data/list/ClipboardDataText;)V
+    #invoke-direct {p0, v2}, Landroid/widget/TextView;->setPrimaryClipEx(Landroid/sec/clipboard/data/list/ClipboardDataText;)V
+
+    invoke-virtual {p0, v4, v3}, Landroid/widget/TextView;->getTransformedText(II)Ljava/lang/CharSequence;
+
+    move-result-object v2
+
+    invoke-static {v8, v2}, Landroid/content/ClipData;->newPlainText(Ljava/lang/CharSequence;Ljava/lang/CharSequence;)Landroid/content/ClipData;
+
+    move-result-object v2
+
+    invoke-direct {p0, v2}, Landroid/widget/TextView;->setPrimaryClip(Landroid/content/ClipData;)V
 
     .line 8296
     invoke-virtual {p0}, Landroid/widget/TextView;->stopSelectionActionMode()V
