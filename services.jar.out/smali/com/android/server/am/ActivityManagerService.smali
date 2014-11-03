@@ -34637,7 +34637,7 @@
 
     move-object/from16 v4, p4
 
-    invoke-direct/range {v2 .. v7}, Lcom/android/server/am/ActivityManagerService;->retrieveServiceLockedBaidu(Landroid/content/Intent;Ljava/lang/String;III)Lcom/android/server/am/ActivityManagerService$ServiceLookupResult;
+    invoke-direct/range {v2 .. v7}, Lcom/android/server/am/ActivityManagerService;->retrieveServiceLocked(Landroid/content/Intent;Ljava/lang/String;III)Lcom/android/server/am/ActivityManagerService$ServiceLookupResult;
 
     move-result-object v17
 
