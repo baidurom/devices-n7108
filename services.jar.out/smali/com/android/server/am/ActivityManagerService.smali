@@ -25824,29 +25824,11 @@
     .parameter "intent"
 
     .prologue
-    .line 12963
     invoke-virtual {p1}, Landroid/content/Intent;->getAction()Ljava/lang/String;
 
     move-result-object v0
 
-    .line 12964
     .local v0, action:Ljava/lang/String;
-    const-string v1, "baidu.intent.action.SHARE"
-
-    invoke-virtual {v1, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-
-    move-result v1
-
-    if-nez v1, :cond_0
-
-    const-string v1, "baidu.intent.action.NEWSHARE"
-
-    invoke-virtual {v1, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-
-    move-result v1
-
-    if-nez v1, :cond_0
-
     if-eqz v0, :cond_1
 
     const-string v1, "com.baidu.android.pushservice"
@@ -25855,9 +25837,17 @@
 
     move-result v1
 
+    if-nez v1, :cond_0
+
+    const-string v1, "baidu.intent.action"
+
+    invoke-virtual {v0, v1}, Ljava/lang/String;->startsWith(Ljava/lang/String;)Z
+
+    move-result v1
+
     if-eqz v1, :cond_1
 
-    .line 12965
+    .line 10774
     :cond_0
     invoke-virtual {p1}, Landroid/content/Intent;->getFlags()I
 
@@ -25867,7 +25857,6 @@
 
     invoke-virtual {p1, v1}, Landroid/content/Intent;->setFlags(I)Landroid/content/Intent;
 
-    .line 12967
     :cond_1
     return-void
 .end method
@@ -34576,7 +34565,7 @@
 
     move/from16 v7, p7
 
-    invoke-direct/range {v2 .. v7}, Lcom/android/server/am/ActivityManagerService;->retrieveServiceLocked(Landroid/content/Intent;Ljava/lang/String;III)Lcom/android/server/am/ActivityManagerService$ServiceLookupResult;
+    invoke-direct/range {v2 .. v7}, Lcom/android/server/am/ActivityManagerService;->retrieveServiceLockedBaidu(Landroid/content/Intent;Ljava/lang/String;III)Lcom/android/server/am/ActivityManagerService$ServiceLookupResult;
 
     move-result-object v17
 
@@ -34648,7 +34637,7 @@
 
     move-object/from16 v4, p4
 
-    invoke-direct/range {v2 .. v7}, Lcom/android/server/am/ActivityManagerService;->retrieveServiceLocked(Landroid/content/Intent;Ljava/lang/String;III)Lcom/android/server/am/ActivityManagerService$ServiceLookupResult;
+    invoke-direct/range {v2 .. v7}, Lcom/android/server/am/ActivityManagerService;->retrieveServiceLockedBaidu(Landroid/content/Intent;Ljava/lang/String;III)Lcom/android/server/am/ActivityManagerService$ServiceLookupResult;
 
     move-result-object v17
 
@@ -35378,254 +35367,6 @@
     const/4 v4, 0x0
 
     goto :goto_1
-.end method
-
-.method public final broadcastSpecificIntentLocked(Lcom/android/server/am/ProcessRecord;Ljava/lang/String;Landroid/content/Intent;Ljava/lang/String;Landroid/content/IIntentReceiver;ILjava/lang/String;Landroid/os/Bundle;Ljava/lang/String;Ljava/util/List;Ljava/util/List;)I
-    .locals 17
-    .parameter "callerApp"
-    .parameter "callerPackage"
-    .parameter "intent"
-    .parameter "resolvedType"
-    .parameter "resultTo"
-    .parameter "resultCode"
-    .parameter "resultData"
-    .parameter "map"
-    .parameter "requiredPermission"
-    .parameter "receivers"
-    .parameter
-    .annotation system Ldalvik/annotation/Signature;
-        value = {
-            "(",
-            "Lcom/android/server/am/ProcessRecord;",
-            "Ljava/lang/String;",
-            "Landroid/content/Intent;",
-            "Ljava/lang/String;",
-            "Landroid/content/IIntentReceiver;",
-            "I",
-            "Ljava/lang/String;",
-            "Landroid/os/Bundle;",
-            "Ljava/lang/String;",
-            "Ljava/util/List;",
-            "Ljava/util/List",
-            "<",
-            "Lcom/android/server/am/BroadcastFilter;",
-            ">;)I"
-        }
-    .end annotation
-
-    .prologue
-    .line 15580
-    .local p11, registeredReceivers:Ljava/util/List;,"Ljava/util/List<Lcom/android/server/am/BroadcastFilter;>;"
-    new-instance v3, Landroid/content/Intent;
-
-    move-object/from16 v0, p3
-
-    invoke-direct {v3, v0}, Landroid/content/Intent;-><init>(Landroid/content/Intent;)V
-
-    .line 15581
-    .end local p3
-    .local v3, intent:Landroid/content/Intent;
-    move-object/from16 v0, p0
-
-    invoke-virtual {v0, v3}, Lcom/android/server/am/ActivityManagerService;->broadcastQueueForIntent(Landroid/content/Intent;)Lcom/android/server/am/BroadcastQueue;
-
-    move-result-object v2
-
-    .line 15582
-    .local v2, queue:Lcom/android/server/am/BroadcastQueue;
-    if-eqz p11, :cond_0
-
-    invoke-interface/range {p11 .. p11}, Ljava/util/List;->size()I
-
-    move-result v4
-
-    if-lez v4, :cond_0
-
-    .line 15583
-    new-instance v1, Lcom/android/server/am/BroadcastRecord;
-
-    sget v6, Lcom/android/server/am/ActivityManagerService;->MY_PID:I
-
-    const/16 v7, 0x3e8
-
-    const/4 v14, 0x0
-
-    const/4 v15, 0x0
-
-    const/16 v16, 0x0
-
-    move-object/from16 v4, p1
-
-    move-object/from16 v5, p2
-
-    move-object/from16 v8, p9
-
-    move-object/from16 v9, p11
-
-    move-object/from16 v10, p5
-
-    move/from16 v11, p6
-
-    move-object/from16 v12, p7
-
-    move-object/from16 v13, p8
-
-    invoke-direct/range {v1 .. v16}, Lcom/android/server/am/BroadcastRecord;-><init>(Lcom/android/server/am/BroadcastQueue;Landroid/content/Intent;Lcom/android/server/am/ProcessRecord;Ljava/lang/String;IILjava/lang/String;Ljava/util/List;Landroid/content/IIntentReceiver;ILjava/lang/String;Landroid/os/Bundle;ZZZ)V
-
-    .line 15588
-    .local v1, r:Lcom/android/server/am/BroadcastRecord;
-    const-string v4, "ActivityManager"
-
-    new-instance v5, Ljava/lang/StringBuilder;
-
-    invoke-direct {v5}, Ljava/lang/StringBuilder;-><init>()V
-
-    const-string v6, "Enqueueing parallel broadcast "
-
-    invoke-virtual {v5, v6}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v5
-
-    invoke-virtual {v5, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
-
-    move-result-object v5
-
-    const-string v6, ": prev Parallel had "
-
-    invoke-virtual {v5, v6}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v5
-
-    iget-object v6, v2, Lcom/android/server/am/BroadcastQueue;->mParallelBroadcasts:Ljava/util/ArrayList;
-
-    invoke-virtual {v6}, Ljava/util/ArrayList;->size()I
-
-    move-result v6
-
-    invoke-virtual {v5, v6}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
-
-    move-result-object v5
-
-    invoke-virtual {v5}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    move-result-object v5
-
-    invoke-static {v4, v5}, Landroid/util/Slog;->v(Ljava/lang/String;Ljava/lang/String;)I
-
-    .line 15591
-    invoke-virtual {v2, v1}, Lcom/android/server/am/BroadcastQueue;->enqueueParallelBroadcastLocked(Lcom/android/server/am/BroadcastRecord;)V
-
-    .line 15592
-    invoke-virtual {v2}, Lcom/android/server/am/BroadcastQueue;->scheduleBroadcastsLocked()V
-
-    .line 15595
-    .end local v1           #r:Lcom/android/server/am/BroadcastRecord;
-    :cond_0
-    if-eqz p10, :cond_1
-
-    invoke-interface/range {p10 .. p10}, Ljava/util/List;->size()I
-
-    move-result v4
-
-    if-lez v4, :cond_1
-
-    .line 15596
-    new-instance v1, Lcom/android/server/am/BroadcastRecord;
-
-    sget v6, Lcom/android/server/am/ActivityManagerService;->MY_PID:I
-
-    const/16 v7, 0x3e8
-
-    const/4 v14, 0x0
-
-    const/4 v15, 0x0
-
-    const/16 v16, 0x0
-
-    move-object/from16 v4, p1
-
-    move-object/from16 v5, p2
-
-    move-object/from16 v8, p9
-
-    move-object/from16 v9, p10
-
-    move-object/from16 v10, p5
-
-    move/from16 v11, p6
-
-    move-object/from16 v12, p7
-
-    move-object/from16 v13, p8
-
-    invoke-direct/range {v1 .. v16}, Lcom/android/server/am/BroadcastRecord;-><init>(Lcom/android/server/am/BroadcastQueue;Landroid/content/Intent;Lcom/android/server/am/ProcessRecord;Ljava/lang/String;IILjava/lang/String;Ljava/util/List;Landroid/content/IIntentReceiver;ILjava/lang/String;Landroid/os/Bundle;ZZZ)V
-
-    .line 15601
-    .restart local v1       #r:Lcom/android/server/am/BroadcastRecord;
-    const-string v4, "ActivityManager"
-
-    new-instance v5, Ljava/lang/StringBuilder;
-
-    invoke-direct {v5}, Ljava/lang/StringBuilder;-><init>()V
-
-    const-string v6, "Enqueueing ordered broadcast "
-
-    invoke-virtual {v5, v6}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v5
-
-    invoke-virtual {v5, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
-
-    move-result-object v5
-
-    const-string v6, ": prev Ordered had "
-
-    invoke-virtual {v5, v6}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v5
-
-    iget-object v6, v2, Lcom/android/server/am/BroadcastQueue;->mOrderedBroadcasts:Ljava/util/ArrayList;
-
-    invoke-virtual {v6}, Ljava/util/ArrayList;->size()I
-
-    move-result v6
-
-    invoke-virtual {v5, v6}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
-
-    move-result-object v5
-
-    const-string v6, " receiver.size() = "
-
-    invoke-virtual {v5, v6}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v5
-
-    invoke-interface/range {p10 .. p10}, Ljava/util/List;->size()I
-
-    move-result v6
-
-    invoke-virtual {v5, v6}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
-
-    move-result-object v5
-
-    invoke-virtual {v5}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    move-result-object v5
-
-    invoke-static {v4, v5}, Landroid/util/Slog;->v(Ljava/lang/String;Ljava/lang/String;)I
-
-    .line 15604
-    invoke-virtual {v2, v1}, Lcom/android/server/am/BroadcastQueue;->enqueueOrderedBroadcastLocked(Lcom/android/server/am/BroadcastRecord;)V
-
-    .line 15605
-    invoke-virtual {v2}, Lcom/android/server/am/BroadcastQueue;->scheduleBroadcastsLocked()V
-
-    .line 15608
-    .end local v1           #r:Lcom/android/server/am/BroadcastRecord;
-    :cond_1
-    const/4 v4, 0x0
-
-    return v4
 .end method
 
 .method public cancelIntentSender(Landroid/content/IIntentSender;)V
@@ -71714,7 +71455,7 @@
 
     move v4, p5
 
-    invoke-direct/range {v0 .. v5}, Lcom/android/server/am/ActivityManagerService;->retrieveServiceLocked(Landroid/content/Intent;Ljava/lang/String;III)Lcom/android/server/am/ActivityManagerService$ServiceLookupResult;
+    invoke-direct/range {v0 .. v5}, Lcom/android/server/am/ActivityManagerService;->retrieveServiceLockedBaidu(Landroid/content/Intent;Ljava/lang/String;III)Lcom/android/server/am/ActivityManagerService$ServiceLookupResult;
 
     move-result-object v8
 
@@ -79014,4 +78755,49 @@
     .catchall {:try_start_1 .. :try_end_1} :catchall_0
 
     goto :goto_1
+.end method
+
+.method private retrieveServiceLockedBaidu(Landroid/content/Intent;Ljava/lang/String;III)Lcom/android/server/am/ActivityManagerService$ServiceLookupResult;
+    .locals 3
+    .parameter "service"
+    .parameter "resolvedType"
+    .parameter "callingPid"
+    .parameter "callingUid"
+    .parameter "userId"
+
+    .prologue
+    invoke-direct/range {p0 .. p5}, Lcom/android/server/am/ActivityManagerService;->retrieveServiceLocked(Landroid/content/Intent;Ljava/lang/String;III)Lcom/android/server/am/ActivityManagerService$ServiceLookupResult;
+
+    move-result-object v1
+
+    .local v1, res:Lcom/android/server/am/ActivityManagerService$ServiceLookupResult;
+    if-eqz v1, :cond_0
+
+    iget-object v2, v1, Lcom/android/server/am/ActivityManagerService$ServiceLookupResult;->record:Lcom/android/server/am/ServiceRecord;
+
+    if-eqz v2, :cond_0
+
+    iget-object v2, v1, Lcom/android/server/am/ActivityManagerService$ServiceLookupResult;->record:Lcom/android/server/am/ServiceRecord;
+
+    iget-object v2, v2, Lcom/android/server/am/ServiceRecord;->serviceInfo:Landroid/content/pm/ServiceInfo;
+
+    iget-object v0, v2, Landroid/content/pm/ServiceInfo;->packageName:Ljava/lang/String;
+
+    .local v0, pkgName:Ljava/lang/String;
+    if-eqz v0, :cond_0
+
+    iget-object v2, p0, Lcom/android/server/am/ActivityManagerService;->mLruProcesses:Ljava/util/ArrayList;
+
+    invoke-static {v0, v2}, Lcom/baidu/security/bm/BroadcastManagerService;->filterService(Ljava/lang/String;Ljava/util/ArrayList;)I
+
+    move-result v2
+
+    if-eqz v2, :cond_0
+
+    const/4 v1, 0x0
+
+    .end local v0           #pkgName:Ljava/lang/String;
+    .end local v1           #res:Lcom/android/server/am/ActivityManagerService$ServiceLookupResult;
+    :cond_0
+    return-object v1
 .end method
