@@ -153,3 +153,4 @@ remove_property += \
 # add for BaiduUpdate to reboot to recovery
 
 include $(PORT_BUILD)/main.mk
+include $(PORT_BUILD)/autopatch.mk
