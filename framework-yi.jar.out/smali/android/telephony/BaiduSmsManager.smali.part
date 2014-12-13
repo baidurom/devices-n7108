@@ -65,7 +65,6 @@
     .local v0, iccISms:Lcom/android/internal/telephony/ISms;
     if-eqz v0, :cond_2
 
-    .line 94
     move-object v1, p1
 
     move-object v2, p2
@@ -76,8 +75,8 @@
 
     move-object v5, p5
 
+    .line 94
     invoke-interface/range {v0 .. v5}, Lcom/android/internal/telephony/ISms;->sendText(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Landroid/app/PendingIntent;Landroid/app/PendingIntent;)V
-
     :try_end_0
     .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
 
