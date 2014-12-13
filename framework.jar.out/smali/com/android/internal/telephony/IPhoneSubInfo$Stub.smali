@@ -62,10 +62,6 @@
 
 .field static final TRANSACTION_getVoiceMailNumber:I = 0x8
 
-.field static final TRANSACTION_getCardType:I = 0x99
-
-.field static final TRANSACTION_getIccCardType:I = 0x98
-
 
 # direct methods
 .method public constructor <init>()V
@@ -550,46 +546,6 @@
     invoke-virtual {p3, v0}, Landroid/os/Parcel;->writeString(Ljava/lang/String;)V
 
     goto/16 :goto_0
-    
-    .end local v0           #_result:Ljava/lang/String;
-    :sswitch_baidu_0
-    const-string v2, "com.android.internal.telephony.IPhoneSubInfo"
-
-    invoke-virtual {p2, v2}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
-
-    .line 164
-    invoke-virtual {p0}, Lcom/android/internal/telephony/IPhoneSubInfo$Stub;->getIccCardType()Ljava/lang/String;
-
-    move-result-object v0
-
-    .line 165
-    .local v0, _result:Ljava/lang/String;
-    invoke-virtual {p3}, Landroid/os/Parcel;->writeNoException()V
-
-    .line 166
-    invoke-virtual {p3, v0}, Landroid/os/Parcel;->writeString(Ljava/lang/String;)V
-
-    goto/16 :goto_0
-    
-    .end local v0           #_result:Ljava/lang/String;
-    :sswitch_baidu_1
-    const-string v2, "com.android.internal.telephony.IPhoneSubInfo"
-
-    invoke-virtual {p2, v2}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
-
-    .line 76
-    invoke-virtual {p0}, Lcom/android/internal/telephony/IPhoneSubInfo$Stub;->getCardType()Ljava/lang/String;
-
-    move-result-object v0
-
-    .line 77
-    .restart local v0       #_result:Ljava/lang/String;
-    invoke-virtual {p3}, Landroid/os/Parcel;->writeNoException()V
-
-    .line 78
-    invoke-virtual {p3, v0}, Landroid/os/Parcel;->writeString(Ljava/lang/String;)V
-
-    goto :goto_0
 
     .line 42
     :sswitch_data_0
@@ -612,8 +568,6 @@
         0x10 -> :sswitch_10
         0x11 -> :sswitch_11
         0x12 -> :sswitch_12
-	0x98 -> :sswitch_baidu_0
-        0x99 -> :sswitch_baidu_1
         0x5f4e5446 -> :sswitch_0
     .end sparse-switch
 .end method

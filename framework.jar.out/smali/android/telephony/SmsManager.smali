@@ -3197,3 +3197,28 @@
 
     goto :goto_1
 .end method
+
+.method public copyTextMessageToIccCard(Ljava/lang/String;Ljava/lang/String;Ljava/util/ArrayList;IJ)I
+    .locals 1
+    .parameter "scAddress"
+    .parameter "address"
+    .parameter
+    .parameter "status"
+    .parameter "timeStamp"
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(",
+            "Ljava/lang/String;",
+            "Ljava/lang/String;",
+            "Ljava/util/ArrayList",
+            "<",
+            "Ljava/lang/String;",
+            ">;IJ)I"
+        }
+    .end annotation
+
+    .prologue
+    const/4 v0, -0x1
+
+    return v0
+.end method

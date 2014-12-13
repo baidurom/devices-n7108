@@ -5018,24 +5018,10 @@
 .end method
 
 .method public prepareEri()V
-    .locals 2
+    .locals 1
 
     .prologue
     .line 1666
-    iget-object v0, p0, Lcom/android/internal/telephony/cdma/CDMAPhone;->mEriManager:Lcom/android/internal/telephony/cdma/EriManager;
-
-    if-nez v0, :cond_baidu_0
-
-    const-string v0, "CDMA"
-
-    const-string v1, "Trying to access stale objects"
-
-    invoke-static {v0, v1}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
-
-    goto :goto_baidu_0
-
-    :cond_baidu_0
-
     iget-object v0, p0, Lcom/android/internal/telephony/cdma/CDMAPhone;->mEriManager:Lcom/android/internal/telephony/cdma/EriManager;
 
     invoke-virtual {v0}, Lcom/android/internal/telephony/cdma/EriManager;->loadEriFile()V
@@ -5061,7 +5047,6 @@
 
     .line 1672
     :cond_0
-    :goto_baidu_0
     return-void
 .end method
 

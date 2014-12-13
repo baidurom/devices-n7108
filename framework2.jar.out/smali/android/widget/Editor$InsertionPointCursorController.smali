@@ -143,14 +143,17 @@
     .prologue
     invoke-static {}, Landroid/widget/Editor$BaiduEditorInjector;->dismiss()V
 
+    .line 4139
     iget-object v0, p0, Landroid/widget/Editor$InsertionPointCursorController;->mHandle:Landroid/widget/Editor$InsertionHandleView;
 
     if-eqz v0, :cond_0
 
+    .line 4140
     iget-object v0, p0, Landroid/widget/Editor$InsertionPointCursorController;->mHandle:Landroid/widget/Editor$InsertionHandleView;
 
     invoke-virtual {v0}, Landroid/widget/Editor$InsertionHandleView;->hide()V
 
+    .line 4142
     :cond_0
     return-void
 .end method

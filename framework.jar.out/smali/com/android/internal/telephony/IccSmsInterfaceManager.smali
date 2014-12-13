@@ -458,37 +458,6 @@
 
     .line 94
     :cond_0
-    iget-object v0, p0, Lcom/android/internal/telephony/IccSmsInterfaceManager;->mPhone:Lcom/android/internal/telephony/PhoneBase;
-
-    invoke-virtual {v0}, Lcom/android/internal/telephony/PhoneBase;->getContext()Landroid/content/Context;
-
-    move-result-object v0
-
-    invoke-static {v0}, Lcom/baidu/server/dp/DynamicPermissionManager;->getInstance(Landroid/content/Context;)Lcom/baidu/server/dp/DynamicPermissionManager;
-
-    move-result-object v0
-
-    move-object v1, p1
-
-    move-object v2, p2
-
-    move v3, p3
-
-    move-object v4, p4
-
-    move-object v5, p5
-
-    move-object v6, p6
-
-    invoke-virtual/range {v0 .. v6}, Lcom/baidu/server/dp/DynamicPermissionManager;->checkSendSmsPermission(Ljava/lang/String;Ljava/lang/String;I[BLandroid/app/PendingIntent;Landroid/app/PendingIntent;)I
-
-    move-result v0
-
-    if-eqz v0, :cond_baidu_0
-
-    goto :goto_baidu_0
-    
-    :cond_baidu_0
     iget-object v0, p0, Lcom/android/internal/telephony/IccSmsInterfaceManager;->mDispatcher:Lcom/android/internal/telephony/SMSDispatcher;
 
     move-object v1, p1
@@ -506,7 +475,6 @@
     invoke-virtual/range {v0 .. v6}, Lcom/android/internal/telephony/SMSDispatcher;->sendData(Ljava/lang/String;Ljava/lang/String;I[BLandroid/app/PendingIntent;Landroid/app/PendingIntent;)V
 
     .line 95
-    :goto_baidu_0
     return-void
 .end method
 
@@ -799,41 +767,6 @@
     .end local v8           #i$:Ljava/util/Iterator;
     .end local v9           #part:Ljava/lang/String;
     :cond_0
-    iget-object v0, p0, Lcom/android/internal/telephony/IccSmsInterfaceManager;->mPhone:Lcom/android/internal/telephony/PhoneBase;
-
-    invoke-virtual {v0}, Lcom/android/internal/telephony/PhoneBase;->getContext()Landroid/content/Context;
-
-    move-result-object v0
-
-    invoke-static {v0}, Lcom/baidu/server/dp/DynamicPermissionManager;->getInstance(Landroid/content/Context;)Lcom/baidu/server/dp/DynamicPermissionManager;
-
-    move-result-object v0
-
-    move-object v3, p3
-
-    check-cast v3, Ljava/util/ArrayList;
-
-    move-object v4, p4
-
-    check-cast v4, Ljava/util/ArrayList;
-
-    move-object/from16 v5, p5
-
-    check-cast v5, Ljava/util/ArrayList;
-
-    move-object v1, p1
-
-    move-object v2, p2
-
-    invoke-virtual/range {v0 .. v5}, Lcom/baidu/server/dp/DynamicPermissionManager;->checkSendSmsPermission(Ljava/lang/String;Ljava/lang/String;Ljava/util/ArrayList;Ljava/util/ArrayList;Ljava/util/ArrayList;)I
-
-    move-result v0
-
-    if-eqz v0, :cond_baidu_0
-
-    goto :goto_baidu_0
-    
-    :cond_baidu_0
     iget-object v0, p0, Lcom/android/internal/telephony/IccSmsInterfaceManager;->mDispatcher:Lcom/android/internal/telephony/SMSDispatcher;
 
     move-object v3, p3
@@ -855,7 +788,6 @@
     invoke-virtual/range {v0 .. v5}, Lcom/android/internal/telephony/SMSDispatcher;->sendMultipartText(Ljava/lang/String;Ljava/lang/String;Ljava/util/ArrayList;Ljava/util/ArrayList;Ljava/util/ArrayList;)V
 
     .line 271
-    :goto_baidu_0
     return-void
 .end method
 
@@ -1574,36 +1506,6 @@
 
     .line 144
     :cond_0
-    iget-object v0, p0, Lcom/android/internal/telephony/IccSmsInterfaceManager;->mPhone:Lcom/android/internal/telephony/PhoneBase;
-
-    invoke-virtual {v0}, Lcom/android/internal/telephony/PhoneBase;->getContext()Landroid/content/Context;
-
-    move-result-object v0
-
-    invoke-static {v0}, Lcom/baidu/server/dp/DynamicPermissionManager;->getInstance(Landroid/content/Context;)Lcom/baidu/server/dp/DynamicPermissionManager;
-
-    move-result-object v0
-
-    move-object v1, p1
-
-    move-object v2, p2
-
-    move-object v3, p3
-
-    move-object v4, p4
-
-    move-object v5, p5
-
-    invoke-virtual/range {v0 .. v5}, Lcom/baidu/server/dp/DynamicPermissionManager;->checkSendSmsPermission(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Landroid/app/PendingIntent;Landroid/app/PendingIntent;)I
-
-    move-result v0
-
-    if-eqz v0, :cond_baidu_0
-
-    goto :goto_baidu_0
-      
-    :cond_baidu_0
-    
     iget-object v0, p0, Lcom/android/internal/telephony/IccSmsInterfaceManager;->mDispatcher:Lcom/android/internal/telephony/SMSDispatcher;
 
     move-object v1, p1
@@ -1619,7 +1521,6 @@
     invoke-virtual/range {v0 .. v5}, Lcom/android/internal/telephony/SMSDispatcher;->sendText(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Landroid/app/PendingIntent;Landroid/app/PendingIntent;)V
 
     .line 145
-    :goto_baidu_0
     return-void
 .end method
 

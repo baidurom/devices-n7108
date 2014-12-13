@@ -6,7 +6,6 @@
 # annotations
 .annotation system Ldalvik/annotation/MemberClasses;
     value = {
-        Lcom/android/internal/telephony/SMSDispatcher$BaiduInjector;,
         Lcom/android/internal/telephony/SMSDispatcher$ConfirmDialogListener;,
         Lcom/android/internal/telephony/SMSDispatcher$SmsTracker;
     }
@@ -476,8 +475,6 @@
     invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 329
-    invoke-static {p0}, Lcom/android/internal/telephony/SMSDispatcher$BaiduInjector;->registerReceiver(Lcom/android/internal/telephony/SMSDispatcher;)V
-    
     return-void
 
     :cond_0
@@ -2603,12 +2600,6 @@
     const/16 v2, 0xb84
 
     if-ne v1, v2, :cond_1
-    
-    move-object/from16 v0, p0
-    
-    move-object/from16 v1, p1
-
-    invoke-static {v0, v1}, Lcom/android/internal/telephony/SMSDispatcher$BaiduInjector;->setMsgAddress(Lcom/android/internal/telephony/SMSDispatcher;Lcom/android/internal/telephony/SmsMessageBase;)V
 
     .line 830
     move-object/from16 v0, p0
@@ -2637,7 +2628,6 @@
     .line 954
     .end local v13           #pdus:[[B
     :goto_0
-    :goto_baidu_0
     return v1
 
     .line 874
@@ -2775,27 +2765,6 @@
 
     .line 912
     :cond_6
-    move-object/from16 v0, p0
-    
-    iget-object v1, v0, Lcom/android/internal/telephony/SMSDispatcher;->mContext:Landroid/content/Context;
-
-    invoke-virtual {v0}, Lcom/android/internal/telephony/SMSDispatcher;->getFormat()Ljava/lang/String;
-
-    move-result-object v2
-
-    const/4 v3, 0x0
-
-    invoke-static {v1, v13, v2, v3}, Lcom/android/internal/telephony/SMSPlugin;->prehandleMsg(Landroid/content/Context;[[BLjava/lang/String;I)Z
-
-    move-result v0
-
-    if-eqz v0, :cond_baidu_0
-
-    const/4 v1, 0x1
-    
-    goto :goto_baidu_0
-
-    :cond_baidu_0
     move-object/from16 v0, p0
 
     invoke-virtual {v0, v13}, Lcom/android/internal/telephony/SMSDispatcher;->dispatchPdus([[B)V
@@ -6546,7 +6515,6 @@
     .line 1307
     :cond_2
     :goto_1
-    :goto_baidu_0
     return v3
 
     .line 1142
@@ -6789,12 +6757,6 @@
 
     if-ne v0, v3, :cond_c
 
-    move-object/from16 v0, p0
-
-    move-object/from16 v1, p2
-
-    invoke-static {v0, v1}, Lcom/android/internal/telephony/SMSDispatcher$BaiduInjector;->setMsgAddress(Lcom/android/internal/telephony/SMSDispatcher;Ljava/lang/String;)V
-
     .line 1228
     move-object/from16 v0, p0
 
@@ -6849,12 +6811,6 @@
     move/from16 v0, p8
 
     if-ne v0, v3, :cond_f
-
-    move-object/from16 v0, p0
-
-    move-object/from16 v1, p2
-
-    invoke-static {v0, v1}, Lcom/android/internal/telephony/SMSDispatcher$BaiduInjector;->setMsgAddress(Lcom/android/internal/telephony/SMSDispatcher;Ljava/lang/String;)V
 
     .line 1242
     new-instance v21, Ljava/io/ByteArrayOutputStream;
@@ -6950,29 +6906,6 @@
 
     .line 1305
     :cond_10
-    move-object/from16 v0, p0
-
-    iget-object v1, v0, Lcom/android/internal/telephony/SMSDispatcher;->mContext:Landroid/content/Context;
-
-    invoke-virtual/range {p0 .. p0}, Lcom/android/internal/telephony/SMSDispatcher;->getFormat()Ljava/lang/String;
-
-    move-result-object v2
-
-    const/4 v3, 0x0
-
-    move-object/from16 v4, v22
-
-    invoke-static {v1, v4, v2, v3}, Lcom/android/internal/telephony/SMSPlugin;->prehandleMsg(Landroid/content/Context;[[BLjava/lang/String;I)Z
-
-    move-result v0
-
-    if-eqz v0, :cond_baidu_0
-
-    const/4 v3, 0x1
-
-    goto :goto_baidu_0
-    
-    :cond_baidu_0
     move-object/from16 v0, p0
 
     move-object/from16 v1, v22

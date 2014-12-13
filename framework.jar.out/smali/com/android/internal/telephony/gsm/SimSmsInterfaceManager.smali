@@ -1,5 +1,5 @@
 .class public Lcom/android/internal/telephony/gsm/SimSmsInterfaceManager;
-.super Lcom/android/internal/telephony/IccSmsInterfaceManager;
+.super Lcom/android/internal/telephony/IccSmsInterfaceManagerBaidu;
 .source "SimSmsInterfaceManager.java"
 
 
@@ -78,7 +78,7 @@
 
     .prologue
     .line 148
-    invoke-direct {p0, p1}, Lcom/android/internal/telephony/IccSmsInterfaceManager;-><init>(Lcom/android/internal/telephony/PhoneBase;)V
+    invoke-direct {p0, p1}, Lcom/android/internal/telephony/IccSmsInterfaceManagerBaidu;-><init>(Lcom/android/internal/telephony/PhoneBase;)V
 
     .line 60
     new-instance v0, Ljava/lang/Object;
@@ -1301,7 +1301,7 @@
     .prologue
     .line 161
     :try_start_0
-    invoke-super {p0}, Lcom/android/internal/telephony/IccSmsInterfaceManager;->finalize()V
+    invoke-super {p0}, Lcom/android/internal/telephony/IccSmsInterfaceManagerBaidu;->finalize()V
     :try_end_0
     .catch Ljava/lang/Throwable; {:try_start_0 .. :try_end_0} :catch_0
 

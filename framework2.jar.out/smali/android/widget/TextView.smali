@@ -11279,6 +11279,7 @@
 
     if-ltz v1, :cond_0
 
+    .line 8468
     invoke-virtual {p0}, Landroid/widget/TextView;->getContext()Landroid/content/Context;
 
     move-result-object v1
@@ -11297,8 +11298,7 @@
 
     if-eqz v0, :cond_0
 
-    .line 8468
-    invoke-virtual {p0}, Landroid/widget/TextView;->getContext()Landroid/content/Context;
+    invoke-virtual {p0}, Landroid/view/View;->getContext()Landroid/content/Context;
 
     move-result-object v1
 

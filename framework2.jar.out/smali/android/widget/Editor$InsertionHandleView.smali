@@ -396,14 +396,17 @@
     .locals 1
 
     .prologue
+    .line 3651
     invoke-virtual {p0}, Landroid/widget/Editor$InsertionHandleView;->show()V
 
     invoke-direct/range {p0 .. p0}, Landroid/widget/Editor$InsertionHandleView;->updatePopupPosition()V
 
+    .line 3652
     const/4 v0, 0x0
 
     invoke-virtual {p0, v0}, Landroid/widget/Editor$InsertionHandleView;->showActionPopupWindow(I)V
 
+    .line 3653
     return-void
 .end method
 

@@ -13,6 +13,7 @@
         Lcom/android/server/PowerManagerService$UnsynchronizedDVFSLock;,
         Lcom/android/server/PowerManagerService$DVFSLockList;,
         Lcom/android/server/PowerManagerService$DVFSLock;,
+	Lcom/android/server/PowerManagerService$BaiduInjector;,
         Lcom/android/server/PowerManagerService$LockList;,
         Lcom/android/server/PowerManagerService$ScreenBrightnessAnimator;,
         Lcom/android/server/PowerManagerService$TimeoutTask;,
@@ -2678,17 +2679,6 @@
     iput-boolean p1, p0, Lcom/android/server/PowerManagerService;->mProxIgnoredBecauseScreenTurnedOff:Z
 
     return p1
-.end method
-
-.method static synthetic access$baidu_000(Lcom/android/server/PowerManagerService;)Landroid/content/Context;
-    .locals 1
-    .parameter "x0"
-
-    .prologue
-    .line 82
-    iget-object v0, p0, Lcom/android/server/PowerManagerService;->mContext:Landroid/content/Context;
-
-    return-object v0
 .end method
 
 .method private acquireDVFSLockLocked(IILandroid/os/IBinder;IILjava/lang/String;)V
@@ -6688,7 +6678,7 @@
     .line 3920
     iget-object v5, p0, Lcom/android/server/PowerManagerService;->mLcdBacklightValues:[I
 
-    invoke-direct {p0, p1, v5}, Lcom/android/server/PowerManagerService;->getAutoBrightnessValue(I[I)I
+    invoke-direct {p0, p1, v5}, Lcom/android/server/PowerManagerService;->getAutoBrightnessValueBaidu(I[I)I
 
     move-result v2
 
@@ -11622,93 +11612,6 @@
     move v0, v1
 
     goto :goto_0
-.end method
-
-.method private shutdownOrRebootInternal(ZZLjava/lang/String;Z)V
-    .locals 4
-    .parameter "shutdown"
-    .parameter "confirm"
-    .parameter "reason"
-    .parameter "wait"
-
-    .prologue
-    .line 3388
-    iget-object v2, p0, Lcom/android/server/PowerManagerService;->mHandler:Landroid/os/Handler;
-
-    if-eqz v2, :cond_0
-
-    invoke-static {}, Landroid/app/ActivityManagerNative;->isSystemReady()Z
-
-    move-result v2
-
-    if-nez v2, :cond_1
-
-    .line 3389
-    :cond_0
-    new-instance v2, Ljava/lang/IllegalStateException;
-
-    const-string v3, "Too early to call shutdown() or reboot()"
-
-    invoke-direct {v2, v3}, Ljava/lang/IllegalStateException;-><init>(Ljava/lang/String;)V
-
-    throw v2
-
-    .line 3392
-    :cond_1
-    new-instance v1, Lcom/android/server/PowerManagerService$baidu_1;
-
-    invoke-direct {v1, p0, p1, p2, p3}, Lcom/android/server/PowerManagerService$baidu_1;-><init>(Lcom/android/server/PowerManagerService;ZZLjava/lang/String;)V
-
-    .line 3406
-    .local v1, runnable:Ljava/lang/Runnable;
-    iget-object v2, p0, Lcom/android/server/PowerManagerService;->mHandler:Landroid/os/Handler;
-
-    invoke-static {v2, v1}, Landroid/os/Message;->obtain(Landroid/os/Handler;Ljava/lang/Runnable;)Landroid/os/Message;
-
-    move-result-object v0
-
-    .line 3407
-    .local v0, msg:Landroid/os/Message;
-    iget-object v2, p0, Lcom/android/server/PowerManagerService;->mHandler:Landroid/os/Handler;
-
-    invoke-virtual {v2, v0}, Landroid/os/Handler;->sendMessage(Landroid/os/Message;)Z
-
-    .line 3410
-    if-eqz p4, :cond_2
-
-    .line 3411
-    monitor-enter v1
-
-    .line 3414
-    :goto_0
-    :try_start_0
-    invoke-virtual {v1}, Ljava/lang/Object;->wait()V
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
-    .catch Ljava/lang/InterruptedException; {:try_start_0 .. :try_end_0} :catch_0
-
-    goto :goto_0
-
-    .line 3415
-    :catch_0
-    move-exception v2
-
-    goto :goto_0
-
-    .line 3418
-    :catchall_0
-    move-exception v2
-
-    :try_start_1
-    monitor-exit v1
-    :try_end_1
-    .catchall {:try_start_1 .. :try_end_1} :catchall_0
-
-    throw v2
-
-    .line 3420
-    :cond_2
-    return-void
 .end method
 
 .method private shutdown(Ljava/lang/String;)V
@@ -19305,6 +19208,8 @@
 
     invoke-virtual {v9, v1, v2}, Lcom/android/server/PowerManagerService$SettingsObserver;->update(Ljava/util/Observable;Ljava/lang/Object;)V
 
+    invoke-static/range {p0 .. p0}, Lcom/android/server/PowerManagerService$BaiduInjector;->regitsterBaiduSettingsObserver(Lcom/android/server/PowerManagerService;)V
+
     .line 961
     new-instance v6, Landroid/content/IntentFilter;
 
@@ -22038,50 +21943,6 @@
     return-void
 .end method
 
-.method public shutdown(ZZ)V
-    .locals 5
-    .parameter "confirm"
-    .parameter "wait"
-
-    .prologue
-    const/4 v4, 0x0
-
-    .line 3342
-    iget-object v2, p0, Lcom/android/server/PowerManagerService;->mContext:Landroid/content/Context;
-
-    const-string v3, "android.permission.REBOOT"
-
-    invoke-virtual {v2, v3, v4}, Landroid/content/Context;->enforceCallingOrSelfPermission(Ljava/lang/String;Ljava/lang/String;)V
-
-    .line 3347
-    invoke-static {}, Landroid/os/Binder;->clearCallingIdentity()J
-
-    move-result-wide v0
-
-    .line 3349
-    .local v0, ident:J
-    const/4 v2, 0x1
-
-    const/4 v3, 0x0
-
-    :try_start_0
-    invoke-direct {p0, v2, p1, v3, p2}, Lcom/android/server/PowerManagerService;->shutdownOrRebootInternal(ZZLjava/lang/String;Z)V
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
-
-    .line 3351
-    invoke-static {v0, v1}, Landroid/os/Binder;->restoreCallingIdentity(J)V
-
-    return-void
-
-    :catchall_0
-    move-exception v2
-
-    invoke-static {v0, v1}, Landroid/os/Binder;->restoreCallingIdentity(J)V
-
-    throw v2
-.end method
-
 .method systemReady()V
     .locals 8
 
@@ -22662,4 +22523,105 @@
 
     .line 3170
     return-void
+.end method
+
+.method static synthetic access$iput-mUserState-660a4d(Lcom/android/server/PowerManagerService;I)I
+    .locals 1
+    .parameter "x0"
+    .parameter "x1"
+
+    .prologue
+    iget v0, p0, Lcom/android/server/PowerManagerService;->mUserState:I
+
+    and-int/2addr v0, p1
+
+    iput v0, p0, Lcom/android/server/PowerManagerService;->mUserState:I
+
+    return v0
+.end method
+
+.method static synthetic access$iput-mPowerState-ef31dc(Lcom/android/server/PowerManagerService;I)I
+    .locals 1
+    .parameter "x0"
+    .parameter "x1"
+
+    .prologue
+    iget v0, p0, Lcom/android/server/PowerManagerService;->mPowerState:I
+
+    and-int/2addr v0, p1
+
+    iput v0, p0, Lcom/android/server/PowerManagerService;->mPowerState:I
+
+    return v0
+.end method
+
+.method private getAutoBrightnessValueBaidu(I[I)I
+    .locals 7
+    .parameter "sensorValue"
+    .parameter "values"
+
+    .prologue
+    const/16 v1, 0xff
+
+    .local v1, MAXIMUM_SCREEN_BRIGHTNESS:I
+    const/16 v0, 0x64
+
+    .local v0, DEFAULT_AUTOMATIC_BRIGHTNESS_COE:I
+    iget-object v4, p0, Lcom/android/server/PowerManagerService;->mContext:Landroid/content/Context;
+
+    invoke-virtual {v4}, Landroid/content/Context;->getContentResolver()Landroid/content/ContentResolver;
+
+    move-result-object v4
+
+    const-string v5, "auto_brightness_coe"
+
+    invoke-static {v4, v5, v0}, Landroid/provider/Settings$System;->getInt(Landroid/content/ContentResolver;Ljava/lang/String;I)I
+
+    move-result v2
+
+    .local v2, automaticBrightnessCoe:I
+    invoke-direct {p0, p1, p2}, Lcom/android/server/PowerManagerService;->getAutoBrightnessValue(I[I)I
+
+    move-result v4
+
+    mul-int/2addr v4, v2
+
+    div-int/lit8 v3, v4, 0x64
+
+    .local v3, lcdValue:I
+    const/16 v4, 0xff
+
+    invoke-static {v4, v3}, Ljava/lang/Math;->min(II)I
+
+    move-result v3
+
+    iget v4, p0, Lcom/android/server/PowerManagerService;->mScreenBrightnessDim:I
+
+    invoke-static {v4, v3}, Ljava/lang/Math;->max(II)I
+
+    move-result v3
+
+    const-string v4, "PowerManagerService"
+
+    new-instance v5, Ljava/lang/StringBuilder;
+
+    invoke-direct {v5}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v6, "getAutoBrightnessValueBaidu() lcdValue="
+
+    invoke-virtual {v5, v6}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v5
+
+    invoke-virtual {v5, v3}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    move-result-object v5
+
+    invoke-virtual {v5}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v5
+
+    invoke-static {v4, v5}, Landroid/util/Slog;->e(Ljava/lang/String;Ljava/lang/String;)I
+
+    return v3
 .end method

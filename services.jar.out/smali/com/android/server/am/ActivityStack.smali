@@ -92,12 +92,6 @@
 
 
 # instance fields
-.field private HOME_ACTION:Ljava/lang/String;
-
-.field private HOME_ACTION_EXTRY_KEY:Ljava/lang/String;
-
-.field private isHomeVisiable:Z
-
 .field mConfigWillChange:Z
 
 .field final mContext:Landroid/content/Context;
@@ -422,18 +416,7 @@
 
     iput-object v1, p0, Lcom/android/server/am/ActivityStack;->mHandler:Landroid/os/Handler;
 
-    iput-boolean v3, p0, Lcom/android/server/am/ActivityStack;->isHomeVisiable:Z
-
-    .line 4623
-    const-string v1, "yi.intent.action.HOME_ACTIVITY_CHANGED"
-
-    iput-object v1, p0, Lcom/android/server/am/ActivityStack;->HOME_ACTION:Ljava/lang/String;
-
-    .line 4624
-    const-string v1, "visiable"
-
-    iput-object v1, p0, Lcom/android/server/am/ActivityStack;->HOME_ACTION_EXTRY_KEY:Ljava/lang/String;
-
+    .line 449
     iput-object p1, p0, Lcom/android/server/am/ActivityStack;->mService:Lcom/android/server/am/ActivityManagerService;
 
     .line 450
@@ -4588,71 +4571,6 @@
     goto/16 :goto_7
 .end method
 
-.method private sendHomeVisibilityBroadcast(Z)V
-    .locals 4
-    .parameter "visibility"
-
-    .prologue
-    .line 4638
-    new-instance v0, Landroid/content/Intent;
-
-    iget-object v1, p0, Lcom/android/server/am/ActivityStack;->HOME_ACTION:Ljava/lang/String;
-
-    invoke-direct {v0, v1}, Landroid/content/Intent;-><init>(Ljava/lang/String;)V
-
-    .line 4639
-    .local v0, intent:Landroid/content/Intent;
-    iget-object v1, p0, Lcom/android/server/am/ActivityStack;->HOME_ACTION_EXTRY_KEY:Ljava/lang/String;
-
-    invoke-virtual {v0, v1, p1}, Landroid/content/Intent;->putExtra(Ljava/lang/String;Z)Landroid/content/Intent;
-
-    .line 4640
-    const-string v1, "ActivityManager"
-
-    const/4 v2, 0x3
-
-    invoke-static {v1, v2}, Landroid/util/Log;->isLoggable(Ljava/lang/String;I)Z
-
-    move-result v1
-
-    if-eqz v1, :cond_0
-
-    const-string v1, "ActivityManager"
-
-    new-instance v2, Ljava/lang/StringBuilder;
-
-    invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
-
-    const-string v3, "sendHomeVisibilityBroadcast "
-
-    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v2
-
-    invoke-virtual {v2, p1}, Ljava/lang/StringBuilder;->append(Z)Ljava/lang/StringBuilder;
-
-    move-result-object v2
-
-    invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    move-result-object v2
-
-    invoke-static {v1, v2}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
-
-    .line 4641
-    :cond_0
-    iget-object v1, p0, Lcom/android/server/am/ActivityStack;->mHandler:Landroid/os/Handler;
-
-    new-instance v2, Lcom/android/server/am/ActivityStack$baidu_1;
-
-    invoke-direct {v2, p0, v0}, Lcom/android/server/am/ActivityStack$baidu_1;-><init>(Lcom/android/server/am/ActivityStack;Landroid/content/Intent;)V
-
-    invoke-virtual {v1, v2}, Landroid/os/Handler;->post(Ljava/lang/Runnable;)Z
-
-    .line 4647
-    return-void
-.end method
-
 .method private setWindowModeForAllActivitiesInTaskLocked(Lcom/android/server/am/TaskRecord;ILjava/util/ArrayList;)V
     .locals 6
     .parameter "task"
@@ -6671,54 +6589,6 @@
     return v0
 .end method
 
-.method private yiActivityVisibilityChanged(Lcom/android/server/am/ActivityRecord;Z)V
-    .locals 3
-    .parameter "r"
-    .parameter "visibility"
-
-    .prologue
-    const/4 v2, 0x1
-
-    const/4 v1, 0x0
-
-    .line 4626
-    if-eqz p2, :cond_1
-
-    .line 4627
-    iget-boolean v0, p1, Lcom/android/server/am/ActivityRecord;->isHomeActivity:Z
-
-    if-eqz v0, :cond_0
-
-    iget-boolean v0, p0, Lcom/android/server/am/ActivityStack;->isHomeVisiable:Z
-
-    if-nez v0, :cond_0
-
-    .line 4628
-    iput-boolean v2, p0, Lcom/android/server/am/ActivityStack;->isHomeVisiable:Z
-
-    .line 4629
-    invoke-direct {p0, v2}, Lcom/android/server/am/ActivityStack;->sendHomeVisibilityBroadcast(Z)V
-
-    .line 4631
-    :cond_0
-    iget-boolean v0, p1, Lcom/android/server/am/ActivityRecord;->isHomeActivity:Z
-
-    if-nez v0, :cond_1
-
-    iget-boolean v0, p0, Lcom/android/server/am/ActivityStack;->isHomeVisiable:Z
-
-    if-eqz v0, :cond_1
-
-    .line 4632
-    iput-boolean v1, p0, Lcom/android/server/am/ActivityStack;->isHomeVisiable:Z
-
-    .line 4633
-    invoke-direct {p0, v1}, Lcom/android/server/am/ActivityStack;->sendHomeVisibilityBroadcast(Z)V
-
-    .line 4636
-    :cond_1
-    return-void
-.end method
 
 # virtual methods
 .method final activityDestroyed(Landroid/os/IBinder;)V
@@ -10514,14 +10384,6 @@
     const/16 v19, 0x1
 
     invoke-virtual/range {v17 .. v19}, Lcom/android/server/wm/WindowManagerService;->setAppVisibility(Landroid/os/IBinder;Z)V
-    
-    move-object/from16 v0, p0
-    
-    move-object/from16 v1, v15
-    
-    const/16 v2, 0x1
-    
-    invoke-direct {v0, v1, v2}, Lcom/android/server/am/ActivityStack;->yiActivityVisibilityChanged(Lcom/android/server/am/ActivityRecord;Z)V
 
     .line 1677
     :cond_d
@@ -10973,14 +10835,6 @@
     const/16 v19, 0x1
 
     invoke-virtual/range {v17 .. v19}, Lcom/android/server/wm/WindowManagerService;->setAppVisibility(Landroid/os/IBinder;Z)V
-    
-    move-object/from16 v17, p0
-    
-    move-object/from16 v18, v15
-
-    const/16 v19, 0x1
-
-    invoke-direct/range {v17 .. v19}, Lcom/android/server/am/ActivityStack;->yiActivityVisibilityChanged(Lcom/android/server/am/ActivityRecord;Z)V
 
     .line 1700
     const/16 v17, 0x0
@@ -14978,14 +14832,6 @@
 
     invoke-virtual {v2, v3, v4}, Lcom/android/server/wm/WindowManagerService;->setAppVisibility(Landroid/os/IBinder;Z)V
 
-    const/4 v2, 0x1
-
-    move-object/from16 v0, p0
-
-    move-object/from16 v1, p1
-
-    invoke-direct {v0, v1, v2}, Lcom/android/server/am/ActivityStack;->yiActivityVisibilityChanged(Lcom/android/server/am/ActivityRecord;Z)V
-
     .line 742
     invoke-virtual/range {p1 .. p1}, Lcom/android/server/am/ActivityRecord;->startLaunchTickingLocked()V
 
@@ -16789,143 +16635,13 @@
     .local v6, aInfo:Landroid/content/pm/ActivityInfo;
     :goto_0
     if-eqz v6, :cond_2
-    
-    const/16 v1, 0x0
-    
-    move-object/from16 v0, p0
 
-    iget-object v0, v0, Lcom/android/server/am/ActivityStack;->mResumedActivity:Lcom/android/server/am/ActivityRecord;
+    iget-object v0, p0, Lcom/android/server/am/ActivityStack;->mService:Lcom/android/server/am/ActivityManagerService;
 
-    if-eqz v0, :cond_baidu_0
+    invoke-static {v0, v6, p1, p6}, Lcom/android/server/am/BaiduActivityInjector;->hookStartActivity(Lcom/android/server/am/ActivityManagerService;Landroid/content/pm/ActivityInfo;Landroid/content/Intent;I)Landroid/content/pm/ActivityInfo;
 
-    move-object/from16 v0, p0
+    move-result-object v6
 
-    iget-object v0, v0, Lcom/android/server/am/ActivityStack;->mResumedActivity:Lcom/android/server/am/ActivityRecord;
-
-    iget-object v1, v0, Lcom/android/server/am/ActivityRecord;->packageName:Ljava/lang/String;
-    
-    :cond_baidu_0
-    if-nez v1, :cond_baidu_1
-
-    const/4 v7, 0x0
-
-    :goto_baidu_0
-    move-object/from16 v0, p0
-
-    iget-object v1, v0, Lcom/android/server/am/ActivityStack;->mService:Lcom/android/server/am/ActivityManagerService;
-
-    invoke-virtual {v1}, Lcom/android/server/am/ActivityManagerService;->getAccessControllManager()Lcom/baidu/access/AccessControllManager;
-
-    move-result-object v1
-
-    invoke-virtual/range {p1 .. p1}, Landroid/content/Intent;->getFlags()I
-
-    move-result v4
-
-    const/high16 v0, -0x8000
-
-    and-int/2addr v4, v0
-
-    if-eqz v4, :cond_baidu_2
-
-    const/4 v4, 0x1
-
-    :goto_baidu_1
-    if-nez v7, :cond_baidu_3
-
-    if-nez v4, :cond_baidu_3
-
-    invoke-virtual {v1}, Lcom/baidu/access/AccessControllManager;->isEnabled()Z
-
-    move-result v0
-
-    if-eqz v0, :cond_baidu_3
-
-    iget-object v0, v6, Landroid/content/pm/ActivityInfo;->applicationInfo:Landroid/content/pm/ApplicationInfo;
-
-    iget-object v0, v0, Landroid/content/pm/ApplicationInfo;->packageName:Ljava/lang/String;
-
-    invoke-virtual {v1, v0}, Lcom/baidu/access/AccessControllManager;->isControlled(Ljava/lang/String;)Z
-
-    move-result v0
-
-    if-eqz v0, :cond_baidu_3
-
-    move-object/from16 v0, p0
-
-    iget-object v1, v0, Lcom/android/server/am/ActivityStack;->mService:Lcom/android/server/am/ActivityManagerService;
-
-    move/from16 v0, p6
-
-    invoke-virtual {v1, v0}, Lcom/android/server/am/ActivityManagerService;->getAccessControll(I)Landroid/content/pm/ActivityInfo;
-
-    move-result-object v0
-
-    if-eqz v0, :cond_baidu_3
-    
-    new-instance v2, Landroid/content/ComponentName;
-
-    iget-object v0, v6, Landroid/content/pm/ActivityInfo;->applicationInfo:Landroid/content/pm/ApplicationInfo;
-
-    iget-object v0, v0, Landroid/content/pm/ApplicationInfo;->packageName:Ljava/lang/String;
-
-    iget-object v1, v6, Landroid/content/pm/ComponentInfo;->name:Ljava/lang/String;
-
-    invoke-direct {v2, v0, v1}, Landroid/content/ComponentName;-><init>(Ljava/lang/String;Ljava/lang/String;)V
-
-    move-object/from16 v0, p1
-    
-    const-string v1, "AccessControll"
-
-    invoke-virtual {v0, v1, v2}, Landroid/content/Intent;->putExtra(Ljava/lang/String;Landroid/os/Parcelable;)Landroid/content/Intent;
-
-    move-object/from16 v0, p0
-
-    iget-object v1, v0, Lcom/android/server/am/ActivityStack;->mService:Lcom/android/server/am/ActivityManagerService;
-
-    move/from16 v0, p6
-
-    invoke-virtual {v1, v0}, Lcom/android/server/am/ActivityManagerService;->getAccessControll(I)Landroid/content/pm/ActivityInfo;
-
-    move-result-object v0
-
-    move-object v6, v0
-
-    goto/16 :goto_baidu_2
-    
-    :cond_baidu_1
-    iget-object v0, v6, Landroid/content/pm/ActivityInfo;->applicationInfo:Landroid/content/pm/ApplicationInfo;
-
-    iget-object v0, v0, Landroid/content/pm/ApplicationInfo;->packageName:Ljava/lang/String;
-
-    invoke-virtual {v1, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-
-    move-result v7
-
-    goto/16 :goto_baidu_0
-
-    :cond_baidu_2
-    const/4 v4, 0x0
-    
-    goto/16 :goto_baidu_1
-    
-    :goto_baidu_2
-    :cond_baidu_3
-    if-eqz v4, :cond_baidu_4
-    
-    invoke-virtual/range {p1 .. p1}, Landroid/content/Intent;->getFlags()I
-
-    move-result v1
-
-    const v2, 0x7fffffff
-
-    and-int/2addr v1, v2
-
-    move-object/from16 v0, p1
-
-    invoke-virtual {v0, v1}, Landroid/content/Intent;->setFlags(I)Landroid/content/Intent;
-
-    :cond_baidu_4
     .line 3801
     new-instance v0, Landroid/content/ComponentName;
 
@@ -17970,14 +17686,6 @@
     const/4 v5, 0x1
 
     invoke-virtual {v3, v4, v5}, Lcom/android/server/wm/WindowManagerService;->setAppVisibility(Landroid/os/IBinder;Z)V
-    
-    const/4 v3, 0x1
-
-    move-object/from16 v0, p0
-
-    move-object/from16 v1, p3
-
-    invoke-direct {v0, v1, v3}, Lcom/android/server/am/ActivityStack;->yiActivityVisibilityChanged(Lcom/android/server/am/ActivityRecord;Z)V
 
     .line 2151
     invoke-virtual/range {p3 .. p3}, Lcom/android/server/am/ActivityRecord;->startLaunchTickingLocked()V
@@ -19119,17 +18827,6 @@
     .parameter "who"
 
     .prologue
-    invoke-static {}, Landroid/app/ActivityManager;->isLowRamDeviceStatic()Z
-
-    move-result v3
-
-    if-eqz v3, :cond_baidu_0
-    
-    const/4 v3, 0x0
-    
-    goto :goto_baidu_0
-
-    :cond_baidu_0
     const/4 v3, 0x0
 
     .line 1076
@@ -19140,7 +18837,6 @@
     .line 1101
     :cond_0
     :goto_0
-    :goto_baidu_0
     return-object v3
 
     .line 1080
@@ -20318,18 +20014,19 @@
 
     .prologue
     move-object/from16 v0, p0
-    
+
     iget-object v3, v0, Lcom/android/server/am/ActivityStack;->mService:Lcom/android/server/am/ActivityManagerService;
-    
+
     iget-boolean v3, v3, Lcom/android/server/am/ActivityManagerService;->mSystemReady:Z
-    
+
     if-nez v3, :cond_baidu_0
-    
+
     const/4 v3, 0x0
-    
+
     goto/16 :goto_baidu_0
-    
+
     :cond_baidu_0
+
     .line 3029
     const/16 v28, 0x0
 

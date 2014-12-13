@@ -450,10 +450,12 @@
     .end annotation
 
     .prologue
-    const v0, #android:drawable@default_wallpaper#t
+    .line 842
+    const v0, 0x1080232
 
     invoke-virtual {p0, v0}, Landroid/app/WallpaperManager;->setResource(I)V
 
+    .line 843
     return-void
 .end method
 
@@ -1357,6 +1359,7 @@
 
     :cond_baidu_0
 
+    .line 765
     :try_start_0
     iget-object v0, p0, Landroid/app/WallpaperManager;->mContext:Landroid/content/Context;
 
@@ -1382,10 +1385,12 @@
     :try_end_0
     .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
 
+    .line 771
     :goto_0
     :goto_baidu_0
     return-void
 
+    .line 768
     :catch_0
     move-exception v0
 
@@ -1398,7 +1403,6 @@
     .parameter "minimumHeight"
 
     .prologue
-    .line 765
     .line 739
     :try_start_0
     sget-object v0, Landroid/app/WallpaperManager;->sGlobals:Landroid/app/WallpaperManager$Globals;

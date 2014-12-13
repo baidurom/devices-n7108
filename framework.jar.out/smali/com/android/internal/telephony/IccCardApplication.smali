@@ -715,3 +715,61 @@
 
     return-object v1
 .end method
+
+.method public getIccCardType()Ljava/lang/String;
+    .locals 1
+
+    .prologue
+    iget-object v0, p0, Lcom/android/internal/telephony/IccCardApplication;->app_type:Lcom/android/internal/telephony/IccCardApplication$AppType;
+    
+    invoke-virtual {v0}, Lcom/android/internal/telephony/IccCardApplication$AppType;->ordinal()I
+
+    move-result v0
+
+    packed-switch v0, :pswitch_data_0
+
+    const-string v0, "UNKNOWN"
+
+    :goto_0
+    return-object v0
+
+    :pswitch_0
+    const-string v0, "UNKNOWN"
+
+    goto :goto_0
+
+    :pswitch_1
+    const-string v0, "SIM"
+
+    goto :goto_0
+
+    :pswitch_2
+    const-string v0, "USIM"
+
+    goto :goto_0
+
+    :pswitch_3
+    const-string v0, "RUIM"
+
+    goto :goto_0
+
+    :pswitch_4
+    const-string v0, "CSIM"
+
+    goto :goto_0
+
+    :pswitch_5
+    const-string v0, "ISIM"
+
+    goto :goto_0
+
+    :pswitch_data_0
+    .packed-switch 0x0
+        :pswitch_0
+        :pswitch_1
+        :pswitch_2
+        :pswitch_3
+        :pswitch_4
+        :pswitch_5
+    .end packed-switch
+.end method

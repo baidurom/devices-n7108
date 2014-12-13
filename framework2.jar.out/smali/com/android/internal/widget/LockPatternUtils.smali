@@ -1717,8 +1717,8 @@
     const-string v2, ""
 
     invoke-static {v0, v1, v2}, Landroid/provider/Settings$System;->putString(Landroid/content/ContentResolver;Ljava/lang/String;Ljava/lang/String;)Z
-    
-    const-string/jumbo v0, "lockscreen.lockmode_type"
+
+    const-string v0, "lockscreen.lockmode_type"
 
     const-wide/16 v1, 0x2
 

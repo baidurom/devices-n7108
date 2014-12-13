@@ -616,6 +616,7 @@
     .prologue
     invoke-direct/range {p0 .. p1}, Landroid/content/ClipboardManager;->addExtra(Landroid/content/ClipData;)V
 
+    .line 148
     :try_start_0
     invoke-static {}, Landroid/content/ClipboardManager;->getService()Landroid/content/IClipboard;
 

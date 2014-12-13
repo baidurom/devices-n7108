@@ -41,9 +41,9 @@
 
 .field private mLightsService:Lcom/android/server/LightsService;
 
-.field private mObserver:Lcom/android/server/BatteryService$Led$SettingsObserver;
-
 .field private mTurnOn:Z
+
+.field private mObserver:Lcom/android/server/BatteryService$Led$SettingsObserver;
 
 .field final synthetic this$0:Lcom/android/server/BatteryService;
 

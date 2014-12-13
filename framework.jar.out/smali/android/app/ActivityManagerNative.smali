@@ -247,7 +247,6 @@
     sparse-switch p1, :sswitch_data_0
 
     .line 1787
-    :goto_baidu_0
     invoke-super/range {p0 .. p4}, Landroid/os/Binder;->onTransact(ILandroid/os/Parcel;Landroid/os/Parcel;I)Z
 
     move-result v5
@@ -9021,57 +9020,6 @@
 
     .restart local v96       #_rect:Landroid/graphics/Rect;
     goto :goto_58
-    
-    .end local v95    #_direction:I
-    .end local v97    #_type:I
-    .end local v96    #Landroid/graphics/Rect;
-    .end local v161   #rect:Landroid/graphics/Rect;
-    :sswitch_baidu_0
-    const-string v5, "android.app.IActivityManager"
-
-    move-object/from16 v0, p2
-
-    invoke-virtual {v0, v5}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
-
-    .line 1699
-    sget-object v5, Landroid/content/pm/ApplicationInfo;->CREATOR:Landroid/os/Parcelable$Creator;
-
-    move-object/from16 v0, p2
-
-    invoke-interface {v5, v0}, Landroid/os/Parcelable$Creator;->createFromParcel(Landroid/os/Parcel;)Ljava/lang/Object;
-
-    move-result-object v6
-
-    check-cast v6, Landroid/content/pm/ApplicationInfo;
-
-    .line 1700
-    .local v6, app:Landroid/content/pm/ApplicationInfo;
-    invoke-virtual/range {p2 .. p2}, Landroid/os/Parcel;->readInt()I
-
-    move-result v5
-
-    if-eqz v5, :cond_baidu_0
-
-    const/4 v7, 0x1
-
-    .line 1701
-    .local v7, persistent:Z
-    :goto_baidu_1
-    move-object/from16 v0, p0
-
-    invoke-virtual {v0, v6, v7}, Landroid/app/ActivityManagerNative;->setPersistent(Landroid/content/pm/ApplicationInfo;Z)V
-
-    .line 1702
-    invoke-virtual/range {p3 .. p3}, Landroid/os/Parcel;->writeNoException()V
-
-    goto/16 :goto_baidu_0
-
-    .line 1700
-    .end local v7           #persistent:Z
-    :cond_baidu_0
-    const/4 v7, 0x0
-
-    goto :goto_baidu_1
 
     .line 131
     :sswitch_data_0
@@ -9221,7 +9169,6 @@
         0x96 -> :sswitch_90
         0x97 -> :sswitch_27
         0x98 -> :sswitch_89
-	0x99 -> :sswitch_baidu_0
         0x3e9 -> :sswitch_91
         0x3ea -> :sswitch_92
         0x3eb -> :sswitch_93

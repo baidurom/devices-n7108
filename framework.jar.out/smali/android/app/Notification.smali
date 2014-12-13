@@ -178,12 +178,10 @@
 .end method
 
 .method public constructor <init>()V
-    .locals 3
+    .locals 2
 
     .prologue
-    const/4 v2, 0x0
-
-    .line 524
+    .line 569
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     .line 229
@@ -191,22 +189,21 @@
 
     iput v0, p0, Landroid/app/Notification;->audioStreamType:I
 
-    .line 525
+    .line 570
     invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
 
     move-result-wide v0
 
     iput-wide v0, p0, Landroid/app/Notification;->when:J
 
-    .line 526
-    iput v2, p0, Landroid/app/Notification;->priority:I
+    .line 571
+    const/4 v0, 0x0
 
-    .line 529
-    const-wide/16 v0, -0x1
+    iput v0, p0, Landroid/app/Notification;->priority:I
 
-    invoke-direct {p0, v2, v0, v1}, Landroid/app/Notification;->setSimIdAndInfoType(IJ)V
+    invoke-direct/range {p0 .. p0}, Landroid/app/Notification;->setSimIdAndInfoType()V
 
-    .line 531
+    .line 572
     return-void
 .end method
 
@@ -241,7 +238,7 @@
 .end method
 
 .method public constructor <init>(Landroid/content/Context;ILjava/lang/CharSequence;JLjava/lang/CharSequence;Ljava/lang/CharSequence;Landroid/content/Intent;)V
-    .locals 3
+    .locals 2
     .parameter "context"
     .parameter "icon"
     .parameter "tickerText"
@@ -251,9 +248,9 @@
     .parameter "contentIntent"
 
     .prologue
-    const/4 v2, 0x0
+    const/4 v1, 0x0
 
-    .line 538
+    .line 579
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     .line 229
@@ -261,33 +258,30 @@
 
     iput v0, p0, Landroid/app/Notification;->audioStreamType:I
 
-    .line 539
+    .line 580
     iput-wide p4, p0, Landroid/app/Notification;->when:J
 
-    .line 540
+    .line 581
     iput p2, p0, Landroid/app/Notification;->icon:I
 
-    .line 541
+    .line 582
     iput-object p3, p0, Landroid/app/Notification;->tickerText:Ljava/lang/CharSequence;
 
-    .line 544
-    const-wide/16 v0, -0x1
-
-    invoke-direct {p0, v2, v0, v1}, Landroid/app/Notification;->setSimIdAndInfoType(IJ)V
-
-    .line 547
-    invoke-static {p1, v2, p8, v2}, Landroid/app/PendingIntent;->getActivity(Landroid/content/Context;ILandroid/content/Intent;I)Landroid/app/PendingIntent;
+    .line 583
+    invoke-static {p1, v1, p8, v1}, Landroid/app/PendingIntent;->getActivity(Landroid/content/Context;ILandroid/content/Intent;I)Landroid/app/PendingIntent;
 
     move-result-object v0
 
     invoke-virtual {p0, p1, p6, p7, v0}, Landroid/app/Notification;->setLatestEventInfo(Landroid/content/Context;Ljava/lang/CharSequence;Ljava/lang/CharSequence;Landroid/app/PendingIntent;)V
 
-    .line 549
+    invoke-direct/range {p0 .. p0}, Landroid/app/Notification;->setSimIdAndInfoType()V
+
+    .line 585
     return-void
 .end method
 
 .method public constructor <init>(Landroid/os/Parcel;)V
-    .locals 4
+    .locals 3
     .parameter "parcel"
 
     .prologue
@@ -474,17 +468,8 @@
 
     .line 641
     :cond_6
-    invoke-virtual {p1}, Landroid/os/Parcel;->readInt()I
+    invoke-direct/range {p0 .. p1}, Landroid/app/Notification;->setSimIdAndInfoType(Landroid/os/Parcel;)V
 
-    move-result v1
-
-    invoke-virtual {p1}, Landroid/os/Parcel;->readLong()J
-
-    move-result-wide v2
-
-    invoke-direct {p0, v1, v2, v3}, Landroid/app/Notification;->setSimIdAndInfoType(IJ)V
-
-    .line 614
     invoke-virtual {p1}, Landroid/os/Parcel;->readInt()I
 
     move-result v1
@@ -697,22 +682,6 @@
     return-object p1
 .end method
 
-.method private setSimIdAndInfoType(IJ)V
-    .locals 0
-    .parameter "type"
-    .parameter "id"
-
-    .prologue
-    .line 552
-    iput p1, p0, Landroid/app/Notification;->simInfoType:I
-
-    .line 553
-    iput-wide p2, p0, Landroid/app/Notification;->simId:J
-
-    .line 554
-    return-void
-.end method
-
 
 # virtual methods
 .method public clone()Landroid/app/Notification;
@@ -832,17 +801,15 @@
 
     iput v7, v2, Landroid/app/Notification;->audioStreamType:I
 
-    .line 669
     iget v7, p0, Landroid/app/Notification;->simInfoType:I
 
     iput v7, v2, Landroid/app/Notification;->simInfoType:I
 
-    .line 670
     iget-wide v7, p0, Landroid/app/Notification;->simId:J
 
     iput-wide v7, v2, Landroid/app/Notification;->simId:J
 
-    .line 673
+    .line 711
     iget-object v6, p0, Landroid/app/Notification;->vibrate:[J
 
     .line 712
@@ -1695,18 +1662,16 @@
 
     invoke-virtual {v0, p1, v2}, Landroid/net/Uri;->writeToParcel(Landroid/os/Parcel;I)V
 
-    .line 774
+    .line 824
     :goto_6
     iget v0, p0, Landroid/app/Notification;->simInfoType:I
 
     invoke-virtual {p1, v0}, Landroid/os/Parcel;->writeInt(I)V
 
-    .line 775
     iget-wide v0, p0, Landroid/app/Notification;->simId:J
 
     invoke-virtual {p1, v0, v1}, Landroid/os/Parcel;->writeLong(J)V
 
-    .line 778
     iget v0, p0, Landroid/app/Notification;->audioStreamType:I
 
     invoke-virtual {p1, v0}, Landroid/os/Parcel;->writeInt(I)V
@@ -1900,4 +1865,39 @@
     invoke-virtual {p1, v2}, Landroid/os/Parcel;->writeInt(I)V
 
     goto :goto_a
+.end method
+
+.method private setSimIdAndInfoType()V
+    .locals 2
+
+    .prologue
+    const/4 v0, 0x0
+
+    iput v0, p0, Landroid/app/Notification;->simInfoType:I
+
+    const-wide/16 v0, -0x1
+
+    iput-wide v0, p0, Landroid/app/Notification;->simId:J
+
+    return-void
+.end method
+
+.method private setSimIdAndInfoType(Landroid/os/Parcel;)V
+    .locals 2
+    .parameter "parcel"
+
+    .prologue
+    invoke-virtual {p1}, Landroid/os/Parcel;->readInt()I
+
+    move-result v0
+
+    iput v0, p0, Landroid/app/Notification;->simInfoType:I
+
+    invoke-virtual {p1}, Landroid/os/Parcel;->readLong()J
+
+    move-result-wide v0
+
+    iput-wide v0, p0, Landroid/app/Notification;->simId:J
+
+    return-void
 .end method

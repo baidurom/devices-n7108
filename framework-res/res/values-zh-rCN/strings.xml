@@ -347,9 +347,9 @@
     <string name="global_action_silent_mode_off_status">声音打开</string>
     <string name="global_action_silent_mode_on_status_confirm">将启用静音模式</string>
     <string name="global_action_silent_mode_off_status_confirm">将禁用静音模式</string>
-    <string name="global_actions_toggle_airplane_mode">打开飞行模式</string>
-    <string name="global_actions_airplane_mode_on_status">已开启飞行模式</string>
-    <string name="global_actions_airplane_mode_off_status">已关闭飞行模式</string>
+    <string name="global_actions_toggle_airplane_mode">飞行模式</string>
+    <string name="global_actions_airplane_mode_on_status">飞行模式开</string>
+    <string name="global_actions_airplane_mode_off_status">飞行模式关</string>
     <string name="global_actions_airplane_mode_on_status_confirm">将启用飞行模式</string>
     <string name="global_actions_airplane_mode_off_status_confirm">将禁用飞行模式</string>
     <string name="global_action_toggle_data_mode">数据网络模式</string>

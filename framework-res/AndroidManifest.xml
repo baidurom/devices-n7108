@@ -390,9 +390,9 @@
             </intent-filter>
         </activity>
         <activity android:theme="@style/Theme.DeviceDefault.Light.Dialog" android:label="@string/choose_account_label" android:name="android.accounts.ChooseAccountActivity" android:exported="true" android:process=":ui" android:excludeFromRecents="true" />
-        <activity android:theme="@style/Theme.DeviceDefault.Light.DialogWhenLarge.NoActionBar" android:label="@string/choose_account_label" android:name="android.accounts.ChooseTypeAndAccountActivity" android:exported="true" android:process=":ui" android:excludeFromRecents="true" />
+        <activity android:theme="@style/Theme.DeviceDefault.Light.Dialog" android:label="@string/choose_account_label" android:name="android.accounts.ChooseTypeAndAccountActivity" android:exported="true" android:process=":ui" android:excludeFromRecents="true" />
         <activity android:theme="@style/Theme.DeviceDefault.Light.DialogWhenLarge.NoActionBar" android:label="@string/choose_account_label" android:name="android.accounts.ChooseAccountTypeActivity" android:process=":ui" android:excludeFromRecents="true" />
-        <activity android:theme="@style/Theme.DeviceDefault.Light.DialogWhenLarge" android:name="android.accounts.GrantCredentialsPermissionActivity" android:exported="true" android:excludeFromRecents="true" />
+        <activity android:theme="@style/Theme.DeviceDefault.Light.DialogWhenLarge" android:name="android.accounts.GrantCredentialsPermissionActivity" android:exported="true" android:process=":ui" android:excludeFromRecents="true" />
         <activity android:theme="@style/Theme.DeviceDefault.Light.Dialog" android:label="@string/sync_too_many_deletes" android:name="android.content.SyncActivityTooManyDeletes" android:process=":ui" />
         <activity android:theme="@style/Theme.DeviceDefault.Light.Dialog.Alert" android:name="com.android.server.ShutdownActivity" android:permission="android.permission.SHUTDOWN" android:excludeFromRecents="true">
             <intent-filter>

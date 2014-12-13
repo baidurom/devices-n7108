@@ -573,7 +573,7 @@
 
     move-result-object v21
 
-    const v22, #android:drawable@default_wallpaper#t
+    const v22, 0x1080232
 
     invoke-virtual/range {v21 .. v22}, Landroid/content/res/Resources;->openRawResource(I)Ljava/io/InputStream;
 

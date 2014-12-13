@@ -278,70 +278,6 @@
     return-void
 .end method
 
-.method private forbidActivityWithSystemAlert(Landroid/view/WindowManager$LayoutParams;)V
-    .locals 4
-    .parameter "p"
-
-    .prologue
-    .line 294
-    iget v2, p1, Landroid/view/WindowManager$LayoutParams;->type:I
-
-    const/16 v3, 0x7d3
-
-    if-ne v2, v3, :cond_1
-
-    .line 295
-    const/4 v1, 0x0
-
-    .line 296
-    .local v1, isStartedFromActivity:Z
-    iget-object v0, p0, Landroid/app/Dialog;->mContext:Landroid/content/Context;
-
-    .line 297
-    .local v0, context:Landroid/content/Context;
-    :goto_0
-    instance-of v2, v0, Landroid/view/ContextThemeWrapper;
-
-    if-eqz v2, :cond_0
-
-    .line 298
-    instance-of v2, v0, Landroid/app/Activity;
-
-    if-eqz v2, :cond_2
-
-    .line 299
-    const/4 v1, 0x1
-
-    .line 304
-    :cond_0
-    if-eqz v1, :cond_1
-
-    .line 305
-    const/4 v2, 0x2
-
-    iput v2, p1, Landroid/view/WindowManager$LayoutParams;->type:I
-
-    .line 308
-    .end local v0           #context:Landroid/content/Context;
-    .end local v1           #isStartedFromActivity:Z
-    :cond_1
-    return-void
-
-    .line 302
-    .restart local v0       #context:Landroid/content/Context;
-    .restart local v1       #isStartedFromActivity:Z
-    :cond_2
-    check-cast v0, Landroid/view/ContextThemeWrapper;
-
-    .end local v0           #context:Landroid/content/Context;
-    invoke-virtual {v0}, Landroid/view/ContextThemeWrapper;->getBaseContext()Landroid/content/Context;
-
-    move-result-object v0
-
-    .restart local v0       #context:Landroid/content/Context;
-    goto :goto_0
-.end method
-
 .method private getAssociatedActivity()Landroid/content/ComponentName;
     .locals 4
 
@@ -2440,7 +2376,6 @@
     :cond_5
     invoke-direct {p0, v0}, Landroid/app/Dialog;->forbidActivityWithSystemAlert(Landroid/view/WindowManager$LayoutParams;)V
 
-    .line 279
     :try_start_0
     iget-object v2, p0, Landroid/app/Dialog;->mWindowManager:Landroid/view/WindowManager;
 
@@ -2543,4 +2478,58 @@
 
     .line 926
     return-void
+.end method
+
+.method private forbidActivityWithSystemAlert(Landroid/view/WindowManager$LayoutParams;)V
+    .locals 4
+    .parameter "p"
+
+    .prologue
+    iget v2, p1, Landroid/view/WindowManager$LayoutParams;->type:I
+
+    const/16 v3, 0x7d3
+
+    if-ne v2, v3, :cond_1
+
+    const/4 v1, 0x0
+
+    .local v1, isStartedFromActivity:Z
+    iget-object v0, p0, Landroid/app/Dialog;->mContext:Landroid/content/Context;
+
+    .local v0, context:Landroid/content/Context;
+    :goto_0
+    instance-of v2, v0, Landroid/view/ContextThemeWrapper;
+
+    if-eqz v2, :cond_0
+
+    instance-of v2, v0, Landroid/app/Activity;
+
+    if-eqz v2, :cond_2
+
+    const/4 v1, 0x1
+
+    :cond_0
+    if-eqz v1, :cond_1
+
+    const/4 v2, 0x2
+
+    iput v2, p1, Landroid/view/WindowManager$LayoutParams;->type:I
+
+    .end local v0           #context:Landroid/content/Context;
+    .end local v1           #isStartedFromActivity:Z
+    :cond_1
+    return-void
+
+    .restart local v0       #context:Landroid/content/Context;
+    .restart local v1       #isStartedFromActivity:Z
+    :cond_2
+    check-cast v0, Landroid/view/ContextThemeWrapper;
+
+    .end local v0           #context:Landroid/content/Context;
+    invoke-virtual {v0}, Landroid/view/ContextThemeWrapper;->getBaseContext()Landroid/content/Context;
+
+    move-result-object v0
+
+    .restart local v0       #context:Landroid/content/Context;
+    goto :goto_0
 .end method

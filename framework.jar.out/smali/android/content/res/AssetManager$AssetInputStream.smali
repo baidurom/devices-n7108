@@ -51,7 +51,7 @@
     return-void
 .end method
 
-.method synthetic constructor <init>(Landroid/content/res/AssetManager;ILandroid/content/res/AssetManager$baidu_1;)V
+.method synthetic constructor <init>(Landroid/content/res/AssetManager;ILandroid/content/res/AssetManager$1;)V
     .locals 0
     .parameter "x0"
     .parameter "x1"
@@ -62,17 +62,6 @@
     invoke-direct {p0, p1, p2}, Landroid/content/res/AssetManager$AssetInputStream;-><init>(Landroid/content/res/AssetManager;I)V
 
     return-void
-.end method
-
-.method static synthetic access$baidu_100(Landroid/content/res/AssetManager$AssetInputStream;)J
-    .locals 2
-    .parameter "x0"
-
-    .prologue
-    .line 967
-    iget-wide v0, p0, Landroid/content/res/AssetManager$AssetInputStream;->mLength:J
-
-    return-wide v0
 .end method
 
 
@@ -392,4 +381,13 @@
     .line 586
     :cond_1
     return-wide p1
+.end method
+
+.method getmLength()J
+    .locals 2
+
+    .prologue
+    iget-wide v0, p0, Landroid/content/res/AssetManager$AssetInputStream;->mLength:J
+
+    return-wide v0
 .end method

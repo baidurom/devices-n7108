@@ -335,7 +335,7 @@
     .line 268
     iget-object v7, p0, Lcom/android/internal/widget/LockPatternView;->mPathPaint:Landroid/graphics/Paint;
 
-    const v8, 0x6670808e
+    const/4 v8, -0x1
 
     invoke-virtual {v7, v8}, Landroid/graphics/Paint;->setColor(I)V
 

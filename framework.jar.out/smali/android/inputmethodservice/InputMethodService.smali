@@ -8,7 +8,8 @@
     value = {
         Landroid/inputmethodservice/InputMethodService$Insets;,
         Landroid/inputmethodservice/InputMethodService$InputMethodSessionImpl;,
-        Landroid/inputmethodservice/InputMethodService$InputMethodImpl;
+        Landroid/inputmethodservice/InputMethodService$InputMethodImpl;,
+        Landroid/inputmethodservice/InputMethodService$BaiduInjector;
     }
 .end annotation
 
@@ -2055,6 +2056,8 @@
 
     .line 1662
     invoke-direct {p0}, Landroid/inputmethodservice/InputMethodService;->sendInputViewShownState()V
+
+    invoke-static/range {p0 .. p0}, Landroid/inputmethodservice/InputMethodService$BaiduInjector;->broadcastImeHide(Landroid/inputmethodservice/InputMethodService;)V
 
     .line 1665
     return-void
@@ -4142,6 +4145,8 @@
     .line 1721
     .end local v0           #maxCpuFreqLevel:I
     :cond_0
+    invoke-static/range {p0 .. p0}, Landroid/inputmethodservice/InputMethodService$BaiduInjector;->broadcastImeShown(Landroid/inputmethodservice/InputMethodService;)V
+
     return-void
 
     .line 1713

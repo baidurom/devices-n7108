@@ -712,52 +712,98 @@
     return-object v0
 .end method
 
-.method public getCardType()Ljava/lang/String;
-    .locals 3
-
-    .prologue
-    .line 206
-    iget-object v0, p0, Lcom/android/internal/telephony/PhoneSubInfo;->mContext:Landroid/content/Context;
-
-    const-string v1, "android.permission.READ_PRIVILEGED_PHONE_STATE"
-
-    const-string v2, "Requires READ_PRIVILEGED_PHONE_STATE"
-
-    invoke-virtual {v0, v1, v2}, Landroid/content/Context;->enforceCallingOrSelfPermission(Ljava/lang/String;Ljava/lang/String;)V
-
-    .line 208
-    iget-object v0, p0, Lcom/android/internal/telephony/PhoneSubInfo;->mPhone:Lcom/android/internal/telephony/Phone;
-
-    check-cast v0, Lcom/android/internal/telephony/PhoneBase;
-
-    invoke-virtual {v0}, Lcom/android/internal/telephony/PhoneBase;->getCardType()Ljava/lang/String;
-
-    move-result-object v0
-
-    return-object v0
-.end method
-
 .method public getIccCardType()Ljava/lang/String;
-    .locals 3
+    .locals 5
 
     .prologue
-    .line 197
+    const/4 v4, 0x2
+
+    const/4 v3, 0x1
+
     iget-object v0, p0, Lcom/android/internal/telephony/PhoneSubInfo;->mContext:Landroid/content/Context;
 
-    const-string v1, "android.permission.READ_PRIVILEGED_PHONE_STATE"
+    const-string v1, "android.permission.READ_PHONE_STATE"
 
-    const-string v2, "Requires READ_PRIVILEGED_PHONE_STATE"
+    const-string v2, "Requires READ_PHONE_STATE"
 
     invoke-virtual {v0, v1, v2}, Landroid/content/Context;->enforceCallingOrSelfPermission(Ljava/lang/String;Ljava/lang/String;)V
 
-    .line 199
+    iget-object v0, p0, Lcom/android/internal/telephony/PhoneSubInfo;->mPhone:Lcom/android/internal/telephony/Phone;
+
+    invoke-interface {v0}, Lcom/android/internal/telephony/Phone;->getPhoneType()I
+
+    move-result v0
+
+    if-ne v0, v3, :cond_0
+
     iget-object v0, p0, Lcom/android/internal/telephony/PhoneSubInfo;->mPhone:Lcom/android/internal/telephony/Phone;
 
     check-cast v0, Lcom/android/internal/telephony/PhoneBase;
 
-    invoke-virtual {v0}, Lcom/android/internal/telephony/PhoneBase;->getCardType()Ljava/lang/String;
+    invoke-static {v0}, Lcom/android/internal/telephony/uicc/UiccController;->getInstance(Lcom/android/internal/telephony/PhoneBase;)Lcom/android/internal/telephony/uicc/UiccController;
 
     move-result-object v0
 
+    invoke-virtual {v0}, Lcom/android/internal/telephony/uicc/UiccController;->getIccCard()Lcom/android/internal/telephony/IccCard;
+
+    move-result-object v0
+
+    iget-object v0, v0, Lcom/android/internal/telephony/IccCard;->mIccCardStatus:Lcom/android/internal/telephony/IccCardStatus;
+
+    invoke-virtual {v0}, Lcom/android/internal/telephony/IccCardStatus;->getGsmUmtsSubscriptionAppIndex()I
+
+    move-result v3
+
+    invoke-virtual {v0, v3}, Lcom/android/internal/telephony/IccCardStatus;->getApplication(I)Lcom/android/internal/telephony/IccCardApplication;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Lcom/android/internal/telephony/IccCardApplication;->getIccCardType()Ljava/lang/String;
+
+    move-result-object v0
+
+    :goto_0
     return-object v0
+
+    :cond_0
+    iget-object v0, p0, Lcom/android/internal/telephony/PhoneSubInfo;->mPhone:Lcom/android/internal/telephony/Phone;
+
+    invoke-interface {v0}, Lcom/android/internal/telephony/Phone;->getPhoneType()I
+
+    move-result v0
+
+    if-ne v0, v4, :cond_1
+
+    iget-object v0, p0, Lcom/android/internal/telephony/PhoneSubInfo;->mPhone:Lcom/android/internal/telephony/Phone;
+
+    check-cast v0, Lcom/android/internal/telephony/PhoneBase;
+
+    invoke-static {v0}, Lcom/android/internal/telephony/uicc/UiccController;->getInstance(Lcom/android/internal/telephony/PhoneBase;)Lcom/android/internal/telephony/uicc/UiccController;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Lcom/android/internal/telephony/uicc/UiccController;->getIccCard()Lcom/android/internal/telephony/IccCard;
+
+    move-result-object v0
+
+    iget-object v0, v0, Lcom/android/internal/telephony/IccCard;->mIccCardStatus:Lcom/android/internal/telephony/IccCardStatus;
+
+    invoke-virtual {v0}, Lcom/android/internal/telephony/IccCardStatus;->getCdmaSubscriptionAppIndex()I
+
+    move-result v4
+
+    invoke-virtual {v0, v4}, Lcom/android/internal/telephony/IccCardStatus;->getApplication(I)Lcom/android/internal/telephony/IccCardApplication;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Lcom/android/internal/telephony/IccCardApplication;->getIccCardType()Ljava/lang/String;
+
+    move-result-object v0
+
+    goto :goto_0
+
+    :cond_1
+    const-string v0, "UNKNOWN"
+
+    goto :goto_0
 .end method

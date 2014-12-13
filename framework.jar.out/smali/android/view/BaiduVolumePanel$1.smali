@@ -24,7 +24,7 @@
     .parameter
 
     .prologue
-    .line 87
+    .line 88
     iput-object p1, p0, Landroid/view/BaiduVolumePanel$1;->this$0:Landroid/view/BaiduVolumePanel;
 
     invoke-direct {p0}, Landroid/content/BroadcastReceiver;-><init>()V
@@ -42,12 +42,12 @@
     .prologue
     const/16 v3, 0x3e8
 
-    .line 90
+    .line 91
     invoke-virtual {p2}, Landroid/content/Intent;->getAction()Ljava/lang/String;
 
     move-result-object v0
 
-    .line 92
+    .line 93
     .local v0, action:Ljava/lang/String;
     const-string v1, "android.media.RINGER_MODE_CHANGED"
 
@@ -57,16 +57,16 @@
 
     if-eqz v1, :cond_1
 
-    .line 93
+    .line 94
     iget-object v1, p0, Landroid/view/BaiduVolumePanel$1;->this$0:Landroid/view/BaiduVolumePanel;
 
     invoke-static {}, Landroid/view/VolumePanel;->getMsgRingerModeChanged()I
 
     move-result v2
 
-    invoke-virtual {v1, v2}, Landroid/os/Handler;->removeMessages(I)V
+    invoke-virtual {v1, v2}, Landroid/view/BaiduVolumePanel;->removeMessages(I)V
 
-    .line 94
+    .line 95
     iget-object v1, p0, Landroid/view/BaiduVolumePanel$1;->this$0:Landroid/view/BaiduVolumePanel;
 
     iget-object v2, p0, Landroid/view/BaiduVolumePanel$1;->this$0:Landroid/view/BaiduVolumePanel;
@@ -75,18 +75,18 @@
 
     move-result v3
 
-    invoke-virtual {v2, v3}, Landroid/os/Handler;->obtainMessage(I)Landroid/os/Message;
+    invoke-virtual {v2, v3}, Landroid/view/BaiduVolumePanel;->obtainMessage(I)Landroid/os/Message;
 
     move-result-object v2
 
-    invoke-virtual {v1, v2}, Landroid/os/Handler;->sendMessage(Landroid/os/Message;)Z
+    invoke-virtual {v1, v2}, Landroid/view/BaiduVolumePanel;->sendMessage(Landroid/os/Message;)Z
 
-    .line 100
+    .line 101
     :cond_0
     :goto_0
     return-void
 
-    .line 95
+    .line 96
     :cond_1
     const-string v1, "android.intent.action.THEME_CHANGED"
 
@@ -96,21 +96,21 @@
 
     if-eqz v1, :cond_0
 
-    .line 97
+    .line 98
     iget-object v1, p0, Landroid/view/BaiduVolumePanel$1;->this$0:Landroid/view/BaiduVolumePanel;
 
-    invoke-virtual {v1, v3}, Landroid/os/Handler;->removeMessages(I)V
+    invoke-virtual {v1, v3}, Landroid/view/BaiduVolumePanel;->removeMessages(I)V
 
-    .line 98
+    .line 99
     iget-object v1, p0, Landroid/view/BaiduVolumePanel$1;->this$0:Landroid/view/BaiduVolumePanel;
 
     iget-object v2, p0, Landroid/view/BaiduVolumePanel$1;->this$0:Landroid/view/BaiduVolumePanel;
 
-    invoke-virtual {v2, v3}, Landroid/os/Handler;->obtainMessage(I)Landroid/os/Message;
+    invoke-virtual {v2, v3}, Landroid/view/BaiduVolumePanel;->obtainMessage(I)Landroid/os/Message;
 
     move-result-object v2
 
-    invoke-virtual {v1, v2}, Landroid/os/Handler;->sendMessage(Landroid/os/Message;)Z
+    invoke-virtual {v1, v2}, Landroid/view/BaiduVolumePanel;->sendMessage(Landroid/os/Message;)Z
 
     goto :goto_0
 .end method

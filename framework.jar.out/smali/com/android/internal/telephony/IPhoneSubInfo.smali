@@ -15,14 +15,6 @@
 
 
 # virtual methods
-.method public abstract getCardType()Ljava/lang/String;
-    .annotation system Ldalvik/annotation/Throws;
-        value = {
-            Landroid/os/RemoteException;
-        }
-    .end annotation
-.end method
-
 .method public abstract getCompleteVoiceMailNumber()Ljava/lang/String;
     .annotation system Ldalvik/annotation/Throws;
         value = {
@@ -40,14 +32,6 @@
 .end method
 
 .method public abstract getDeviceSvn()Ljava/lang/String;
-    .annotation system Ldalvik/annotation/Throws;
-        value = {
-            Landroid/os/RemoteException;
-        }
-    .end annotation
-.end method
-
-.method public abstract getIccCardType()Ljava/lang/String;
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;

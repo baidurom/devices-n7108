@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <add-resource type="string" name="statusbar_airplane_mode_display" />
+    <string name="statusbar_airplane_mode_display">"飞行模式"</string>
+</resources>

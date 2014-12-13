@@ -6,6 +6,7 @@
 # annotations
 .annotation system Ldalvik/annotation/MemberClasses;
     value = {
+        Lcom/android/server/net/NetworkPolicyManagerService$BaiduInjector;,
         Lcom/android/server/net/NetworkPolicyManagerService$XmlUtils;
     }
 .end annotation
@@ -2428,29 +2429,6 @@
     goto :goto_0
 .end method
 
-.method private getUidRulesBaidu(II)I
-    .locals 2
-    .parameter "uidPolicy"
-    .parameter "orgUidRules"
-
-    .prologue
-    .line 1772
-    move v0, p2
-
-    .line 1773
-    .local v0, uidRules:I
-    and-int/lit8 v1, p1, 0x2
-
-    if-eqz v1, :cond_0
-
-    .line 1775
-    const/4 v0, 0x1
-
-    .line 1777
-    :cond_0
-    return v0
-.end method
-
 .method private isBandwidthControlEnabled()Z
     .locals 4
 
@@ -4815,7 +4793,7 @@
     .line 620
     const/4 v0, 0x3
 
-    invoke-direct {p0, v10, v0, v12, v13}, Lcom/android/server/net/NetworkPolicyManagerService;->enqueueNotification(Landroid/net/NetworkPolicy;IJ)V
+    invoke-static {v10, v0, v12, v13}, Lcom/android/server/net/NetworkPolicyManagerService$BaiduInjector;->enqueueNotification(Landroid/net/NetworkPolicy;IJ)V
 
     goto :goto_0
 
@@ -4823,7 +4801,7 @@
     :cond_1
     const/4 v0, 0x2
 
-    invoke-direct {p0, v10, v0, v12, v13}, Lcom/android/server/net/NetworkPolicyManagerService;->enqueueNotification(Landroid/net/NetworkPolicy;IJ)V
+    invoke-static {v10, v0, v12, v13}, Lcom/android/server/net/NetworkPolicyManagerService$BaiduInjector;->enqueueNotification(Landroid/net/NetworkPolicy;IJ)V
 
     .line 623
     iget-object v0, v10, Landroid/net/NetworkPolicy;->template:Landroid/net/NetworkTemplate;
@@ -4854,7 +4832,7 @@
     .line 630
     const/4 v0, 0x1
 
-    invoke-direct {p0, v10, v0, v12, v13}, Lcom/android/server/net/NetworkPolicyManagerService;->enqueueNotification(Landroid/net/NetworkPolicy;IJ)V
+    invoke-static {v10, v0, v12, v13}, Lcom/android/server/net/NetworkPolicyManagerService$BaiduInjector;->enqueueNotification(Landroid/net/NetworkPolicy;IJ)V
 
     goto :goto_0
 
@@ -5154,7 +5132,7 @@
 
     .line 1777
     :cond_2
-    invoke-direct {p0, v1, v4}, Lcom/android/server/net/NetworkPolicyManagerService;->getUidRulesBaidu(II)I
+    invoke-static {v1, v4}, Lcom/android/server/net/NetworkPolicyManagerService$BaiduInjector;->getUidRules(II)I
 
     move-result v4
 

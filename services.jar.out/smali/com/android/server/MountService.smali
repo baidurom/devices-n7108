@@ -25,7 +25,6 @@
         Lcom/android/server/MountService$ObbState;,
         Lcom/android/server/MountService$PackageInstalledMap;,
         Lcom/android/server/MountService$VoldResponseCode;,
-	Lcom/android/server/MountService$SdType;,
         Lcom/android/server/MountService$VolumeState;
     }
 .end annotation
@@ -73,8 +72,6 @@
 .field private static final TAG:Ljava/lang/String; = "MountService"
 
 .field private static final TAG_STORAGE:Ljava/lang/String; = "storage"
-
-.field private static final TAG_STORAGE_AUTO:Ljava/lang/String; = "storage_auto"
 
 .field private static final TAG_STORAGE_LIST:Ljava/lang/String; = "StorageList"
 
@@ -497,53 +494,6 @@
 
     .line 1511
     :cond_0
-    const/4 v3, 0x1
-
-    :goto_baidu_0
-    iget-object v1, p0, Lcom/android/server/MountService;->mVolumes:Ljava/util/ArrayList;
-    
-    invoke-virtual {v1}, Ljava/util/ArrayList;->size()I
-    
-    move-result v1
-    
-    if-ge v3, v1, :cond_baidu_0
-    
-    iget-object v1, p0, Lcom/android/server/MountService;->mVolumes:Ljava/util/ArrayList;
-    
-    invoke-virtual {v1, v3}, Ljava/util/ArrayList;->get(I)Ljava/lang/Object;
-    
-    move-result-object v2
-    
-    check-cast v2, Landroid/os/storage/StorageVolume;
-    
-    invoke-virtual {v2}, Landroid/os/storage/StorageVolume;->getPath()Ljava/lang/String;
-    
-    move-result-object v6
-    
-    invoke-virtual {v2}, Landroid/os/storage/StorageVolume;->isEmulated()Z
-    
-    move-result v1
-    
-    if-eqz v1, :cond_baidu_1
-    
-    const-string v0, "MountService"
-    
-    const-string v1, "using emulated external storage"
-    
-    invoke-static {v0, v1}, Landroid/util/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
-    
-    iget-object v0, p0, Lcom/android/server/MountService;->mVolumeStates:Ljava/util/LinkedHashMap;
-    
-    const-string v1, "mounted"
-    
-    invoke-virtual {v0, v6, v1}, Ljava/util/LinkedHashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
-    
-    :cond_baidu_1
-    add-int/lit8 v3, v3, 0x1
-    
-    goto :goto_baidu_0
-    
-    :cond_baidu_0
     const-string v0, "package"
 
     invoke-static {v0}, Landroid/os/ServiceManager;->getService(Ljava/lang/String;)Landroid/os/IBinder;
@@ -5868,20 +5818,7 @@
     :cond_1
     :try_start_1
     const-string v11, "storage"
-    
-    sget-object v4, Lcom/android/server/MountService$SdType;->TYPE:Ljava/lang/String;
 
-    const-string v5, "4"
-
-    invoke-virtual {v4, v5}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-
-    move-result v4
-
-    if-eqz v4, :cond_baidu_0
-
-    const-string v11, "storage_auto"
-    
-    :cond_baidu_0
     move-object/from16 v0, v17
 
     invoke-virtual {v11, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
@@ -6994,7 +6931,7 @@
     move-result-object v7
 
     invoke-static {v6, v7}, Landroid/util/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
-    
+
     .line 745
     iget-object v6, p0, Lcom/android/server/MountService;->mVolumeMap:Ljava/util/LinkedHashMap;
 
@@ -7010,26 +6947,6 @@
 
     invoke-virtual {v5}, Landroid/os/storage/StorageVolume;->getActivitySecureContainer()Z
 
-    move-result v6
-
-    if-eqz v6, :cond_1
-    
-    invoke-static {}, Landroid/os/Environment;->getAsecVolumeDirectory()Ljava/io/File;
-    
-    move-result-object v6
-    
-    invoke-virtual {v6}, Ljava/io/File;->getPath()Ljava/lang/String;
-    
-    move-result-object v6
-
-    invoke-virtual {p1, v6}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-    
-    move-result v6
-
-    if-eqz v6, :cond_1
-
-    invoke-static {}, Landroid/os/Environment;->isAsecVolumeAvailable()Z
-    
     move-result v6
 
     if-eqz v6, :cond_1
@@ -7064,6 +6981,8 @@
     .line 764
     :cond_1
     :goto_1
+    invoke-direct/range {p0 .. p2}, Lcom/android/server/MountService;->updateAsecVolumeStateBaidu(Ljava/lang/String;Ljava/lang/String;)V
+
     iget-object v7, p0, Lcom/android/server/MountService;->mListeners:Ljava/util/ArrayList;
 
     monitor-enter v7
@@ -14579,4 +14498,101 @@
 
     .line 560
     return-void
+.end method
+
+.method private updateAsecVolumeStateBaidu(Ljava/lang/String;Ljava/lang/String;)V
+    .locals 5
+    .parameter "path"
+    .parameter "state"
+
+    .prologue
+    const/4 v4, 0x0
+
+    invoke-static {}, Landroid/os/Environment;->getAsecVolumeDirectory()Ljava/io/File;
+
+    move-result-object v1
+
+    invoke-virtual {v1}, Ljava/io/File;->getPath()Ljava/lang/String;
+
+    move-result-object v0
+
+    .local v0, asecPath:Ljava/lang/String;
+    const-string v1, "MountService"
+
+    new-instance v2, Ljava/lang/StringBuilder;
+
+    invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v3, "asecPath is "
+
+    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v2
+
+    invoke-virtual {v2, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v2
+
+    invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v2
+
+    invoke-static {v1, v2}, Landroid/util/Slog;->e(Ljava/lang/String;Ljava/lang/String;)I
+
+    invoke-virtual {p1, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v1
+
+    if-eqz v1, :cond_0
+
+    invoke-static {}, Landroid/os/Environment;->isAsecVolumeAvailable()Z
+
+    move-result v1
+
+    if-eqz v1, :cond_0
+
+    const-string v1, "unmounted"
+
+    invoke-virtual {v1, p2}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v1
+
+    if-eqz v1, :cond_1
+
+    iget-object v1, p0, Lcom/android/server/MountService;->mPms:Lcom/android/server/pm/PackageManagerService;
+
+    invoke-virtual {v1, v4, v4}, Lcom/android/server/pm/PackageManagerService;->updateExternalMediaStatus(ZZ)V
+
+    iget-object v1, p0, Lcom/android/server/MountService;->mObbActionHandler:Lcom/android/server/MountService$ObbActionHandler;
+
+    iget-object v2, p0, Lcom/android/server/MountService;->mObbActionHandler:Lcom/android/server/MountService$ObbActionHandler;
+
+    const/4 v3, 0x5
+
+    invoke-virtual {v2, v3, p1}, Lcom/android/server/MountService$ObbActionHandler;->obtainMessage(ILjava/lang/Object;)Landroid/os/Message;
+
+    move-result-object v2
+
+    invoke-virtual {v1, v2}, Lcom/android/server/MountService$ObbActionHandler;->sendMessage(Landroid/os/Message;)Z
+
+    :cond_0
+    :goto_0
+    return-void
+
+    :cond_1
+    const-string v1, "mounted"
+
+    invoke-virtual {v1, p2}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v1
+
+    if-eqz v1, :cond_0
+
+    iget-object v1, p0, Lcom/android/server/MountService;->mPms:Lcom/android/server/pm/PackageManagerService;
+
+    const/4 v2, 0x1
+
+    invoke-virtual {v1, v2, v4}, Lcom/android/server/pm/PackageManagerService;->updateExternalMediaStatus(ZZ)V
+
+    goto :goto_0
 .end method

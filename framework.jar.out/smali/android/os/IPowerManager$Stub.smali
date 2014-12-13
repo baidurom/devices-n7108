@@ -84,8 +84,6 @@
 
 .field static final TRANSACTION_userActivityWithForce:I = 0x7
 
-.field static final TRANSACTION_shutdown:I = 0x2300
-
 
 # direct methods
 .method public constructor <init>()V
@@ -1078,51 +1076,6 @@
 
     .line 39
     nop
-    
-    .end local v0          #_arg0:Z
-    :sswitch_baidu_0
-    const-string v9, "android.os.IPowerManager"
-
-    invoke-virtual {p2, v9}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
-
-    invoke-virtual {p2}, Landroid/os/Parcel;->readInt()I
-
-    move-result v9
-
-    if-eqz v9, :cond_baidu_0
-
-    move v0, v7
-
-    .local v0, _arg0:Z
-    :goto_baidu_0
-    invoke-virtual {p2}, Landroid/os/Parcel;->readInt()I
-
-    move-result v9
-
-    if-eqz v9, :cond_baidu_1
-
-    move v2, v7
-
-    .local v2, _arg1:Z
-    :goto_baidu_1
-    invoke-virtual {p0, v0, v2}, Landroid/os/IPowerManager$Stub;->shutdown(ZZ)V
-
-    invoke-virtual {p3}, Landroid/os/Parcel;->writeNoException()V
-
-    goto/16 :goto_0
-
-    .end local v0           #_arg0:Z
-    .end local v2           #_arg1:Z
-    :cond_baidu_0
-    move v0, v8
-
-    goto :goto_baidu_0
-
-    .restart local v0       #_arg0:Z
-    :cond_baidu_1
-    move v2, v8
-
-    goto :goto_baidu_1
 
     :sswitch_data_0
     .sparse-switch
@@ -1155,7 +1108,6 @@
         0x1b -> :sswitch_1b
         0x1c -> :sswitch_1c
         0x1d -> :sswitch_1d
-	0x2300 -> :sswitch_baidu_0
         0x5f4e5446 -> :sswitch_0
     .end sparse-switch
 .end method

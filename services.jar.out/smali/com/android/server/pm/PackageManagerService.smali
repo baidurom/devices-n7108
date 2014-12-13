@@ -17710,7 +17710,7 @@
 
     iget-object v3, v0, Lcom/android/server/pm/PackageManagerService;->mResolveActivity:Landroid/content/pm/ActivityInfo;
 
-    const v10, #style@Theme.DeviceDefault.Dialog.Alert#t
+    const v10, #style@Theme.DeviceDefault.Light.Dialog.Alert#t
 
     iput v10, v3, Landroid/content/pm/ActivityInfo;->theme:I
 
@@ -19574,7 +19574,7 @@
     invoke-virtual/range {p0 .. p0}, Lcom/android/server/pm/PackageManagerService;->getEnforceCopyingLibPackageList()Ljava/util/ArrayList;
 
     move-result-object v43
-    
+
     .line 5079
     .local v43, pkgList:Ljava/util/ArrayList;,"Ljava/util/ArrayList<Ljava/lang/String;>;"
     if-eqz v43, :cond_2a
@@ -19736,9 +19736,7 @@
 
     .line 5262
     .local v19, dataPathString:Ljava/lang/String;
-    goto/16 :goto_baidu_0
-    
-    invoke-static/range {p1 .. p1}, Lcom/android/server/pm/PackageManagerService;->isSystemApp(Landroid/content/pm/PackageParser$Package;)Z
+    invoke-static/range {p1 .. p1}, Lcom/android/server/pm/PackageManagerService;->isSystemAppBaidu(Landroid/content/pm/PackageParser$Package;)Z
 
     move-result v3
 
@@ -20695,7 +20693,6 @@
     .restart local v40       #path:Ljava/lang/String;
     :cond_3e
     :try_start_7
-    :goto_baidu_0
     invoke-virtual/range {v31 .. v31}, Ljava/io/File;->getParentFile()Ljava/io/File;
 
     move-result-object v3
@@ -40824,7 +40821,7 @@
 
     move-result-object v5
 
-    const v6, #android:string@android_upgrading_apk#t
+    const v6, 0x10404df
 
     const/4 v7, 0x2
 
@@ -47482,17 +47479,15 @@
     return-void
 .end method
 
-# Remove the first '#' if you want to enable this method. It might be invoked from codes of BOSP.
-#.method static synthetic access$invoke-updateExternalMediaStatusInner-b17112(Lcom/android/server/pm/PackageManagerService;ZZZ)V
-#    .locals 0
-#    .parameter "x0"
-#    .parameter "x1"
-#    .parameter "x2"
-#    .parameter "x3"
-#    .prologue
-#    invoke-direct {p0, p1, p2, p3}, Lcom/android/server/pm/PackageManagerService;->updateExternalMediaStatusInner(ZZZ)V
-#    return-void
-#.end method
+.method private static isSystemAppBaidu(Landroid/content/pm/PackageParser$Package;)Z
+    .locals 1
+    .parameter "pkg"
+
+    .prologue
+    const/4 v0, 0x0
+
+    return v0
+.end method
 
 .method findPreferredActivityBaidu(Landroid/content/Intent;Ljava/lang/String;ILjava/util/List;II)Landroid/content/pm/ResolveInfo;
     .locals 9

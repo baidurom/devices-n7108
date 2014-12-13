@@ -150,7 +150,7 @@
 
     const/4 v3, 0x0
 
-    const v4, #android:attr@textSelectHandleWindowStyle#t
+    const v4, 0x10102c8
 
     invoke-direct {v1, v2, v3, v4}, Landroid/widget/PopupWindow;-><init>(Landroid/content/Context;Landroid/util/AttributeSet;I)V
 
@@ -506,8 +506,10 @@
     .prologue
     invoke-virtual/range {p0 .. p0}, Landroid/widget/Editor$HandleView;->hideActionPopupWindow()V
 
+    .line 3379
     invoke-virtual {p0}, Landroid/widget/Editor$HandleView;->dismiss()V
 
+    .line 3381
     iget-object v0, p0, Landroid/widget/Editor$HandleView;->this$0:Landroid/widget/Editor;
 
     #calls: Landroid/widget/Editor;->getPositionListener()Landroid/widget/Editor$PositionListener;
@@ -853,6 +855,7 @@
 
     add-float v3, v11, v12
 
+    .line 3558
     .local v3, newPosY:F
     invoke-virtual {p0, v2, v3}, Landroid/widget/Editor$HandleView;->updatePosition(FF)V
 
@@ -867,6 +870,7 @@
 
     goto :goto_0
 
+    .line 3545
     .end local v2           #newPosX:F
     .end local v3           #newPosY:F
     .end local v4           #newVerticalOffset:F
@@ -982,20 +986,25 @@
 
     if-eqz v11, :cond_3
 
+    .line 3581
     if-nez v0, :cond_5
 
+    .line 3582
     invoke-virtual {p0, v12}, Landroid/widget/Editor$HandleView;->refreshForSwitchingCursor(Z)Z
 
+    .line 3589
     :cond_3
     :goto_3
     invoke-direct {p0}, Landroid/widget/Editor$HandleView;->filterOnTouchUp()V
 
+    .line 3590
     iput-boolean v12, p0, Landroid/widget/Editor$HandleView;->mIsDragging:Z
 
     invoke-static {}, Landroid/widget/Editor$BaiduEditorInjector;->hideDelayed()V
 
     goto/16 :goto_0
 
+    .line 3574
     .restart local v9       #selectionEnd:I
     .restart local v10       #selectionStart:I
     :cond_4
@@ -1119,22 +1128,26 @@
 
     iput v4, p0, Landroid/widget/Editor$HandleView;->mPositionX:I
 
+    .line 3450
     invoke-virtual {v0, v1}, Landroid/text/Layout;->getLineBottom(I)I
 
     move-result v4
 
     iput v4, p0, Landroid/widget/Editor$HandleView;->mPositionY:I
 
+    .line 3453
     iget-boolean v4, p0, Landroid/widget/Editor$HandleView;->mOnTop:Z
 
     if-nez v4, :cond_5
 
+    .line 3454
     invoke-virtual {v0, v1}, Landroid/text/Layout;->getLineBottom(I)I
 
     move-result v4
 
     iput v4, p0, Landroid/widget/Editor$HandleView;->mPositionY:I
 
+    .line 3461
     :goto_2
     invoke-virtual {p0, v1}, Landroid/widget/Editor$HandleView;->recaculateHandleViewVerticalPosition(I)V
 
@@ -1280,10 +1293,12 @@
     .parameter "delay"
 
     .prologue
+    .line 3385
     iget-object v0, p0, Landroid/widget/Editor$HandleView;->mActionPopupWindow:Landroid/widget/Editor$ActionPopupWindow;
 
     if-nez v0, :cond_0
 
+    .line 3386
     new-instance v0, Landroid/widget/Editor$BaiduActionPopupWindow;
 
     iget-object v1, p0, Landroid/widget/Editor$HandleView;->this$0:Landroid/widget/Editor;

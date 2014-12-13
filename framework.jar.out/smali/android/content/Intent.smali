@@ -81,11 +81,7 @@
 
 .field public static final ACTION_DEVICE_STORAGE_LOW:Ljava/lang/String; = "android.intent.action.DEVICE_STORAGE_LOW"
 
-.field public static final ACTION_DEVICE_STORAGE_NEARLY_FULL:Ljava/lang/String; = "android.intent.action.DEVICE_STORAGE_NEARLY_FULL"
-
 .field public static final ACTION_DEVICE_STORAGE_NOT_FULL:Ljava/lang/String; = "android.intent.action.DEVICE_STORAGE_NOT_FULL"
-
-.field public static final ACTION_DEVICE_STORAGE_NOT_NEARLY_FULL:Ljava/lang/String; = "android.intent.action.DEVICE_STORAGE_NOT_NEARLY_FULL"
 
 .field public static final ACTION_DEVICE_STORAGE_OK:Ljava/lang/String; = "android.intent.action.DEVICE_STORAGE_OK"
 
@@ -106,10 +102,6 @@
 .field public static final ACTION_GCF_DEVICE_STORAGE_LOW:Ljava/lang/String; = "android.intent.action.GCF_DEVICE_STORAGE_LOW"
 
 .field public static final ACTION_GCF_DEVICE_STORAGE_OK:Ljava/lang/String; = "android.intent.action.GCF_DEVICE_STORAGE_OK"
-
-.field public static final ACTION_FM:Ljava/lang/String; = "android.intent.action.FM"
-
-.field public static final ACTION_FM_TX:Ljava/lang/String; = "android.intent.action.FMTX"
 
 .field public static final ACTION_GET_CONTENT:Ljava/lang/String; = "android.intent.action.GET_CONTENT"
 
@@ -473,6 +465,8 @@
 .field public static final EXTRA_DONT_KILL_APP:Ljava/lang/String; = "android.intent.extra.DONT_KILL_APP"
 
 .field public static final EXTRA_EMAIL:Ljava/lang/String; = "android.intent.extra.EMAIL"
+
+.field public static final EXTRA_EXCLUDE_PACKAGES:Ljava/lang/String; = "yi.intent.extra.EXCLUDE_PACKAGES"
 
 .field public static final EXTRA_HTML_TEXT:Ljava/lang/String; = "android.intent.extra.HTML_TEXT"
 

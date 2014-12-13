@@ -1505,40 +1505,7 @@
     .parameter "feature"
 
     .prologue
-    const/4 v0, 0x2
-    
-    new-array v0, v0, [Ljava/lang/Object;
-    
-    new-instance v1, Ljava/lang/Integer;
-    
-    invoke-direct {v1, p1}, Ljava/lang/Integer;-><init>(I)V
-    
-    const/4 v2, 0x0
-    
-    aput-object v1, v0, v2
-    
-    const/4 v2, 0x1
-    
-    aput-object p2, v0, v2
-    
-    const/4 v1, 0x1
-    
-    const/4 v2, 0x1
-    
-    invoke-static {v1, v2, v0}, Lcom/baidu/server/dp/DynamicPermissionManager;->checkPermission(IZ[Ljava/lang/Object;)I
-
-    move-result v2
-    
-    const/4 v1, 0x1
-    
-    if-ne v2, v1, :cond_baidu_0
-    
-    const/4 v1, 0x2
-    
-    goto :goto_baidu_0
-
     .line 540
-    :cond_baidu_0
     :try_start_0
     iget-object v1, p0, Landroid/net/ConnectivityManager;->mService:Landroid/net/IConnectivityManager;
 
@@ -1554,7 +1521,6 @@
 
     .line 543
     :goto_0
-    :goto_baidu_0
     return v1
 
     .line 542

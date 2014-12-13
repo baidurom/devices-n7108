@@ -245,17 +245,13 @@
     .local v4, intent:Landroid/content/Intent;
     iget-object v8, p0, Landroid/widget/QuickContactBadge$QueryHandler;->this$0:Landroid/widget/QuickContactBadge;
 
-    invoke-virtual {v8}, Landroid/widget/QuickContactBadge;->getContext()Landroid/content/Context;
+    #invoke-virtual {v8}, Landroid/view/View;->getContext()Landroid/content/Context;
 
-    move-result-object v8
+    #move-result-object v8
 
     #invoke-virtual {v8, v4}, Landroid/content/Context;->startActivity(Landroid/content/Intent;)V
-    
-    iget-object v8, p0, Landroid/widget/QuickContactBadge$QueryHandler;->this$0:Landroid/widget/QuickContactBadge;
 
-    #calls: Landroid/widget/QuickContactBadge;->showStrangeQuickContact(Landroid/net/Uri;)V
-    invoke-static {v8, v2}, Landroid/widget/QuickContactBadge;->access$baidu_200(Landroid/widget/QuickContactBadge;Landroid/net/Uri;)V
-
+    invoke-static {v8, v2}, Landroid/widget/QuickContactBadge$BaiduInjector;->showStrangeQuickContact(Landroid/widget/QuickContactBadge;Landroid/net/Uri;)V
     :try_end_1
     .catch Landroid/content/ActivityNotFoundException; {:try_start_1 .. :try_end_1} :catch_0
 

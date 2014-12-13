@@ -1178,6 +1178,22 @@
     .parameter "options"
 
     .prologue
+    move-object/from16 v0, p0
+
+    move-object/from16 v1, p1
+
+    move-object/from16 v2, p5
+
+    invoke-direct {v0, v1, v2}, Landroid/app/Instrumentation;->checkDynamicPermission(Landroid/content/Context;[Landroid/content/Intent;)Z
+
+    move-result v0
+
+    if-nez v0, :cond_baidu_0
+
+    goto :goto_baidu_0
+
+    :cond_baidu_0
+
     .line 1447
     move-object v1, p2
 
@@ -1254,8 +1270,8 @@
     .end local v6           #N:I
     .end local v7           #am:Landroid/app/Instrumentation$ActivityMonitor;
     .end local v8           #i:I
-    :cond_baidu_1
     :goto_1
+    :goto_baidu_0
     return-void
 
     .line 1451
@@ -1278,34 +1294,6 @@
     .end local v6           #N:I
     .end local v8           #i:I
     :cond_2
-    invoke-static {p1}, Lcom/baidu/server/dp/DynamicPermissionManager;->getInstance(Landroid/content/Context;)Lcom/baidu/server/dp/DynamicPermissionManager;
-
-    move-result-object v0
-
-    const/4 v2, 0x1
-
-    new-array v2, v2, [[Landroid/content/Intent;
-
-    move-object/from16 v3, p5
-
-    invoke-virtual {v0, v3, v2}, Lcom/baidu/server/dp/DynamicPermissionManager;->checkCallPermission([Landroid/content/Intent;[[Landroid/content/Intent;)I
-
-    move-result v0
-
-    if-eqz v0, :cond_baidu_0
-
-    const/4 v3, 0x0
-
-    aget-object p5, v2, v3
-
-    move-object/from16 v0, p5
-
-    array-length v2, v0
-
-    if-eqz v2, :cond_baidu_1
-
-    :cond_baidu_0
-
     :try_start_1
     array-length v0, p5
 
@@ -1413,6 +1401,24 @@
     .parameter "options"
 
     .prologue
+    move-object/from16 v0, p0
+
+    move-object/from16 v1, p1
+
+    move-object/from16 v2, p5
+
+    invoke-direct {v0, v1, v2}, Landroid/app/Instrumentation;->checkDynamicPermission(Landroid/content/Context;Landroid/content/Intent;)Z
+
+    move-result v0
+
+    if-nez v0, :cond_baidu_0
+
+    const/4 v2, 0x0
+
+    goto :goto_baidu_0
+
+    :cond_baidu_0
+
     .line 1407
     move-object/from16 v3, p2
 
@@ -1505,6 +1511,7 @@
     .end local v14           #am:Landroid/app/Instrumentation$ActivityMonitor;
     .end local v15           #i:I
     :goto_2
+    :goto_baidu_0
     return-object v2
 
     .line 1416
@@ -1533,23 +1540,6 @@
     .end local v13           #N:I
     .end local v15           #i:I
     :cond_3
-    invoke-static/range {p1 .. p1}, Lcom/baidu/server/dp/DynamicPermissionManager;->getInstance(Landroid/content/Context;)Lcom/baidu/server/dp/DynamicPermissionManager;
-    
-    move-result-object v2
-    
-    move-object/from16 v0, p5
-
-    invoke-virtual {v2, v0}, Lcom/baidu/server/dp/DynamicPermissionManager;->checkCallPermission(Landroid/content/Intent;)I
-    
-    move-result v2
-    
-    if-eqz v2, :cond_baidu_0
-    
-    const/4 v2, 0x0
-
-    goto :goto_2
-    
-    :cond_baidu_0
     const/4 v2, 0x0
 
     :try_start_1
@@ -1652,6 +1642,24 @@
     .parameter "options"
 
     .prologue
+    move-object/from16 v0, p0
+
+    move-object/from16 v1, p1
+
+    move-object/from16 v2, p5
+
+    invoke-direct {v0, v1, v2}, Landroid/app/Instrumentation;->checkDynamicPermission(Landroid/content/Context;Landroid/content/Intent;)Z
+
+    move-result v0
+
+    if-nez v0, :cond_baidu_0
+
+    const/4 v2, 0x0
+
+    goto :goto_baidu_0
+
+    :cond_baidu_0
+
     .line 1506
     move-object/from16 v3, p2
 
@@ -1744,6 +1752,7 @@
     .end local v14           #am:Landroid/app/Instrumentation$ActivityMonitor;
     .end local v15           #i:I
     :goto_2
+    :goto_baidu_0
     return-object v2
 
     .line 1515
@@ -1772,23 +1781,6 @@
     .end local v13           #N:I
     .end local v15           #i:I
     :cond_3
-    invoke-static/range {p1 .. p1}, Lcom/baidu/server/dp/DynamicPermissionManager;->getInstance(Landroid/content/Context;)Lcom/baidu/server/dp/DynamicPermissionManager;
-
-    move-result-object v2
-    
-    move-object/from16 v0, p5
-
-    invoke-virtual {v2, v0}, Lcom/baidu/server/dp/DynamicPermissionManager;->checkCallPermission(Landroid/content/Intent;)I
-
-    move-result v2
-
-    if-eqz v2, :cond_baidu_0
-    
-    const/4 v2, 0x0
-
-    goto :goto_2
-
-    :cond_baidu_0
     const/4 v2, 0x0
 
     :try_start_1
@@ -3512,4 +3504,71 @@
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
     throw v1
+.end method
+
+.method private checkDynamicPermission(Landroid/content/Context;Landroid/content/Intent;)Z
+    .locals 2
+    .parameter "context"
+    .parameter "intent"
+
+    .prologue
+    invoke-static {p1}, Lcom/baidu/server/dp/DynamicPermissionManager;->getInstance(Landroid/content/Context;)Lcom/baidu/server/dp/DynamicPermissionManager;
+
+    move-result-object v0
+
+    .local v0, dpm:Lcom/baidu/server/dp/DynamicPermissionManager;
+    invoke-virtual {v0, p2}, Lcom/baidu/server/dp/DynamicPermissionManager;->checkCallPermission(Landroid/content/Intent;)I
+
+    move-result v1
+
+    if-nez v1, :cond_0
+
+    const/4 v1, 0x1
+
+    :goto_0
+    return v1
+
+    :cond_0
+    const/4 v1, 0x0
+
+    goto :goto_0
+.end method
+
+.method private checkDynamicPermission(Landroid/content/Context;[Landroid/content/Intent;)Z
+    .locals 5
+    .parameter "context"
+    .parameter "intents"
+
+    .prologue
+    const/4 v3, 0x1
+
+    const/4 v2, 0x0
+
+    invoke-static {p1}, Lcom/baidu/server/dp/DynamicPermissionManager;->getInstance(Landroid/content/Context;)Lcom/baidu/server/dp/DynamicPermissionManager;
+
+    move-result-object v0
+
+    .local v0, dpm:Lcom/baidu/server/dp/DynamicPermissionManager;
+    new-array v1, v3, [[Landroid/content/Intent;
+
+    .local v1, intentsContainer:[[Landroid/content/Intent;
+    invoke-virtual {v0, p2, v1}, Lcom/baidu/server/dp/DynamicPermissionManager;->checkCallPermission([Landroid/content/Intent;[[Landroid/content/Intent;)I
+
+    move-result v4
+
+    if-eqz v4, :cond_0
+
+    aget-object p2, v1, v2
+
+    array-length v4, p2
+
+    if-nez v4, :cond_0
+
+    :goto_0
+    return v2
+
+    :cond_0
+    move v2, v3
+
+    goto :goto_0
 .end method

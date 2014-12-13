@@ -331,6 +331,7 @@
     .end annotation
 
     .prologue
+    .line 1042
     move-object/from16 v0, p0
 
     iget-object v6, v0, Landroid/media/MediaScanner$MyMediaScannerClient;->mArtist:Ljava/lang/String;
@@ -908,16 +909,6 @@
 
     .line 1276
     const-string/jumbo v6, "notification_sound"
-
-    move-object/from16 v0, p0
-
-    move-object/from16 v1, v47
-
-    move-wide/from16 v2, v45
-
-    invoke-direct {v0, v6, v1, v2, v3}, Landroid/media/MediaScanner$MyMediaScannerClient;->setSettingIfNotSet(Ljava/lang/String;Landroid/net/Uri;J)V
-    
-    const-string/jumbo v6, "pre_set_notification_sound"
 
     move-object/from16 v0, p0
 
@@ -2133,16 +2124,6 @@
     move-wide/from16 v2, v45
 
     invoke-direct {v0, v6, v1, v2, v3}, Landroid/media/MediaScanner$MyMediaScannerClient;->setSettingIfNotSet(Ljava/lang/String;Landroid/net/Uri;J)V
-    
-    const-string/jumbo v6, "pre_set_ringtone"
-
-    move-object/from16 v0, p0
-
-    move-object/from16 v1, v47
-
-    move-wide/from16 v2, v45
-
-    invoke-direct {v0, v6, v1, v2, v3}, Landroid/media/MediaScanner$MyMediaScannerClient;->setSettingIfNotSet(Ljava/lang/String;Landroid/net/Uri;J)V
 
     .line 1306
     const-string v6, "CTC"
@@ -2474,16 +2455,6 @@
 
     .line 1341
     const-string v6, "alarm_alert"
-
-    move-object/from16 v0, p0
-
-    move-object/from16 v1, v47
-
-    move-wide/from16 v2, v45
-
-    invoke-direct {v0, v6, v1, v2, v3}, Landroid/media/MediaScanner$MyMediaScannerClient;->setSettingIfNotSet(Ljava/lang/String;Landroid/net/Uri;J)V
-    
-    const-string v6, "pre_set_alarm_alert"
 
     move-object/from16 v0, p0
 
