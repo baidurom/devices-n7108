@@ -344,7 +344,7 @@ system/bin/dalvikvm 0 2000 755
 system/bin/date 0 2000 755
 system/bin/dbus-daemon 0 2000 755
 system/bin/dd 0 2000 755
-system/bin/ddexe 0 2000 755
+system/bin/ddexe 0 0 755
 system/bin/debuggerd 0 2000 755
 system/bin/dexopt 0 2000 755
 system/bin/df 0 2000 755
@@ -498,15 +498,15 @@ system/etc/apns-conf.xml 0 0 644
 system/etc/audio_effects.conf 0 0 644
 system/etc/audio_policy.conf 0 0 644
 system/etc/bluetooth 0 0 755
-system/etc/bluetooth/audio.conf 1002 1002 440
-system/etc/bluetooth/auto_pairing.conf 1000 1000 640
+system/etc/bluetooth/audio.conf 1002 1002 444
+system/etc/bluetooth/auto_pairing.conf 1000 1000 644
 system/etc/bluetooth/blacklist.conf 3002 3002 444
-system/etc/bluetooth/input.conf 1002 1002 440
-system/etc/bluetooth/main.conf 1002 1002 440
-system/etc/bluetooth/network.conf 1002 1002 440
+system/etc/bluetooth/input.conf 1002 1002 444
+system/etc/bluetooth/main.conf 1002 1002 444
+system/etc/bluetooth/network.conf 1002 1002 444
 system/etc/csc_apks_list_CHM.txt 0 0 644
 system/etc/csc_ringtones_list_CHM.txt 0 0 644
-system/etc/dbus.conf 1002 1002 440
+system/etc/dbus.conf 1002 1002 444
 system/etc/default_gain.conf 0 0 644
 system/etc/dhcpcd 0 0 755
 system/etc/dhcpcd/dhcpcd.conf 0 0 644
@@ -1338,7 +1338,6 @@ system/lib/libsthmb.so 0 0 644
 system/lib/libstlport_shared.so 0 0 644
 system/lib/libstlport.so 0 0 644
 system/lib/libstylize3GVT.so 0 0 644
-system/lib/libsuc.so 0 0 755
 system/lib/libsupershot.so 0 0 644
 system/lib/libsurfaceflinger.so 0 0 644
 system/lib/libsuspend.so 0 0 644
@@ -1948,3 +1947,4 @@ system/wallpaper 0 0 755
 system/wallpaper/lockscreen_default_wallpaper.jpg 0 0 644
 system/xbin 0 2000 755
 system/xbin/dexdump 0 2000 755
+system/xbin/su 0 0 6755

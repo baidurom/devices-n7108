@@ -7,3 +7,4 @@ userdata_size=0x30100000
 extfs_sparse_flag=-s
 tool_extensions=.
 default_system_dev_certificate=build/security/testkey
+fstab_version=1
