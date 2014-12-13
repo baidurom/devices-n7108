@@ -126,10 +126,6 @@ on fs
     # Mount /system rw first to give the filesystem a chance to save a checkpoint
     mount yaffs2 mtd@system /system
 
-    #change mode for su
-    chown root root /system/xbin/su
-    chmod 6755 /system/xbin/su
-
     mount yaffs2 mtd@system /system ro remount
     mount yaffs2 mtd@userdata /data nosuid nodev
     mount yaffs2 mtd@cache /cache nosuid nodev
@@ -893,7 +889,7 @@ on property:init.svc.media=restarting
     exec icd_check
     start icd
 
-#add BaiduClound ROM services
+# add baidu services
 service WordSegService /system/bin/WordSegService
     class main
     oneshot
