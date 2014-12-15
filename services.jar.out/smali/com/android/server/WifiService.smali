@@ -3399,11 +3399,11 @@
 
     new-instance v6, Landroid/content/Intent;
 
-    const-string v7, "android.net.wifi.SEC_PICK_WIFI_NETWORK"
+    const-string v7, "android.net.wifi.PICK_WIFI_NETWORK"
 
     invoke-direct {v6, v7}, Landroid/content/Intent;-><init>(Ljava/lang/String;)V
 
-    invoke-static {v5, v8, v6, v8}, Landroid/app/PendingIntent;->getBroadcast(Landroid/content/Context;ILandroid/content/Intent;I)Landroid/app/PendingIntent;
+    invoke-static {v5, v8, v6, v8}, Landroid/app/PendingIntent;->getActivity(Landroid/content/Context;ILandroid/content/Intent;I)Landroid/app/PendingIntent;
 
     move-result-object v5
 
