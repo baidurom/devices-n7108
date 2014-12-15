@@ -380,6 +380,7 @@
 
     .line 130
     .local v3, hasNoAccountEmail:Landroid/content/ComponentName;
+    :try_start_2
     invoke-virtual {v4, v3}, Landroid/content/pm/PackageManager;->getComponentEnabledSetting(Landroid/content/ComponentName;)I
 
     move-result v5
@@ -388,47 +389,57 @@
 
     if-eq v5, v6, :cond_0
 
-    .line 131
     new-instance v5, Lcom/android/server/pm/PreferredActivityBaidu;
 
     invoke-direct {v5, v1, v3}, Lcom/android/server/pm/PreferredActivityBaidu;-><init>(Landroid/content/IntentFilter;Landroid/content/ComponentName;)V
 
     invoke-virtual {p0, v5}, Lcom/android/server/pm/PreferredIntentResolverBaidu;->addFilter(Landroid/content/IntentFilter;)V
+    :try_end_2
+    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_2} :catch_2
 
-    .line 135
     :goto_2
     return-void
 
-    .line 103
     .end local v2           #hasAccountEmail:Landroid/content/ComponentName;
     .end local v3           #hasNoAccountEmail:Landroid/content/ComponentName;
     .end local v4           #pm:Landroid/content/pm/PackageManager;
     :catch_0
     move-exception v0
 
-    .line 104
     .local v0, e:Landroid/content/IntentFilter$MalformedMimeTypeException;
     invoke-virtual {v0}, Landroid/content/IntentFilter$MalformedMimeTypeException;->printStackTrace()V
 
     goto/16 :goto_0
 
-    .line 115
     .end local v0           #e:Landroid/content/IntentFilter$MalformedMimeTypeException;
     :catch_1
     move-exception v0
 
-    .line 116
     .restart local v0       #e:Landroid/content/IntentFilter$MalformedMimeTypeException;
     invoke-virtual {v0}, Landroid/content/IntentFilter$MalformedMimeTypeException;->printStackTrace()V
 
     goto :goto_1
 
-    .line 133
     .end local v0           #e:Landroid/content/IntentFilter$MalformedMimeTypeException;
     .restart local v2       #hasAccountEmail:Landroid/content/ComponentName;
     .restart local v3       #hasNoAccountEmail:Landroid/content/ComponentName;
     .restart local v4       #pm:Landroid/content/pm/PackageManager;
     :cond_0
+    :try_start_3
+    new-instance v5, Lcom/android/server/pm/PreferredActivityBaidu;
+
+    invoke-direct {v5, v1, v2}, Lcom/android/server/pm/PreferredActivityBaidu;-><init>(Landroid/content/IntentFilter;Landroid/content/ComponentName;)V
+
+    invoke-virtual {p0, v5}, Lcom/android/server/pm/PreferredIntentResolverBaidu;->addFilter(Landroid/content/IntentFilter;)V
+    :try_end_3
+    .catch Ljava/lang/Exception; {:try_start_3 .. :try_end_3} :catch_2
+
+    goto :goto_2
+
+    :catch_2
+    move-exception v0
+
+    .local v0, e:Ljava/lang/Exception;
     new-instance v5, Lcom/android/server/pm/PreferredActivityBaidu;
 
     invoke-direct {v5, v1, v2}, Lcom/android/server/pm/PreferredActivityBaidu;-><init>(Landroid/content/IntentFilter;Landroid/content/ComponentName;)V
