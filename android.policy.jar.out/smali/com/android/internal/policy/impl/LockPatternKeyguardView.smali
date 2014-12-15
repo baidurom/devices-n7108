@@ -2431,7 +2431,7 @@
 
     const-string v7, "with_circle"
 
-    invoke-static {v4, v7, v5}, Landroid/provider/Settings$System;->getInt(Landroid/content/ContentResolver;Ljava/lang/String;I)I
+    invoke-static {v4, v7, v6}, Landroid/provider/Settings$System;->getInt(Landroid/content/ContentResolver;Ljava/lang/String;I)I
 
     move-result v4
 
@@ -2451,7 +2451,7 @@
 
     const-string v7, "lockscreen_wallpaper"
 
-    invoke-static {v4, v7, v5}, Landroid/provider/Settings$System;->getInt(Landroid/content/ContentResolver;Ljava/lang/String;I)I
+    invoke-static {v4, v7, v6}, Landroid/provider/Settings$System;->getInt(Landroid/content/ContentResolver;Ljava/lang/String;I)I
 
     move-result v4
 
@@ -4780,7 +4780,7 @@
 
     const-string v8, "lockscreen_wallpaper"
 
-    invoke-static {v5, v8, v7}, Landroid/provider/Settings$System;->getInt(Landroid/content/ContentResolver;Ljava/lang/String;I)I
+    invoke-static {v5, v8, v6}, Landroid/provider/Settings$System;->getInt(Landroid/content/ContentResolver;Ljava/lang/String;I)I
 
     move-result v5
 
@@ -4797,6 +4797,14 @@
     iget-object v5, p0, Lcom/android/internal/policy/impl/LockPatternKeyguardView;->mWallpaperWidget:Lcom/android/internal/policy/impl/sec/WallpaperWidget;
 
     if-nez v5, :cond_9
+
+    const/4 v5, 0x0
+
+    iput-object v5, p0, Lcom/android/internal/policy/impl/LockPatternKeyguardView;->mWallpaperWidget:Lcom/android/internal/policy/impl/sec/WallpaperWidget;
+
+    iget-object v5, p0, Lcom/android/internal/policy/impl/LockPatternKeyguardView;->mWallpaperWidget:Lcom/android/internal/policy/impl/sec/WallpaperWidget;
+
+    if-eqz v5, :cond_baidu_0
 
     .line 1215
     new-instance v5, Lcom/android/internal/policy/impl/sec/WallpaperWidget;
@@ -4824,6 +4832,7 @@
     .line 1223
     .end local v1           #isLiveWallpaper:Z
     .end local v4           #wallpaperLayoutParams:Landroid/widget/FrameLayout$LayoutParams;
+    :cond_baidu_0
     :cond_a
     sget-object v5, Lcom/android/internal/policy/impl/LockPatternKeyguardView$Mode;->LockScreen:Lcom/android/internal/policy/impl/LockPatternKeyguardView$Mode;
 
