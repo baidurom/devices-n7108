@@ -819,7 +819,7 @@
 
     const-string v2, "lockscreen_wallpaper"
 
-    const/4 v3, 0x0
+    const/4 v3, 0x1
 
     invoke-static {v1, v2, v3}, Landroid/provider/Settings$System;->getInt(Landroid/content/ContentResolver;Ljava/lang/String;I)I
 
