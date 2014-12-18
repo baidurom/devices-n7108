@@ -150,7 +150,8 @@ override_property += \
     ro.baidu.home.wakeup=true \
     persist.sys.baidu.default_write=first_storage \
     ro.baidu.2nd_storage.format=enable \
-    ro.camera.sound.forced=0
+    ro.camera.sound.forced=0 \
+    ro.baidu.led.dev_spec=0x0000000f
 
 ##############################################################################
 # The value decides which property you will remove from the build.prop.
