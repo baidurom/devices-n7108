@@ -1,0 +1,7 @@
+    new-instance v9, Lcom/android/phone/PhoneInterfaceManagerExt;
+
+    move-object/from16 v10, p0
+
+    iget-object v12, v10, Lcom/android/phone/PhoneApp;->phone:Lcom/android/internal/telephony/Phone;
+
+    invoke-direct {v9, v10, v12}, Lcom/android/phone/PhoneInterfaceManagerExt;-><init>(Lcom/android/phone/PhoneApp;Lcom/android/internal/telephony/Phone;)V

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="badPuk">错误的 PUK 码</string>
+    <string name="invalidPuk">输入至少 8 位数字或更长的 PUK</string>
+    <string name="keyguard_password_wrong_pin_code">PIN 码不正确</string>
+</resources>

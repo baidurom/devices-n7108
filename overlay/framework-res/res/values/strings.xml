@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="badPuk">"The PUK you typed isn't correct."</string>
+    <string name="invalidPuk">Type a PUK that is 8 numbers or longer.</string>
+    <string name="keyguard_password_wrong_pin_code">Incorrect PIN code.</string>
+</resources>
