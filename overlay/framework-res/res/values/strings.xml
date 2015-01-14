@@ -3,4 +3,5 @@
     <string name="badPuk">"The PUK you typed isn't correct."</string>
     <string name="invalidPuk">Type a PUK that is 8 numbers or longer.</string>
     <string name="keyguard_password_wrong_pin_code">Incorrect PIN code.</string>
+    <string name="config_customCameraPackage">com.sec.android.app.camera</string>
 </resources>
