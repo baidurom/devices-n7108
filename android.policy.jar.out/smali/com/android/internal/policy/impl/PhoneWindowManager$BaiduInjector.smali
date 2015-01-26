@@ -13,24 +13,13 @@
     name = "BaiduInjector"
 .end annotation
 
-.annotation system Ldalvik/annotation/MemberClasses;
-    value = {
-        Lcom/android/internal/policy/impl/PhoneWindowManager$BaiduInjector$TaskDescription;,
-        Lcom/android/internal/policy/impl/PhoneWindowManager$BaiduInjector$KillRunnable;
-    }
-.end annotation
-
 
 # static fields
-.field private static mCurrentTaskDescription:Lcom/android/internal/policy/impl/PhoneWindowManager$BaiduInjector$TaskDescription;
-
 .field public static mFlashlightReceiver:Landroid/content/BroadcastReceiver;
 
 .field private static mHomePressOpenFlash:Z
 
 .field private static mIsFlashlightOn:Z
-
-.field private static mLastBackTime:J
 
 .field public static mPackageReceiver:Landroid/content/BroadcastReceiver;
 
@@ -59,35 +48,21 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 3
+    .locals 1
 
     .prologue
-    const/4 v2, 0x0
-
-    .line 4734
-    const-wide/16 v0, 0x0
-
-    sput-wide v0, Lcom/android/internal/policy/impl/PhoneWindowManager$BaiduInjector;->mLastBackTime:J
-
-    .line 4735
     const/4 v0, 0x0
 
-    sput-object v0, Lcom/android/internal/policy/impl/PhoneWindowManager$BaiduInjector;->mCurrentTaskDescription:Lcom/android/internal/policy/impl/PhoneWindowManager$BaiduInjector$TaskDescription;
+    sput-boolean v0, Lcom/android/internal/policy/impl/PhoneWindowManager$BaiduInjector;->mHomePressOpenFlash:Z
 
-    .line 4736
-    sput-boolean v2, Lcom/android/internal/policy/impl/PhoneWindowManager$BaiduInjector;->mHomePressOpenFlash:Z
+    sput-boolean v0, Lcom/android/internal/policy/impl/PhoneWindowManager$BaiduInjector;->mIsFlashlightOn:Z
 
-    .line 4737
-    sput-boolean v2, Lcom/android/internal/policy/impl/PhoneWindowManager$BaiduInjector;->mIsFlashlightOn:Z
-
-    .line 4841
     new-instance v0, Lcom/android/internal/policy/impl/PhoneWindowManager$BaiduInjector$1;
 
     invoke-direct {v0}, Lcom/android/internal/policy/impl/PhoneWindowManager$BaiduInjector$1;-><init>()V
 
     sput-object v0, Lcom/android/internal/policy/impl/PhoneWindowManager$BaiduInjector;->mFlashlightReceiver:Landroid/content/BroadcastReceiver;
 
-    .line 4851
     new-instance v0, Lcom/android/internal/policy/impl/PhoneWindowManager$BaiduInjector$2;
 
     invoke-direct {v0}, Lcom/android/internal/policy/impl/PhoneWindowManager$BaiduInjector$2;-><init>()V
@@ -346,15 +321,6 @@
     return-void
 .end method
 
-.method private static getBackLongPressBehavior()I
-    .locals 1
-
-    .prologue
-    const/4 v0, 0x1
-
-    return v0
-.end method
-
 .method public static hold(Landroid/view/WindowManager;Landroid/view/View;)V
     .locals 1
     .parameter "wm"
@@ -377,22 +343,6 @@
 
     .line 4927
     return-void
-.end method
-
-.method private static isCurrentHomeActivity(Landroid/content/Intent;Landroid/content/pm/ActivityInfo;)Z
-    .locals 1
-    .parameter "intent"
-    .parameter "homeInfo"
-
-    .prologue
-    .line 4817
-    const-string v0, "android.intent.category.HOME"
-
-    invoke-virtual {p0, v0}, Landroid/content/Intent;->hasCategory(Ljava/lang/String;)Z
-
-    move-result v0
-
-    return v0
 .end method
 
 .method private static killTask(Lcom/android/internal/policy/impl/PhoneWindowManager;Lcom/android/internal/policy/impl/PhoneWindowManager$BaiduInjector$TaskDescription;)V
@@ -531,144 +481,6 @@
     goto :goto_0
 .end method
 
-.method private static loadFirstTask(Lcom/android/internal/policy/impl/PhoneWindowManager;)Lcom/android/internal/policy/impl/PhoneWindowManager$BaiduInjector$TaskDescription;
-    .locals 8
-    .parameter "phoneWindowManager"
-
-    .prologue
-    const/4 v5, 0x0
-
-    .line 4790
-    iget-object v6, p0, Lcom/android/internal/policy/impl/PhoneWindowManager;->mContext:Landroid/content/Context;
-
-    const-string v7, "activity"
-
-    invoke-virtual {v6, v7}, Landroid/content/Context;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
-
-    move-result-object v0
-
-    check-cast v0, Landroid/app/ActivityManager;
-
-    .line 4791
-    .local v0, am:Landroid/app/ActivityManager;
-    const/4 v6, 0x1
-
-    const/4 v7, 0x2
-
-    invoke-virtual {v0, v6, v7}, Landroid/app/ActivityManager;->getRecentTasks(II)Ljava/util/List;
-
-    move-result-object v4
-
-    .line 4793
-    .local v4, recentTasks:Ljava/util/List;,"Ljava/util/List<Landroid/app/ActivityManager$RecentTaskInfo;>;"
-    const/4 v1, 0x0
-
-    .line 4794
-    .local v1, description:Lcom/android/internal/policy/impl/PhoneWindowManager$BaiduInjector$TaskDescription;
-    invoke-interface {v4}, Ljava/util/List;->size()I
-
-    move-result v6
-
-    if-lez v6, :cond_3
-
-    .line 4795
-    new-instance v1, Lcom/android/internal/policy/impl/PhoneWindowManager$BaiduInjector$TaskDescription;
-
-    .end local v1           #description:Lcom/android/internal/policy/impl/PhoneWindowManager$BaiduInjector$TaskDescription;
-    invoke-direct {v1}, Lcom/android/internal/policy/impl/PhoneWindowManager$BaiduInjector$TaskDescription;-><init>()V
-
-    .line 4796
-    .restart local v1       #description:Lcom/android/internal/policy/impl/PhoneWindowManager$BaiduInjector$TaskDescription;
-    const/4 v6, 0x0
-
-    invoke-interface {v4, v6}, Ljava/util/List;->get(I)Ljava/lang/Object;
-
-    move-result-object v3
-
-    check-cast v3, Landroid/app/ActivityManager$RecentTaskInfo;
-
-    .line 4797
-    .local v3, recentInfo:Landroid/app/ActivityManager$RecentTaskInfo;
-    new-instance v2, Landroid/content/Intent;
-
-    iget-object v6, v3, Landroid/app/ActivityManager$RecentTaskInfo;->baseIntent:Landroid/content/Intent;
-
-    invoke-direct {v2, v6}, Landroid/content/Intent;-><init>(Landroid/content/Intent;)V
-
-    .line 4798
-    .local v2, intent:Landroid/content/Intent;
-    iget-object v6, v3, Landroid/app/ActivityManager$RecentTaskInfo;->origActivity:Landroid/content/ComponentName;
-
-    if-eqz v6, :cond_0
-
-    .line 4799
-    iget-object v6, v3, Landroid/app/ActivityManager$RecentTaskInfo;->origActivity:Landroid/content/ComponentName;
-
-    invoke-virtual {v2, v6}, Landroid/content/Intent;->setComponent(Landroid/content/ComponentName;)Landroid/content/Intent;
-
-    .line 4802
-    :cond_0
-    invoke-static {v2, v5}, Lcom/android/internal/policy/impl/PhoneWindowManager$BaiduInjector;->isCurrentHomeActivity(Landroid/content/Intent;Landroid/content/pm/ActivityInfo;)Z
-
-    move-result v6
-
-    if-eqz v6, :cond_2
-
-    .line 4813
-    .end local v2           #intent:Landroid/content/Intent;
-    .end local v3           #recentInfo:Landroid/app/ActivityManager$RecentTaskInfo;
-    :cond_1
-    :goto_0
-    return-object v5
-
-    .line 4806
-    .restart local v2       #intent:Landroid/content/Intent;
-    .restart local v3       #recentInfo:Landroid/app/ActivityManager$RecentTaskInfo;
-    :cond_2
-    invoke-virtual {v2}, Landroid/content/Intent;->getComponent()Landroid/content/ComponentName;
-
-    move-result-object v6
-
-    invoke-virtual {v6}, Landroid/content/ComponentName;->getPackageName()Ljava/lang/String;
-
-    move-result-object v6
-
-    const-string v7, "com.android.systemui"
-
-    invoke-virtual {v6, v7}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-
-    move-result v6
-
-    if-nez v6, :cond_1
-
-    .line 4809
-    iget v5, v3, Landroid/app/ActivityManager$RecentTaskInfo;->id:I
-
-    iput v5, v1, Lcom/android/internal/policy/impl/PhoneWindowManager$BaiduInjector$TaskDescription;->id:I
-
-    .line 4810
-    iput-object v2, v1, Lcom/android/internal/policy/impl/PhoneWindowManager$BaiduInjector$TaskDescription;->intent:Landroid/content/Intent;
-
-    .line 4811
-    invoke-virtual {v2}, Landroid/content/Intent;->getComponent()Landroid/content/ComponentName;
-
-    move-result-object v5
-
-    invoke-virtual {v5}, Landroid/content/ComponentName;->getPackageName()Ljava/lang/String;
-
-    move-result-object v5
-
-    iput-object v5, v1, Lcom/android/internal/policy/impl/PhoneWindowManager$BaiduInjector$TaskDescription;->packageName:Ljava/lang/String;
-
-    .end local v2           #intent:Landroid/content/Intent;
-    .end local v3           #recentInfo:Landroid/app/ActivityManager$RecentTaskInfo;
-    :cond_3
-    move-object v5, v1
-
-    .line 4813
-    goto :goto_0
-.end method
-
 .method public static longPressKiller(Lcom/android/internal/policy/impl/PhoneWindowManager;Landroid/view/KeyEvent;)I
     .locals 12
     .parameter "phoneWindowManager"
@@ -766,7 +578,6 @@
 
     if-nez v7, :cond_2
 
-    .line 4843
     invoke-static {}, Lcom/android/internal/policy/impl/PhoneWindowManager$BaiduInjector;->getBackLongPressBehavior()I
 
     move-result v7
@@ -775,14 +586,12 @@
 
     if-eq v7, v8, :cond_2
 
-    .line 4844
     invoke-static {p0}, Lcom/android/internal/policy/impl/PhoneWindowManager$BaiduInjector;->loadFirstTask(Lcom/android/internal/policy/impl/PhoneWindowManager;)Lcom/android/internal/policy/impl/PhoneWindowManager$BaiduInjector$TaskDescription;
 
     move-result-object v7
 
     sput-object v7, Lcom/android/internal/policy/impl/PhoneWindowManager$BaiduInjector;->mCurrentTaskDescription:Lcom/android/internal/policy/impl/PhoneWindowManager$BaiduInjector$TaskDescription;
 
-    .line 4847
     :cond_2
     invoke-virtual {p1}, Landroid/view/KeyEvent;->getRepeatCount()I
 
@@ -834,6 +643,7 @@
     :cond_5
     move v0, v5
 
+    .line 4813
     goto :goto_0
 
     .restart local v0       #down:Z
@@ -930,40 +740,6 @@
     return-void
 .end method
 
-.method public static wakeUpWithVolumeKey(Lcom/android/internal/policy/impl/PhoneWindowManager;)V
-    .locals 3
-    .parameter "phoneWindowManager"
-
-    .prologue
-    .line 4913
-    iget-object v0, p0, Lcom/android/internal/policy/impl/PhoneWindowManager;->mContext:Landroid/content/Context;
-
-    invoke-virtual {v0}, Landroid/content/Context;->getContentResolver()Landroid/content/ContentResolver;
-
-    move-result-object v0
-
-    const-string v1, "volume_revoke"
-
-    const/4 v2, 0x0
-
-    invoke-static {v0, v1, v2}, Landroid/provider/Settings$System;->getInt(Landroid/content/ContentResolver;Ljava/lang/String;I)I
-
-    move-result v0
-
-    const/4 v1, 0x1
-
-    if-ne v0, v1, :cond_0
-
-    .line 4914
-    iget-object v0, p0, Lcom/android/internal/policy/impl/PhoneWindowManager;->mKeyguardMediator:Lcom/android/internal/policy/impl/KeyguardViewMediator;
-
-    invoke-virtual {v0}, Lcom/android/internal/policy/impl/KeyguardViewMediator;->pokeWakelock()V
-
-    .line 4916
-    :cond_0
-    return-void
-.end method
-
 .method static synthetic access$invoke-getBackLongPressBehavior-0d9dab()I
     .locals 1
 
@@ -973,17 +749,6 @@
     move-result v0
 
     return v0
-.end method
-
-.method static synthetic access$invoke-killTask-b88efb(Lcom/android/internal/policy/impl/PhoneWindowManager;Lcom/android/internal/policy/impl/PhoneWindowManager$BaiduInjector$TaskDescription;)V
-    .locals 0
-    .parameter "x0"
-    .parameter "x1"
-
-    .prologue
-    invoke-static {p0, p1}, Lcom/android/internal/policy/impl/PhoneWindowManager$BaiduInjector;->killTask(Lcom/android/internal/policy/impl/PhoneWindowManager;Lcom/android/internal/policy/impl/PhoneWindowManager$BaiduInjector$TaskDescription;)V
-
-    return-void
 .end method
 
 .method public static interceptKeyBeforeQueueingHook(Lcom/android/internal/policy/impl/PhoneWindowManager;Landroid/view/KeyEvent;)V
@@ -1039,4 +804,73 @@
         0x1a -> :sswitch_1
         0xa4 -> :sswitch_0
     .end sparse-switch
+.end method
+
+.method public static flashOpen(Landroid/content/Context;)V
+    .locals 5
+    .parameter "context"
+
+    .prologue
+    sget-boolean v2, Lcom/android/internal/policy/impl/PhoneWindowManager$BaiduInjector;->mIsFlashlightOn:Z
+
+    if-nez v2, :cond_0
+
+    :try_start_0
+    new-instance v1, Landroid/content/Intent;
+
+    const-string v2, "com.baidu.flashlight.ACTION_OPEN"
+
+    invoke-direct {v1, v2}, Landroid/content/Intent;-><init>(Ljava/lang/String;)V
+
+    .local v1, intent:Landroid/content/Intent;
+    const-string v2, "com.baidu.flashlight"
+
+    invoke-virtual {v1, v2}, Landroid/content/Intent;->setPackage(Ljava/lang/String;)Landroid/content/Intent;
+
+    const-string v2, "open_flashlight"
+
+    const/4 v3, 0x1
+
+    invoke-virtual {v1, v2, v3}, Landroid/content/Intent;->putExtra(Ljava/lang/String;Z)Landroid/content/Intent;
+
+    invoke-virtual {p0, v1}, Landroid/content/Context;->startService(Landroid/content/Intent;)Landroid/content/ComponentName;
+
+    const/4 v2, 0x1
+
+    sput-boolean v2, Lcom/android/internal/policy/impl/PhoneWindowManager$BaiduInjector;->mIsFlashlightOn:Z
+    :try_end_0
+    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+
+    .end local v1           #intent:Landroid/content/Intent;
+    :cond_0
+    :goto_0
+    return-void
+
+    :catch_0
+    move-exception v0
+
+    .local v0, e:Ljava/lang/Exception;
+    const-string v2, "WindowManager"
+
+    new-instance v3, Ljava/lang/StringBuilder;
+
+    invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v4, "Flashlight cann\'t start:"
+
+    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v3
+
+    invoke-virtual {v3, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+
+    move-result-object v3
+
+    invoke-virtual {v3}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v3
+
+    invoke-static {v2, v3}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
+
+    goto :goto_0
 .end method
