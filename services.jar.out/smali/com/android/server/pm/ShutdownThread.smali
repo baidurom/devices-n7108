@@ -716,8 +716,6 @@
 
     invoke-virtual {v4, v5}, Landroid/app/ProgressDialog;->setMessage(Ljava/lang/CharSequence;)V
 
-    invoke-static {p0, v4}, Lcom/android/server/pm/ShutdownThread$BaiduInjector;->rebootProgressDialogBaidu(Landroid/content/Context;Landroid/app/ProgressDialog;)V
-
     .line 412
     invoke-virtual {v4, v9}, Landroid/app/ProgressDialog;->setIndeterminate(Z)V
 
@@ -779,7 +777,7 @@
     invoke-virtual {v5, v6}, Landroid/view/Window;->addFlags(I)V
 
     .line 423
-    invoke-virtual {v4}, Landroid/app/ProgressDialog;->show()V
+    invoke-static/range {p0 .. p0}, Lcom/android/server/pm/ShutdownThread$BaiduInjector;->showBaiduShutdownOrRebootProgressDialog(Landroid/content/Context;)V
 
     goto/16 :goto_2
 
@@ -1820,7 +1818,7 @@
     .line 203
     new-instance v1, Landroid/view/ContextThemeWrapper;
 
-    const v8, #style@Theme.DeviceDefault.Light.Dialog.Alert#t
+    const v8, 0x103012b
 
     invoke-direct {v1, p0, v8}, Landroid/view/ContextThemeWrapper;-><init>(Landroid/content/Context;I)V
 
@@ -1946,10 +1944,6 @@
 
     .line 246
     :goto_3
-    invoke-static {p0, v2}, Lcom/android/server/pm/ShutdownThread$BaiduInjector;->createRebootDialogBaidu(Landroid/content/Context;Landroid/app/AlertDialog;)Landroid/app/AlertDialog;
-
-    move-result-object v2
-
     iput-object v2, v0, Lcom/android/server/pm/ShutdownThread$CloseDialogReceiver;->dialog:Landroid/app/Dialog;
 
     .line 247
@@ -1988,7 +1982,7 @@
 
     .line 255
     :goto_4
-    invoke-virtual {v2}, Landroid/app/AlertDialog;->show()V
+    invoke-static/range {p0 .. p0}, Lcom/android/server/pm/ShutdownThread$BaiduInjector;->showBaiduShutdownOrRebootDialog(Landroid/content/Context;)V
 
     goto/16 :goto_0
 
@@ -2003,7 +1997,7 @@
     :cond_3
     new-instance v1, Landroid/view/ContextThemeWrapper;
 
-    const v8, #style@Theme.DeviceDefault.Light.Dialog.Alert#t
+    const v8, 0x1030128
 
     invoke-direct {v1, p0, v8}, Landroid/view/ContextThemeWrapper;-><init>(Landroid/content/Context;I)V
 
@@ -2759,4 +2753,14 @@
     sput-boolean p0, Lcom/android/server/pm/ShutdownThread;->mReboot:Z
 
     return p0
+.end method
+
+
+.method static synthetic access$sget-mRebootSafeMode-259b09()Z
+    .locals 1
+
+    .prologue
+    sget-boolean v0, Lcom/android/server/pm/ShutdownThread;->mRebootSafeMode:Z
+
+    return v0
 .end method
